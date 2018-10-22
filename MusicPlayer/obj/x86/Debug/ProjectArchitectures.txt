@@ -1,0 +1,1 @@
+C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\MusicPlayer.csproj;x86
