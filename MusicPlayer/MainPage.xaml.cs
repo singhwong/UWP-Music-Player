@@ -56,6 +56,7 @@ namespace MusicPlayer
         private bool IsHiddenButtonClick = false;
         private string source_path;
         private string image_source_path;
+        private bool IsListViewOpen = true;
         private SolidColorBrush skyblue = new SolidColorBrush(Colors.SkyBlue);
         private SolidColorBrush black = new SolidColorBrush(Colors.Black);
 
@@ -77,6 +78,11 @@ namespace MusicPlayer
         StorageFolder localFolder;
         StorageFile fileCopy;
         private int num = 0;
+        private SolidColorBrush lightYellow = new SolidColorBrush(Colors.LightYellow);
+        private SolidColorBrush transParent = new SolidColorBrush(Colors.Transparent);
+        private SolidColorBrush lightBlue = new SolidColorBrush(Colors.LightBlue);
+        private SolidColorBrush hotPink = new SolidColorBrush(Colors.HotPink);
+        private SolidColorBrush aliceBlue = new SolidColorBrush(Colors.AliceBlue);
         private void play_button_Click(object sender, RoutedEventArgs e)
         {
             if (source_path != null)
@@ -375,11 +381,6 @@ namespace MusicPlayer
         //    }
         //    #endregion
         //}
-
-        private void settign_Click(object sender, RoutedEventArgs e)
-        {
-            menu_flyout.Hide();
-        }
 
         private void background_menu_Click(object sender, RoutedEventArgs e)
         {
@@ -752,6 +753,76 @@ namespace MusicPlayer
                 PrimaryButtonText = "OK",
             };
             ContentDialogResult result = await content.ShowAsync();
+        }
+
+        private void model_button_Click(object sender, RoutedEventArgs e)
+        {
+            model_flyout.Hide();
+        }
+
+        private void setting_Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            menu_flyout.Hide();
+        }
+
+        private void model_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            model_button.Opacity = 1;
+        }
+
+        private void model_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            model_button.Opacity = 0.3;
+        }
+
+        private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            main_listview.Background = lightYellow;
+            music_button.Foreground = lightYellow;
+            Title_textblock.Foreground = hotPink;
+        }
+
+        private void main_listview_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            main_listview.Background = transParent;
+            music_button.Foreground = lightBlue;
+            Title_textblock.Foreground = black;
+        }
+
+        private void music_button_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsListViewOpen)
+            {
+                main_listview.Visibility = Visibility.Collapsed;
+                music_button.Foreground = black;
+                IsListViewOpen = false;
+            }
+            else
+            {
+                main_listview.Visibility = Visibility.Visible;
+                music_button.Foreground = lightBlue;
+                IsListViewOpen = true;
+            }
+        }
+
+        private void BackIcon_textblock_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            BackIcon_textblock.Foreground = hotPink;
+        }
+
+        private void BackIcon_textblock_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            BackIcon_textblock.Foreground = aliceBlue;
+        }
+
+        private void ForwardIcon_textblock_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            ForwardIcon_textblock.Foreground = hotPink;
+        }
+
+        private void ForwardIcon_textblock_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            ForwardIcon_textblock.Foreground = aliceBlue;
         }
     }
 }

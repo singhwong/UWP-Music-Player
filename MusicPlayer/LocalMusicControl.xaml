@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="MusicPlayer.LocalMusicControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MusicPlayer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Image Name="iamge_Image"
+                               Height="30"
+                               Width="30"
+                               Margin="0,0,10,0"
+                               Source="{x:Bind this_music.Cover}"/>
+            <TextBlock Name="title_textblock"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Text="{x:Bind this_music.Title}"/>
+            <TextBlock Text=" - "
+                                   VerticalAlignment="Center"
+                                   FontFamily="13"/>
+            <TextBlock Name="artist_textblock"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   Text="{x:Bind this_music.Artist}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

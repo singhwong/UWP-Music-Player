@@ -8,33 +8,34 @@
     xmlns:local1="using:MusicPlayer.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    Loaded="Page_Loaded">
+    Loaded="Page_Loaded"
+    MinHeight="500">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ButtonStyle.xaml"/>
                 <ResourceDictionary Source="AppBarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-        
-        <local1:ProgressConvert x:Key="progressConvert"/>
-        <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
-            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+
+            <local1:ProgressConvert x:Key="progressConvert"/>
+            <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
+                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
                                            Storyboard.TargetName="main_progressbar"
                                            Storyboard.TargetProperty="(RangeBase.Value)">
-                <DiscreteDoubleKeyFrame KeyTime="0:0:1"
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:1"
                                         Value="1"/>
-                <DiscreteDoubleKeyFrame KeyTime="0:0:2"
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:2"
                                         Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Name="main_storyBoard2" Completed="main_storyBoard2_Completed">
-            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Name="main_storyBoard2" Completed="main_storyBoard2_Completed">
+                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
                                            Storyboard.TargetName="main_progressbar2"
                                            Storyboard.TargetProperty="(RangeBase.Value)">
-                <DiscreteDoubleKeyFrame KeyTime="0:0:1"
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:1"
                                         Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -47,17 +48,16 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="main_listview.Visibility" Value="Collapsed"/>
-                        <!--<Setter Target="Title_textblock.Text" Value=""/>-->
                         <Setter Target="main_stackPanel.Visibility" Value="Collapsed"/>
                         <Setter Target="main_ellipse.Height" Value="200"/>
                         <Setter Target="main_ellipse.Width" Value="200"/>
                         <Setter Target="status_textblock.FontSize" Value="20"/>
                         <Setter Target="songTile_textblock.FontSize" Value="15"/>
-                        <Setter Target="main_ellipse.VerticalAlignment" Value="Top"/>
-                        <Setter Target="BackIcon_textblock.VerticalAlignment" Value="Top"/>
-                        <Setter Target="ForwardIcon_textblock.VerticalAlignment" Value="Top"/>
-                        <Setter Target="BackIcon_textblock.Margin" Value="5,60,0,0"/>
-                        <Setter Target="ForwardIcon_textblock.Margin" Value="0,60,5,0"/>
+                        <!--<Setter Target="main_ellipse.VerticalAlignment" Value="Top"/>-->
+                        <!--<Setter Target="BackIcon_textblock.VerticalAlignment" Value="Top"/>
+                        <Setter Target="ForwardIcon_textblock.VerticalAlignment" Value="Top"/>-->
+                        <!--<Setter Target="BackIcon_textblock.Margin" Value="5,60,0,0"/>
+                        <Setter Target="ForwardIcon_textblock.Margin" Value="0,60,5,0"/>-->
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -101,22 +101,37 @@
                       HorizontalAlignment="Center"/>
         <StackPanel Name="main_stackPanel"
                     Orientation="Horizontal"
-                    Margin="10,30,0,0">
+                    Margin="10,30,0,0"
+                    Height="70">
             <TextBlock Name="Title_textblock"
-                   FontSize="20"
+                   FontSize="17"
                    Text="本地音乐"
-                       VerticalAlignment="Center"
+                    Margin="0,13,0,0"
+                    VerticalAlignment="Top"
                    Visibility="Visible"/>
+            <Button Name="music_button"
+                    FontFamily="Segoe MDL2 Assets"
+                    Content="&#xE90B;"
+                    Style="{StaticResource TransparentPathIconButtonStyle}"
+                    Background="Transparent"
+                    FontSize="40"
+                    VerticalAlignment="Top"
+                    Foreground="LightBlue"
+                    Click="music_button_Click"/>
             <Button Name="model_button"
                     Content="播放模式"
-                    Height="40"
-                    Width="70"
-                    FontSize="13"
+                    FontSize="15"
+                    Height="50"
+                    Width="80"
                     Style="{StaticResource TransparentPathIconButtonStyle}"
-                    BorderThickness="0"
                     Background="SkyBlue"
                     Foreground="Black"
-                    Margin="70,0,0,0"
+                    Margin="70,2,0,0"
+                    Opacity="0.3"
+                    VerticalAlignment="Top"
+                    PointerEntered="model_button_PointerEntered"
+                    PointerExited="model_button_PointerExited"
+                    Click="model_button_Click"
                     >
                 <Button.Flyout>
                     <MenuFlyout x:Name="model_flyout">
@@ -140,39 +155,22 @@
                   SelectionMode="Single"
                   Grid.Row="1"                 
                   Grid.RowSpan="4"
-                  IsItemClickEnabled="True"
-                  Background="White"
-                  Opacity="0.7"
+                  IsItemClickEnabled="True"             
                   ItemsSource="{x:Bind use_music}"
+                  PointerEntered="main_listview_PointerEntered"
+                  PointerExited="main_listview_PointerExited"
                   ItemClick="main_listview_ItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local1:Music">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Name="iamge_Image"
-                               Height="20"
-                               Width="20"
-                               Margin="0,0,10,0"
-                               Source="{x:Bind Cover}"/>
-                        <TextBlock Name="title_textblock"
-                                   FontSize="13"
-                                   VerticalAlignment="Center"
-                                   FontWeight="Bold"
-                                   Text="{x:Bind Title}"/>
-                        <TextBlock Text=" - "
-                                   VerticalAlignment="Center"
-                                   FontFamily="13"/>
-                        <TextBlock Name="artist_textblock"
-                                   FontSize="13"
-                                   VerticalAlignment="Center"
-                                   Text="{x:Bind Artist}"/>
-                    </StackPanel>
+                    <local:LocalMusicControl/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
         <TextBlock Name="status_textblock"
-                   FontSize="30"
+                   FontSize="27"
                    Margin="0,30,0,0"
+                   Foreground="AntiqueWhite"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Grid.Column="1"/>
@@ -197,6 +195,8 @@
                     FontSize="50"
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"
+                       PointerEntered="BackIcon_textblock_PointerEntered"
+                       PointerExited="BackIcon_textblock_PointerExited"
                        Tapped="BackIcon_textblock_Tapped"/>
             <Ellipse Name="main_ellipse"
                      Height="300"
@@ -228,6 +228,8 @@
                        Grid.Column="2"
                        Margin="0,0,10,0"
                        VerticalAlignment="Center"
+                       PointerEntered="ForwardIcon_textblock_PointerEntered"
+                       PointerExited="ForwardIcon_textblock_PointerExited"
                        Tapped="ForwardIcon_textblock_Tapped"/>
 
         </Grid>
@@ -238,7 +240,7 @@
                       Grid.Row="2"
                        Grid.Column="1"
                    FontSize="20"
-                   Foreground="Black"
+                   Foreground="AntiqueWhite"
                    Margin="0,0,0,10"
                        HorizontalAlignment="Center"/>
         <Grid Grid.Row="3"
@@ -252,14 +254,15 @@
                     Minimum="0"
                     StepFrequency="1"
                     Foreground="SkyBlue"
-                    Background="Gray"
+                    Background="Snow"
                     Value="{Binding ElementName=main_mediaElement, Path=Position, Converter={StaticResource progressConvert }, Mode=TwoWay}"
                     ValueChanged="main_slider_ValueChanged"/>
             <TextBlock Name="playTime_textblock"
                        Grid.Column="1"
                        FontSize="15"
                        Margin="7,0,0,10"
-                       Width="90"                      
+                       Width="90"
+                       Foreground="AntiqueWhite"
                        VerticalAlignment="Center"/>
         </Grid>
         <Button Name="setting_button"
@@ -293,13 +296,12 @@
                    HorizontalAlignment="Center"/>-->
     </Grid>
     <Page.BottomAppBar>
-        
         <CommandBar Background="White"
                     FontWeight="Bold"
                     Name="main_commanBar">
             <AppBarButton Name="back_button"
                           Icon="Previous"
-                          Label="上一首"
+                          Label="上一首"                        
                           Click="back_button_Click"/>
             <AppBarButton Name="play_button"
                           Icon="Play"
@@ -350,9 +352,9 @@
                                        Text="30"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
-                            
-                            
-                       
+
+
+
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
@@ -360,10 +362,10 @@
                           Icon="FullScreen"
                           Label="全屏"
                           Click="display_button_Click"/>
-            <AppBarButton Name="settign"
+            <AppBarButton Name="setting_Button"
                           Icon="Setting"
                           Label="设置"
-                          Click="settign_Click">
+                          Click="setting_Button_Click_1">
                 <AppBarButton.Flyout>
                     <MenuFlyout x:Name="menu_flyout">
                         <MenuFlyoutItem Name="background_menu"
