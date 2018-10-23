@@ -296,12 +296,11 @@
                    HorizontalAlignment="Center"/>-->
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar x:ConnectionId='30' Background="White"
-                    FontWeight="Bold"
+        <CommandBar x:ConnectionId='30' Background="Snow"
                     Name="main_commanBar">
             <AppBarButton x:ConnectionId='31' Name="back_button"
                           Icon="Previous"
-                          Label="上一首"                        
+                          Label="上一首"
                                                    />
             <AppBarButton x:ConnectionId='32' Name="play_button"
                           Icon="Play"
@@ -311,10 +310,6 @@
                           Icon="Next"
                           Label="下一首"
                                                       />
-            <!--<AppBarButton Name="pause_button"
-                          Icon="Pause"
-                          Label="暂停"
-                          Click="pause_button_Click"/>-->
             <AppBarButton x:ConnectionId='34' Name="stop_button"
                           Icon="Stop"
                           Label="停止"

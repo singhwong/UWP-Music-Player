@@ -51,6 +51,7 @@ namespace MusicPlayer
         private bool RandomPlay_bool = false;
         private bool ListPlay_bool = false;
         private bool SingleCycle_bool = false;
+        //private bool NonePlay_bool = true;
         private bool IsBackButtonClick = false;
         private bool IsMusicPlaying = false;
         private bool IsHiddenButtonClick = false;
@@ -83,10 +84,12 @@ namespace MusicPlayer
         private SolidColorBrush lightBlue = new SolidColorBrush(Colors.LightBlue);
         private SolidColorBrush hotPink = new SolidColorBrush(Colors.HotPink);
         private SolidColorBrush aliceBlue = new SolidColorBrush(Colors.AliceBlue);
+        private SolidColorBrush darkRed = new SolidColorBrush(Colors.DarkRed);
         private void play_button_Click(object sender, RoutedEventArgs e)
         {
             if (source_path != null)
             {
+                stop_button.Foreground = black;
                 if (IsMusicPlaying==false)
                 {
                     main_mediaElement.Play();
@@ -100,7 +103,7 @@ namespace MusicPlayer
                 else
                 {
                     main_mediaElement.Pause();
-                    play_button.Foreground = black;
+                    play_button.Foreground = darkRed;
                     status_textblock.Text = "暂停中";
                     play_button.Icon = new SymbolIcon(Symbol.Play);
                     play_button.Label = "播放";
@@ -126,6 +129,7 @@ namespace MusicPlayer
             play_button.Label = "播放";
             IsMusicPlaying = false;
             play_button.Foreground = black;
+            stop_button.Foreground = darkRed;
             main_mediaElement.Stop();
             status_textblock.Text = "";
         }
@@ -190,7 +194,11 @@ namespace MusicPlayer
                 {
                     Random_Source();
                 }
-
+                else
+                {
+                    status_textblock.Text = "";
+                    IsMusicPlaying = false;
+                }
             }
         }
         private void Random_Source()
@@ -316,6 +324,8 @@ namespace MusicPlayer
             main_progressRing.IsActive = true;
             GetLocalMusic();//获取本地音乐文件ListView
             main_progressRing.IsActive = false;
+            forward_button.IsEnabled = false;
+            back_button.IsEnabled = false;
 
             BackIcon_textblock.Visibility = Visibility.Collapsed;
             ForwardIcon_textblock.Visibility = Visibility.Collapsed;
@@ -516,6 +526,26 @@ namespace MusicPlayer
             StatusTextBlock_Text();
             IsMusicPlaying = true;
             play_button.Icon = new SymbolIcon(Symbol.Pause);
+            //if (SingleCycle_bool)
+            //{
+            //    forward_button.IsEnabled = false;
+            //    back_button.IsEnabled = false;               
+            //}
+            //else if (ListPlay_bool)
+            //{
+            //    forward_button.IsEnabled = true;
+            //    back_button.IsEnabled = true;
+            //}
+            //else if (RandomPlay_bool)
+            //{
+            //    forward_button.IsEnabled = true;
+            //    back_button.IsEnabled = true;
+            //}
+            //else
+            //{
+            //    forward_button.IsEnabled = false;
+            //    back_button.IsEnabled = false;
+            //}
         }
         private void StatusTextBlock_Text()
         {
@@ -560,7 +590,8 @@ namespace MusicPlayer
 
         private void main_storyBoard_Completed(object sender, object e)
         {
-
+            forward_button.Foreground = black;
+            back_button.Foreground = black;
             StoryBoardBegin();
             main_storyBoard2.Stop();
 
@@ -574,7 +605,9 @@ namespace MusicPlayer
         private void StoryBoardBegin()
         {
             playTime_textblock.Text = "00:00/00:00";
-            play_button.Foreground = skyblue;
+            play_button.Icon = new SymbolIcon(Symbol.Pause);
+            play_button.Label = "暂停";
+            play_button.Foreground = skyblue;          
             main_mediaElement.Play();
             main_slider.Maximum = main_mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
         }
@@ -582,8 +615,11 @@ namespace MusicPlayer
 
         private void forward_button_Click(object sender, RoutedEventArgs e)
         {
-            play_button.Icon = new SymbolIcon(Symbol.Pause);
-            play_button.Label = "暂停";
+            forward_button.Foreground = skyblue;
+            play_button.Foreground = black;
+            stop_button.Foreground = black;
+            play_button.Icon = new SymbolIcon(Symbol.Play);
+            play_button.Label = "播放";
             IsBackButtonClick = false;
             if (ListPlay_bool)
             {
@@ -597,8 +633,11 @@ namespace MusicPlayer
 
         private void back_button_Click(object sender, RoutedEventArgs e)
         {
-            play_button.Icon = new SymbolIcon(Symbol.Pause);
-            play_button.Label = "暂停";
+            back_button.Foreground = skyblue;
+            play_button.Foreground = black;
+            stop_button.Foreground = black;
+            play_button.Icon = new SymbolIcon(Symbol.Play);
+            play_button.Label = "播放";
             IsBackButtonClick = true;
             if (ListPlay_bool)
             {
@@ -823,7 +862,7 @@ namespace MusicPlayer
         private void ForwardIcon_textblock_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             ForwardIcon_textblock.Foreground = aliceBlue;
-        }
+        }       
     }
 }
 

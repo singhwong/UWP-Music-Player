@@ -241,7 +241,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.CommandBar">
       <RootProperty Name="Name" />
       <RootProperty Name="Background" />
-      <RootProperty Name="FontWeight" />
       <RootProperty Name="PrimaryCommands" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSubItem">
