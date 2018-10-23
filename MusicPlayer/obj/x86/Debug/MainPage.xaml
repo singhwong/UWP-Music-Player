@@ -137,15 +137,19 @@
                     <MenuFlyout x:ConnectionId='25' x:Name="model_flyout">
                         <MenuFlyoutItem x:ConnectionId='26' Name="item_1" 
                                         Text="单曲循环"
+                                        FontSize="13"
                                                             />
                         <MenuFlyoutItem x:ConnectionId='27' Name="item_2"
                                         Text="顺序播放"
+                                        FontSize="13"
                                                             />
                         <MenuFlyoutItem x:ConnectionId='28' Name="item_3"
                                         Text="随机播放"
+                                        FontSize="13"
                                                             />
                         <MenuFlyoutItem x:ConnectionId='29' Name="item_4"
                                         Text="None"
+                                        FontSize="13"
                                                             />
                     </MenuFlyout>
                 </Button.Flyout>
@@ -365,26 +369,27 @@
                     <MenuFlyout x:ConnectionId='39' x:Name="menu_flyout">
                         <MenuFlyoutItem x:ConnectionId='40' Name="background_menu"
                                     Text="自定义背景图片(.jpg)"
-                                                                 
-                                        FontStyle="Oblique"/>
+                                        FontSize="13"
+                                                                 />
                         <MenuFlyoutSubItem Text="专辑封面是否转动"
-                                           FontStyle="Oblique">
+                                           FontSize="13">
                             <MenuFlyoutItem x:ConnectionId='43' Name="Yes_item"
                                             Text="是"
-                                            FontStyle="Oblique"
+                                            FontSize="13"
                                                                   />
                             <MenuFlyoutItem x:ConnectionId='44' Name="No_item"
                                             Text="否"
-                                            FontStyle="Oblique"
+                                            FontSize="13"
                                                                  />
                         </MenuFlyoutSubItem>
                         <MenuFlyoutItem x:ConnectionId='41' Name="hidden_menu"
                                         Text="隐藏底栏"
+                                        FontSize="13"
                                         FontStyle="Oblique"
                                                                  />
                         <MenuFlyoutItem x:ConnectionId='42' Name="about_menu"
                                         Text="关于软件"
-                                        FontStyle="Oblique"
+                                        FontSize="13"
                                                                 />
 
                     </MenuFlyout>

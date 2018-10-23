@@ -137,15 +137,19 @@
                     <MenuFlyout x:Name="model_flyout">
                         <MenuFlyoutItem Name="item_1" 
                                         Text="单曲循环"
+                                        FontSize="13"
                                         Click="item_1_Click"/>
                         <MenuFlyoutItem Name="item_2"
                                         Text="顺序播放"
+                                        FontSize="13"
                                         Click="item_2_Click"/>
                         <MenuFlyoutItem Name="item_3"
                                         Text="随机播放"
+                                        FontSize="13"
                                         Click="item_3_Click"/>
                         <MenuFlyoutItem Name="item_4"
                                         Text="None"
+                                        FontSize="13"
                                         Click="item_4_Click"/>
                     </MenuFlyout>
                 </Button.Flyout>
@@ -365,26 +369,27 @@
                     <MenuFlyout x:Name="menu_flyout">
                         <MenuFlyoutItem Name="background_menu"
                                     Text="自定义背景图片(.jpg)"
-                                    Click="background_menu_Click"
-                                        FontStyle="Oblique"/>
+                                        FontSize="13"
+                                    Click="background_menu_Click"/>
                         <MenuFlyoutSubItem Text="专辑封面是否转动"
-                                           FontStyle="Oblique">
+                                           FontSize="13">
                             <MenuFlyoutItem Name="Yes_item"
                                             Text="是"
-                                            FontStyle="Oblique"
+                                            FontSize="13"
                                             Click="Yes_item_Click"/>
                             <MenuFlyoutItem Name="No_item"
                                             Text="否"
-                                            FontStyle="Oblique"
+                                            FontSize="13"
                                             Click="No_item_Click"/>
                         </MenuFlyoutSubItem>
                         <MenuFlyoutItem Name="hidden_menu"
                                         Text="隐藏底栏"
+                                        FontSize="13"
                                         FontStyle="Oblique"
                                         Click="hidden_menu_Click"/>
                         <MenuFlyoutItem Name="about_menu"
                                         Text="关于软件"
-                                        FontStyle="Oblique"
+                                        FontSize="13"
                                         Click="about_menu_Click"/>
 
                     </MenuFlyout>

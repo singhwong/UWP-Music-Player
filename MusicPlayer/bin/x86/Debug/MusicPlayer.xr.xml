@@ -235,6 +235,7 @@
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutItem">
       <RootProperty Name="Name" />
       <RootProperty Name="Text" />
+      <RootProperty Name="FontSize" />
       <RootProperty Name="FontStyle" />
       <RootEvent Name="Click" />
     </RootType>
@@ -245,7 +246,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSubItem">
       <RootProperty Name="Text" />
-      <RootProperty Name="FontStyle" />
+      <RootProperty Name="FontSize" />
       <RootProperty Name="Items" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Flyout">
