@@ -10,6 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="Page_Loaded">
     <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ButtonStyle.xaml"/>
+                <ResourceDictionary Source="AppBarButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        
         <local1:ProgressConvert x:Key="progressConvert"/>
         <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
             <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
@@ -29,8 +35,9 @@
                                         Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid Name="main_grid">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -102,11 +109,13 @@
                    Visibility="Visible"/>
             <Button Name="model_button"
                     Content="播放模式"
-                    Height="30"
-                    Width="60"
-                    FontSize="10"
+                    Height="40"
+                    Width="70"
+                    FontSize="13"
+                    Style="{StaticResource TransparentPathIconButtonStyle}"
                     BorderThickness="0"
-                    Background="Transparent"
+                    Background="SkyBlue"
+                    Foreground="Black"
                     Margin="70,0,0,0"
                     >
                 <Button.Flyout>
@@ -139,43 +148,43 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local1:Music">
                     <StackPanel Orientation="Horizontal">
-                            <Image Name="iamge_Image"
+                        <Image Name="iamge_Image"
                                Height="20"
                                Width="20"
                                Margin="0,0,10,0"
                                Source="{x:Bind Cover}"/>
-                            <TextBlock Name="title_textblock"
+                        <TextBlock Name="title_textblock"
                                    FontSize="13"
                                    VerticalAlignment="Center"
                                    FontWeight="Bold"
                                    Text="{x:Bind Title}"/>
-                            <TextBlock Text=" - "
+                        <TextBlock Text=" - "
                                    VerticalAlignment="Center"
                                    FontFamily="13"/>
-                            <TextBlock Name="artist_textblock"
+                        <TextBlock Name="artist_textblock"
                                    FontSize="13"
                                    VerticalAlignment="Center"
                                    Text="{x:Bind Artist}"/>
-                        </StackPanel>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
         <TextBlock Name="status_textblock"
                    FontSize="30"
                    Margin="0,30,0,0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Grid.Column="1"/>
-        
-            <Grid Name="ellipse_Grid"
+
+        <Grid Name="ellipse_Grid"
                     Grid.Row="1"
                     Grid.Column="1"
                      HorizontalAlignment="Stretch"
                      VerticalAlignment="Stretch">
-            
-                
-            
+
+
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -184,6 +193,7 @@
             <TextBlock Name="BackIcon_textblock"
                     FontFamily="Segoe MDL2 Assets"
                     Text="&#xE76B;"
+                       Foreground="AliceBlue"
                     FontSize="50"
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"
@@ -214,13 +224,14 @@
                     FontFamily="Segoe MDL2 Assets"
                     Text="&#xE76C;"
                     FontSize="50"
+                       Foreground="AliceBlue"
                        Grid.Column="2"
                        Margin="0,0,10,0"
                        VerticalAlignment="Center"
                        Tapped="ForwardIcon_textblock_Tapped"/>
-            
+
         </Grid>
-        
+
         <MediaElement Name="main_mediaElement"                         
                           AutoPlay="False"/>
         <TextBlock Name="songTile_textblock"
@@ -260,6 +271,7 @@
                 FontSize="30"
                 BorderThickness="0"
                 Opacity="0.1"
+                Style="{StaticResource TransparentPathIconButtonStyle}"
                 HorizontalAlignment="Center"
                 PointerEntered="setting_button_PointerEntered"
                 PointerExited="setting_button_PointerExited"
@@ -280,14 +292,13 @@
                    FontSize="40"
                    HorizontalAlignment="Center"/>-->
     </Grid>
-    
     <Page.BottomAppBar>
+        
         <CommandBar Background="White"
-                    Opacity="0.7"
                     FontWeight="Bold"
                     Name="main_commanBar">
             <AppBarButton Name="back_button"
-                          Icon="Back"
+                          Icon="Previous"
                           Label="上一首"
                           Click="back_button_Click"/>
             <AppBarButton Name="play_button"
@@ -295,7 +306,7 @@
                           Label="播放"
                           Click="play_button_Click"/>
             <AppBarButton Name="forward_button"
-                          Icon="Forward"
+                          Icon="Next"
                           Label="下一首"
                           Click="forward_button_Click"/>
             <!--<AppBarButton Name="pause_button"
@@ -381,10 +392,7 @@
 
                     </MenuFlyout>
                 </AppBarButton.Flyout>
-                
-                
             </AppBarButton>
-
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

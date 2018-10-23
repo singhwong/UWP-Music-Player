@@ -8,6 +8,88 @@
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
+    <RootType FullName="Windows.UI.Xaml.ResourceDictionary">
+      <RootProperty Name="MergedDictionaries" />
+      <RootProperty Name="Source" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Icon" />
+      <RootProperty Name="Label" />
+      <RootProperty Name="Flyout" />
+      <RootEvent Name="Click" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
+      <RootProperty Name="Target" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ControlTemplate">
+      <RootProperty Name="TargetType" />
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
+      <RootMethod Name="GetRowSpan" />
+      <RootMethod Name="SetRowSpan" />
+      <RootMethod Name="GetColumn" />
+      <RootMethod Name="SetColumn" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Ellipse">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Fill" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="RenderTransform" />
+      <RootProperty Name="Resources" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="ContentTemplate" />
+      <RootProperty Name="ContentTransitions" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="VerticalContentAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Automation.AutomationProperties">
+      <RootMethod Name="GetAccessibilityView" />
+      <RootMethod Name="SetAccessibilityView" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.TemplateBindingExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Name" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Opacity" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Flyout" />
+      <RootEvent Name="PointerEntered" />
+      <RootEvent Name="PointerExited" />
+      <RootEvent Name="Click" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
       <RootProperty Name="Background" />
       <RootProperty Name="Resources" />
@@ -34,21 +116,6 @@
       <RootProperty Name="KeyTime" />
       <RootProperty Name="Value" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
-      <RootProperty Name="Name" />
-      <RootProperty Name="RowDefinitions" />
-      <RootProperty Name="ColumnDefinitions" />
-      <RootProperty Name="Children" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Margin" />
-      <RootMethod Name="GetRow" />
-      <RootMethod Name="SetRow" />
-      <RootMethod Name="GetRowSpan" />
-      <RootMethod Name="SetRowSpan" />
-      <RootMethod Name="GetColumn" />
-      <RootMethod Name="SetColumn" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.VisualStateManager">
       <RootMethod Name="GetVisualStateGroups" />
     </RootType>
@@ -61,10 +128,6 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.AdaptiveTrigger">
       <RootProperty Name="MinWindowWidth" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Setter">
-      <RootProperty Name="Target" />
-      <RootProperty Name="Value" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
       <RootProperty Name="Height" />
@@ -116,27 +179,11 @@
       <RootProperty Name="Name" />
       <RootProperty Name="AutoPlay" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Button">
-      <RootProperty Name="Name" />
-      <RootProperty Name="FontFamily" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="FontSize" />
-      <RootProperty Name="BorderThickness" />
-      <RootProperty Name="Opacity" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Flyout" />
-      <RootEvent Name="PointerEntered" />
-      <RootEvent Name="PointerExited" />
-      <RootEvent Name="Click" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ProgressBar">
       <RootProperty Name="Name" />
       <RootProperty Name="Visibility" />
     </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Slider">
       <RootProperty Name="Name" />
       <RootProperty Name="Minimum" />
@@ -155,16 +202,6 @@
       <RootProperty Name="Path" />
       <RootProperty Name="Converter" />
       <RootProperty Name="Mode" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
-    <RootType FullName="Windows.UI.Xaml.Shapes.Ellipse">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="RenderTransformOrigin" />
-      <RootProperty Name="RenderTransform" />
-      <RootProperty Name="Resources" />
-      <RootProperty Name="Fill" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.CompositeTransform" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.DoubleAnimation">
@@ -197,16 +234,8 @@
     <RootType FullName="Windows.UI.Xaml.Controls.CommandBar">
       <RootProperty Name="Name" />
       <RootProperty Name="Background" />
-      <RootProperty Name="Opacity" />
       <RootProperty Name="FontWeight" />
       <RootProperty Name="PrimaryCommands" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Icon" />
-      <RootProperty Name="Label" />
-      <RootProperty Name="Flyout" />
-      <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutSubItem">
       <RootProperty Name="Text" />

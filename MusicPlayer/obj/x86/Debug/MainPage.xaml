@@ -10,6 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                         >
     <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ButtonStyle.xaml"/>
+                <ResourceDictionary Source="AppBarButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        
         <local1:ProgressConvert x:Key="progressConvert"/>
         <Storyboard x:ConnectionId='2' x:Name="main_storyBoard"                                      >
             <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
@@ -29,8 +35,9 @@
                                         Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid x:ConnectionId='4' Name="main_grid">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -102,11 +109,13 @@
                    Visibility="Visible"/>
             <Button x:ConnectionId='26' Name="model_button"
                     Content="播放模式"
-                    Height="30"
-                    Width="60"
-                    FontSize="10"
+                    Height="40"
+                    Width="70"
+                    FontSize="13"
+                    Style="{StaticResource TransparentPathIconButtonStyle}"
                     BorderThickness="0"
-                    Background="Transparent"
+                    Background="SkyBlue"
+                    Foreground="Black"
                     Margin="70,0,0,0"
                     >
                 <Button.Flyout>
@@ -139,43 +148,43 @@
             <ListView.ItemTemplate>
                 <DataTemplate                          >
                     <StackPanel x:ConnectionId='21' Orientation="Horizontal">
-                            <Image x:ConnectionId='22' Name="iamge_Image"
+                        <Image x:ConnectionId='22' Name="iamge_Image"
                                Height="20"
                                Width="20"
                                Margin="0,0,10,0"
                                                       />
-                            <TextBlock x:ConnectionId='23' Name="title_textblock"
+                        <TextBlock x:ConnectionId='23' Name="title_textblock"
                                    FontSize="13"
                                    VerticalAlignment="Center"
                                    FontWeight="Bold"
                                                         />
-                            <TextBlock Text=" - "
+                        <TextBlock Text=" - "
                                    VerticalAlignment="Center"
                                    FontFamily="13"/>
-                            <TextBlock x:ConnectionId='24' Name="artist_textblock"
+                        <TextBlock x:ConnectionId='24' Name="artist_textblock"
                                    FontSize="13"
                                    VerticalAlignment="Center"
                                                          />
-                        </StackPanel>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
         <TextBlock x:ConnectionId='8' Name="status_textblock"
                    FontSize="30"
                    Margin="0,30,0,0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Grid.Column="1"/>
-        
-            <Grid x:ConnectionId='9' Name="ellipse_Grid"
+
+        <Grid x:ConnectionId='9' Name="ellipse_Grid"
                     Grid.Row="1"
                     Grid.Column="1"
                      HorizontalAlignment="Stretch"
                      VerticalAlignment="Stretch">
-            
-                
-            
+
+
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -184,6 +193,7 @@
             <TextBlock x:ConnectionId='17' Name="BackIcon_textblock"
                     FontFamily="Segoe MDL2 Assets"
                     Text="&#xE76B;"
+                       Foreground="AliceBlue"
                     FontSize="50"
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"
@@ -214,13 +224,14 @@
                     FontFamily="Segoe MDL2 Assets"
                     Text="&#xE76C;"
                     FontSize="50"
+                       Foreground="AliceBlue"
                        Grid.Column="2"
                        Margin="0,0,10,0"
                        VerticalAlignment="Center"
                                                             />
-            
+
         </Grid>
-        
+
         <MediaElement x:ConnectionId='10' Name="main_mediaElement"                         
                           AutoPlay="False"/>
         <TextBlock x:ConnectionId='11' Name="songTile_textblock"
@@ -260,6 +271,7 @@
                 FontSize="30"
                 BorderThickness="0"
                 Opacity="0.1"
+                Style="{StaticResource TransparentPathIconButtonStyle}"
                 HorizontalAlignment="Center"
                                                               
                                                             
@@ -280,14 +292,13 @@
                    FontSize="40"
                    HorizontalAlignment="Center"/>-->
     </Grid>
-    
     <Page.BottomAppBar>
+        
         <CommandBar x:ConnectionId='32' Background="White"
-                    Opacity="0.7"
                     FontWeight="Bold"
                     Name="main_commanBar">
             <AppBarButton x:ConnectionId='33' Name="back_button"
-                          Icon="Back"
+                          Icon="Previous"
                           Label="上一首"
                                                    />
             <AppBarButton x:ConnectionId='34' Name="play_button"
@@ -295,7 +306,7 @@
                           Label="播放"
                                                    />
             <AppBarButton x:ConnectionId='35' Name="forward_button"
-                          Icon="Forward"
+                          Icon="Next"
                           Label="下一首"
                                                       />
             <!--<AppBarButton Name="pause_button"
@@ -381,10 +392,7 @@
 
                     </MenuFlyout>
                 </AppBarButton.Flyout>
-                
-                
             </AppBarButton>
-
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
