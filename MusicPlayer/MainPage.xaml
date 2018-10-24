@@ -297,7 +297,7 @@
 
                 <StackPanel Orientation="Vertical"
                                 Grid.Column="1">
-                    <Grid Margin="10,0,10,0">
+                    <Grid Margin="26,0,10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
