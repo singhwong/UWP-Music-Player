@@ -50,13 +50,11 @@ namespace MusicPlayer
         private bool RandomPlay_bool = false;
         private bool ListPlay_bool = false;
         private bool SingleCycle_bool = false;
-        //private bool NonePlay_bool = true;
         private bool IsBackButtonClick = false;
         private bool IsMusicPlaying = false;
         private bool IsHiddenButtonClick = false;
         private string source_path;
         private string image_source_path;
-        private bool IsListViewOpen = true;
         private SolidColorBrush skyblue = new SolidColorBrush(Colors.SkyBlue);
         private SolidColorBrush black = new SolidColorBrush(Colors.Black);
 
@@ -78,7 +76,7 @@ namespace MusicPlayer
         StorageFolder localFolder;
         StorageFile fileCopy;
         private int num = 0;
-        private SolidColorBrush lightYellow = new SolidColorBrush(Colors.LightYellow);
+        private SolidColorBrush white = new SolidColorBrush(Colors.White);
         private SolidColorBrush transParent = new SolidColorBrush(Colors.Transparent);
         private SolidColorBrush lightBlue = new SolidColorBrush(Colors.LightBlue);
         private SolidColorBrush hotPink = new SolidColorBrush(Colors.HotPink);
@@ -94,9 +92,8 @@ namespace MusicPlayer
                     main_mediaElement.Play();
                     play_button.Foreground = skyblue;
                     main_slider.Maximum = main_mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-                    StatusTextBlock_Text();
-                    play_button.Icon = new SymbolIcon(Symbol.Pause);
-                    play_button.Label = "暂停";
+                    play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                    play_button.Content = "\uE769";
                     IsMusicPlaying = true;
                 }
                 else
@@ -104,8 +101,8 @@ namespace MusicPlayer
                     main_mediaElement.Pause();
                     play_button.Foreground = darkRed;
                     //status_textblock.Text = "暂停中";
-                    play_button.Icon = new SymbolIcon(Symbol.Play);
-                    play_button.Label = "播放";
+                    play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                    play_button.Content = "\uE768";
                     IsMusicPlaying = false;
                 }              
             }
@@ -124,8 +121,8 @@ namespace MusicPlayer
 
         private void stop_button_Click(object sender, RoutedEventArgs e)
         {
-            play_button.Icon = new SymbolIcon(Symbol.Play);
-            play_button.Label = "播放";
+            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            play_button.Content = "\uE768";
             IsMusicPlaying = false;
             play_button.Foreground = black;
             stop_button.Foreground = darkRed;
@@ -179,8 +176,8 @@ namespace MusicPlayer
             if (main_slider.Value == main_slider.Maximum)
             {
                 play_button.Foreground = black;
-                play_button.Icon = new SymbolIcon(Symbol.Play);
-                play_button.Label = "播放";
+                play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                play_button.Content = "\uE768";
                 if (SingleCycle_bool)
                 {
                     Single_Cycle();
@@ -195,7 +192,6 @@ namespace MusicPlayer
                 }
                 else
                 {
-                    //status_textblock.Text = "";
                     IsMusicPlaying = false;
                 }
             }
@@ -209,14 +205,15 @@ namespace MusicPlayer
             source_path = auto_value.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
-            BitmapImage album_cover = new BitmapImage();
-            album_cover = auto_value.Cover;
-            imageBrush_ellipse.ImageSource = album_cover;
+            //BitmapImage album_cover = new BitmapImage();
+            Album_Cover = auto_value.Cover;
+            imageBrush_ellipse.ImageSource = Album_Cover;
             main_ellipse.Fill = imageBrush_ellipse;
+            bottom_image.Source = Album_Cover;
 
             songTile_textblock.Text = auto_value.Title + " - " + auto_value.Artist;
+            bottomTitle_textblock.Text = songTile_textblock.Text;
             main_storyBoard.Begin();
-            //StatusTextBlock_Text();
         }
         private void List_Source()
         {
@@ -244,12 +241,14 @@ namespace MusicPlayer
             source_path = list_value.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
-            BitmapImage album_cover = new BitmapImage();
-            album_cover = list_value.Cover;
-            imageBrush_ellipse.ImageSource = album_cover;
+            //BitmapImage album_cover = new BitmapImage();
+            Album_Cover = list_value.Cover;
+            imageBrush_ellipse.ImageSource = Album_Cover;
             main_ellipse.Fill = imageBrush_ellipse;
+            bottom_image.Source = Album_Cover;
 
             songTile_textblock.Text = list_value.Title + " - " + list_value.Artist;
+            bottomTitle_textblock.Text = songTile_textblock.Text;
             main_storyBoard.Begin();
 
         }
@@ -273,6 +272,7 @@ namespace MusicPlayer
                     ThumbnailOptions.UseCurrentScale);
 
                     Album_Cover.SetSource(current_Thumb);
+                    bottom_image.Source = Album_Cover;
                     imageBrush_ellipse.ImageSource = Album_Cover;
                     #endregion                   
                     main_ellipse.Fill = imageBrush_ellipse;
@@ -284,11 +284,13 @@ namespace MusicPlayer
 
                 MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
                 songTile_textblock.Text = song_Properties.Title + " - " + song_Properties.Artist;
+                bottomTitle_textblock.Text = songTile_textblock.Text;
                 fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
                 source_path =media_file.Name;//获取选定音乐文件路径
                 main_mediaElement.Source = new Uri("ms-appdata:///local/" + source_path);
                 play_button.Foreground = black;
-                play_button.Icon = new SymbolIcon(Symbol.Play);
+                play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                play_button.Content = "\uE768";
                 IsMusicPlaying = false;
             }
             catch
@@ -304,14 +306,14 @@ namespace MusicPlayer
             {
 
                 view.ExitFullScreenMode();
-                display_button.Icon = new SymbolIcon(Symbol.FullScreen);
-                display_button.Label = "全屏";
+                display_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                display_button.Content = "\uE740";
             }
             else
             {
                 view.TryEnterFullScreenMode();
-                display_button.Icon = new SymbolIcon(Symbol.BackToWindow);
-                display_button.Label = "退出全屏";
+                display_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                display_button.Content = "\uE73F";
             }
 
         }
@@ -359,7 +361,6 @@ namespace MusicPlayer
 
 
         }
-
 
         private void volume_Click(object sender, RoutedEventArgs e)
         {
@@ -514,61 +515,24 @@ namespace MusicPlayer
             source_path =  value.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
-            BitmapImage album_cover = new BitmapImage();
-            album_cover = value.Cover;
-            imageBrush_ellipse.ImageSource = album_cover;
+            //BitmapImage album_cover = new BitmapImage();
+            Album_Cover = value.Cover;
+            imageBrush_ellipse.ImageSource = Album_Cover;
             main_ellipse.Fill = imageBrush_ellipse;
+            bottom_image.Source = Album_Cover;
 
             songTile_textblock.Text = value.Title + " - " + value.Artist;
+            bottomTitle_textblock.Text = songTile_textblock.Text;
             play_button.Foreground = black;
             main_storyBoard2.Begin();
-            StatusTextBlock_Text();
             IsMusicPlaying = true;
-            play_button.Icon = new SymbolIcon(Symbol.Pause);
-            //if (SingleCycle_bool)
-            //{
-            //    forward_button.IsEnabled = false;
-            //    back_button.IsEnabled = false;               
-            //}
-            //else if (ListPlay_bool)
-            //{
-            //    forward_button.IsEnabled = true;
-            //    back_button.IsEnabled = true;
-            //}
-            //else if (RandomPlay_bool)
-            //{
-            //    forward_button.IsEnabled = true;
-            //    back_button.IsEnabled = true;
-            //}
-            //else
-            //{
-            //    forward_button.IsEnabled = false;
-            //    back_button.IsEnabled = false;
-            //}
-        }
-        private void StatusTextBlock_Text()
-        {
-            //if (SingleCycle_bool)
-            //{
-            //    status_textblock.Text = "单曲循环中";
-            //}
-            //else if (ListPlay_bool)
-            //{
-            //    status_textblock.Text = "列表循环中";
-            //}
-            //else if (RandomPlay_bool)
-            //{
-            //    status_textblock.Text = "随机循环中";
-            //}
-            //else
-            //{
-            //    status_textblock.Text = "正在播放";
-            //}
-        }
+            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            play_button.Content = "\uE769";
+        }     
 
         private void setting_button_Click(object sender, RoutedEventArgs e)
         {
-            main_commanBar.Visibility = Visibility.Visible;
+            main_AppBar.Visibility = Visibility.Visible;
             setting_button.Visibility = Visibility.Collapsed;
             BackIcon_textblock.Visibility = Visibility.Collapsed;
             ForwardIcon_textblock.Visibility = Visibility.Collapsed;
@@ -578,7 +542,7 @@ namespace MusicPlayer
         private void hidden_menu_Click(object sender, RoutedEventArgs e)
         {
             IsHiddenButtonClick = true;
-            main_commanBar.Visibility = Visibility.Collapsed;
+            main_AppBar.Visibility = Visibility.Collapsed;
             setting_button.Visibility = Visibility.Visible;
             if (ListPlay_bool||RandomPlay_bool)
             {
@@ -603,12 +567,11 @@ namespace MusicPlayer
         }
         private void StoryBoardBegin()
         {
-            playTime_textblock.Text = "00:00/00:00";
-            play_button.Icon = new SymbolIcon(Symbol.Pause);
-            play_button.Label = "暂停";
+            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            play_button.Content = "\uE769";
             play_button.Foreground = skyblue;          
             main_mediaElement.Play();
-            main_slider.Maximum = main_mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+            main_slider.Maximum = main_mediaElement.NaturalDuration.TimeSpan.TotalSeconds;            
         }
 
 
@@ -617,8 +580,8 @@ namespace MusicPlayer
             forward_button.Foreground = skyblue;
             play_button.Foreground = black;
             stop_button.Foreground = black;
-            play_button.Icon = new SymbolIcon(Symbol.Play);
-            play_button.Label = "播放";
+            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            play_button.Content = "\uE768";
             IsBackButtonClick = false;
             if (ListPlay_bool)
             {
@@ -635,8 +598,8 @@ namespace MusicPlayer
             back_button.Foreground = skyblue;
             play_button.Foreground = black;
             stop_button.Foreground = black;
-            play_button.Icon = new SymbolIcon(Symbol.Play);
-            play_button.Label = "播放";
+            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            play_button.Content = "\uE768";
             IsBackButtonClick = true;
             if (ListPlay_bool)
             {
@@ -648,38 +611,6 @@ namespace MusicPlayer
             }
 
         }
-
-        //private void main_comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (item_1.IsSelected)
-        //    {
-        //        SingleCycle_bool = true;
-        //        ListPlay_bool = false;
-        //        RandomPlay_bool = false;
-        //        status_textblock.Text = "单曲循环中";
-        //    }
-        //    else if (item_2.IsSelected)
-        //    {
-        //        ListPlay_bool = true;
-        //        SingleCycle_bool = false;
-        //        RandomPlay_bool = false;
-        //        status_textblock.Text = "列表循环中";
-        //    }
-        //    else if (item_3.IsSelected)
-        //    {
-        //        RandomPlay_bool = true;
-        //        SingleCycle_bool = false;
-        //        ListPlay_bool = false;
-        //        status_textblock.Text = "随机循环中";
-        //    }
-        //    else
-        //    {
-        //        SingleCycle_bool = false;
-        //        ListPlay_bool = false;
-        //        RandomPlay_bool = false;
-        //        status_textblock.Text = "正在播放";
-        //    }
-        //}
 
         private void setting_button_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
@@ -697,7 +628,6 @@ namespace MusicPlayer
             SingleCycle_bool = true;
             ListPlay_bool = false;
             RandomPlay_bool = false;
-            //status_textblock.Text = "单曲循环中";
             model_button.Content = "单曲循环";
             back_button.IsEnabled = false;
             forward_button.IsEnabled = false;
@@ -710,7 +640,6 @@ namespace MusicPlayer
             ListPlay_bool = true;
             SingleCycle_bool = false;
             RandomPlay_bool = false;
-            //status_textblock.Text = "顺序播放中";
             model_button.Content = "顺序播放";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
@@ -725,8 +654,7 @@ namespace MusicPlayer
         {
             RandomPlay_bool = true;
             SingleCycle_bool = false;
-            ListPlay_bool = false;
-            //status_textblock.Text = "随机播放中";         
+            ListPlay_bool = false;       
             model_button.Content = "随机播放";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
@@ -742,7 +670,6 @@ namespace MusicPlayer
             SingleCycle_bool = false;
             ListPlay_bool = false;
             RandomPlay_bool = false;
-            //status_textblock.Text = "正在播放";
             model_button.Content = "播放模式";
             back_button.IsEnabled = false;
             forward_button.IsEnabled = false;
@@ -752,8 +679,8 @@ namespace MusicPlayer
 
         private void BackIcon_textblock_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            play_button.Icon = new SymbolIcon(Symbol.Pause);
-            play_button.Label = "暂停";
+            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            play_button.Content = "\uE769";
             IsBackButtonClick = true;
             if (ListPlay_bool)
             {
@@ -767,8 +694,8 @@ namespace MusicPlayer
 
         private void ForwardIcon_textblock_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            play_button.Icon = new SymbolIcon(Symbol.Pause);
-            play_button.Label = "暂停";
+            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            play_button.Content = "\uE769";
             IsBackButtonClick = false;
             if (ListPlay_bool)
             {
@@ -815,32 +742,12 @@ namespace MusicPlayer
 
         private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            main_listview.Background = lightYellow;
-            //music_button.Foreground = lightYellow;
-            //Title_textblock.Foreground = hotPink;
+            main_listview.Background = white;
         }
 
         private void main_listview_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             main_listview.Background = transParent;
-            //music_button.Foreground = lightBlue;
-            //Title_textblock.Foreground = black;
-        }
-
-        private void music_button_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsListViewOpen)
-            {
-                main_listview.Visibility = Visibility.Collapsed;
-                //music_button.Foreground = black;
-                IsListViewOpen = false;
-            }
-            else
-            {
-                main_listview.Visibility = Visibility.Visible;
-                //music_button.Foreground = lightBlue;
-                IsListViewOpen = true;
-            }
         }
 
         private void BackIcon_textblock_PointerEntered(object sender, PointerRoutedEventArgs e)

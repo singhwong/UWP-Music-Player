@@ -14,17 +14,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ButtonStyle.xaml"/>
-                <ResourceDictionary Source="AppBarButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <local1:ProgressConvert x:Key="progressConvert"/>
             <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
                 <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
                                            Storyboard.TargetName="main_progressbar"
                                            Storyboard.TargetProperty="(RangeBase.Value)">
                     <DiscreteDoubleKeyFrame KeyTime="0:0:1"
-                                        Value="1"/>
-                    <DiscreteDoubleKeyFrame KeyTime="0:0:2"
                                         Value="0"/>
                 </DoubleAnimationUsingKeyFrames>
             </Storyboard>
@@ -174,26 +169,7 @@
                    Foreground="AntiqueWhite"
                    Margin="0,10,0,0"
                        HorizontalAlignment="Center"/>
-                <Grid Margin="50,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Slider Name="main_slider"
-                    Minimum="0"
-                    StepFrequency="1"
-                    Foreground="SkyBlue"
-                    Background="Snow"
-                    Value="{Binding ElementName=main_mediaElement, Path=Position, Converter={StaticResource progressConvert }, Mode=TwoWay}"
-                    ValueChanged="main_slider_ValueChanged"/>
-                    <TextBlock Name="playTime_textblock"
-                       Grid.Column="1"
-                       FontSize="15"
-                       Margin="7,0,0,10"
-                       Width="90"
-                       Foreground="AntiqueWhite"
-                       VerticalAlignment="Center"/>
-                </Grid>
+
                 <Button Name="model_button"
                     Content="播放模式"
                     FontSize="15"
@@ -244,8 +220,7 @@
                 Click="setting_button_Click"/>
             </StackPanel>
         </ScrollViewer>
-        <MediaElement Name="main_mediaElement"                         
-                          AutoPlay="False"/>
+
         <ProgressBar Name="main_progressbar"
                      Visibility="Collapsed"/>
         <ProgressBar Name="main_progressbar2"
@@ -259,101 +234,210 @@
                    HorizontalAlignment="Center"/>-->
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar Background="Snow"
-                    Name="main_commanBar">
-            <AppBarButton Name="back_button"
-                          Icon="Previous"
-                          Label="上一首"
-                          Click="back_button_Click"/>
-            <AppBarButton Name="play_button"
-                          Icon="Play"
-                          Label="播放"
+        <AppBar Name="main_AppBar"
+                Background="Snow"              
+                IsOpen="True"
+                IsSticky="True"
+                >
+            <Grid>
+                <Grid.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="ButtonStyle.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                        <local1:ProgressConvert x:Key="progressConvert"/>
+                        </ResourceDictionary>
+                </Grid.Resources>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <MediaElement Name="main_mediaElement"                         
+                          AutoPlay="False"
+                                  Visibility="Collapsed"/>
+                    <Image Name="bottom_image"
+                       Height="62"
+                       Width="62"
+                       Margin="0,0,0,0"/>
+                    <Button Name="back_button"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE892;"
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"                          
+                        Click="back_button_Click"/>
+                    <Button Name="play_button"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE768;"
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"   
                           Click="play_button_Click"/>
-            <AppBarButton Name="forward_button"
-                          Icon="Next"
-                          Label="下一首"
+                    <Button Name="forward_button"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE893;"
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"    
                           Click="forward_button_Click"/>
-            <AppBarButton Name="stop_button"
-                          Icon="Stop"
-                          Label="停止"
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                                Grid.Column="1">
+                    <Grid Margin="10,0,10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Name="bottomTitle_textblock"
+                                   FontSize='12'
+                                   Foreground="Black"
+                                   HorizontalAlignment="Left"/>
+                        <TextBlock Name="playTime_textblock"
+                                   FontSize="12"                             
+                                   Grid.Column="1"
+                                   Foreground="Black"
+                                   HorizontalAlignment="Right"/>
+                    </Grid>
+                    
+                    <Slider Name="main_slider"
+                            Minimum="0"                          
+                            StepFrequency="1"
+                            Foreground="SkyBlue"
+                            Background="Black"
+                            Margin="26,0,10,0"
+                            Value="{Binding ElementName=main_mediaElement, Path=Position, Converter={StaticResource progressConvert }, Mode=TwoWay}"
+                            ValueChanged="main_slider_ValueChanged"/>
+                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                                Grid.Column="2">
+                    <Button Name="stop_button"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE71A;" 
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"   
                           Click="stop_button_Click"/>
-            <AppBarButton Name="add_button"
-                          Icon="OpenFile"
-                          Label="添加文件"
+                    <Button Name="add_button"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE710;" 
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"    
                           Click="add_button_Click"/>
-            <AppBarButton Name="volume"
-                          Icon="Volume"
-                          Label="音量"
+                    <Button Name="volume"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xF0EE;"
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"    
                           Click="volume_Click">
-                <AppBarButton.Flyout>
-                    <Flyout x:Name="volume_flyout">
-                        <StackPanel Name="volume_stackPanel"
+                        <Button.Flyout>
+                            <Flyout x:Name="volume_flyout">
+                                <StackPanel Name="volume_stackPanel"
                                     Orientation="Horizontal"
                                     Height="30"
                                     Width="260">
-                            <TextBlock Name="volumeIcon_textblock"
+                                    <TextBlock Name="volumeIcon_textblock"
                                        FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE994;"
                                        FontSize="30"
                                        Margin="0,4,0,0"
                                        Tapped="volumeIcon_textblock_Tapped"/>
-                            <Slider Name="volume_slider"
+                                    <Slider Name="volume_slider"
                                     Maximum="100"
                                     Minimum="0"
                                     Margin="10,0,0,0"
                                     Height="30"
                                     Width="150"
                                     ValueChanged="volume_slider_ValueChanged"/>
-                            <TextBlock Name="volume_textblock"
+                                    <TextBlock Name="volume_textblock"
                                        FontSize="30"
                                        Margin="10,4,0,0"
                                        Text="30"
                                        VerticalAlignment="Center"/>
-                        </StackPanel>
+                                </StackPanel>
 
 
 
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-            <AppBarButton Name="display_button"
-                          Icon="FullScreen"
-                          Label="全屏"
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                    <Button Name="display_button"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE740;" 
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"    
                           Click="display_button_Click"/>
-            <AppBarButton Name="setting_Button"
-                          Icon="Setting"
-                          Label="设置"
+                    <Button Name="setting_Button"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE713;"
+                        FontSize="20"
+                        Margin='17,0,0,0'
+                            Height="45"
+                            Width="45"
+                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                        Background="LightPink"    
                           Click="setting_Button_Click_1">
-                <AppBarButton.Flyout>
-                    <MenuFlyout x:Name="menu_flyout">
-                        <MenuFlyoutItem Name="background_menu"
+                        <Button.Flyout>
+                            <MenuFlyout x:Name="menu_flyout">
+                                <MenuFlyoutItem Name="background_menu"
                                     Text="自定义背景图片(.jpg)"
                                         FontSize="13"
                                     Click="background_menu_Click"/>
-                        <MenuFlyoutSubItem Text="专辑封面是否转动"
+                                <MenuFlyoutSubItem Text="专辑封面是否转动"
                                            FontSize="13">
-                            <MenuFlyoutItem Name="Yes_item"
+                                    <MenuFlyoutItem Name="Yes_item"
                                             Text="是"
                                             FontSize="13"
                                             Click="Yes_item_Click"/>
-                            <MenuFlyoutItem Name="No_item"
+                                    <MenuFlyoutItem Name="No_item"
                                             Text="否"
                                             FontSize="13"
                                             Click="No_item_Click"/>
-                        </MenuFlyoutSubItem>
-                        <MenuFlyoutItem Name="hidden_menu"
+                                </MenuFlyoutSubItem>
+                                <MenuFlyoutItem Name="hidden_menu"
                                         Text="隐藏底栏"
                                         FontSize="13"
                                         FontStyle="Oblique"
                                         Click="hidden_menu_Click"/>
-                        <MenuFlyoutItem Name="about_menu"
+                                <MenuFlyoutItem Name="about_menu"
                                         Text="关于软件"
                                         FontSize="13"
                                         Click="about_menu_Click"/>
 
-                    </MenuFlyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-        </CommandBar>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </AppBar>
     </Page.BottomAppBar>
 </Page>
