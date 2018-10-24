@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                         
-    MinHeight="500">
+                                  >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -38,7 +38,6 @@
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
-
     <Grid x:ConnectionId='4' Name="main_grid">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -48,10 +47,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="main_listview.Visibility" Value="Collapsed"/>
-                        <Setter Target="main_stackPanel.Visibility" Value="Collapsed"/>
-                        <Setter Target="main_ellipse.Height" Value="200"/>
-                        <Setter Target="main_ellipse.Width" Value="200"/>
-                        <Setter Target="status_textblock.FontSize" Value="20"/>
                         <Setter Target="songTile_textblock.FontSize" Value="15"/>
                         <!--<Setter Target="main_ellipse.VerticalAlignment" Value="Top"/>-->
                         <!--<Setter Target="BackIcon_textblock.VerticalAlignment" Value="Top"/>
@@ -65,9 +60,6 @@
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="main_ellipse.Height" Value="200"/>
-                        <Setter Target="main_ellipse.Width" Value="200"/>
-                        <Setter Target="status_textblock.FontSize" Value="20"/>
                         <Setter Target="songTile_textblock.FontSize" Value="15"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -81,11 +73,8 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -99,66 +88,12 @@
                       Visibility="Visible"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"/>
-        <StackPanel x:ConnectionId='6' Name="main_stackPanel"
-                    Orientation="Horizontal"
-                    Margin="10,30,0,0"
-                    Height="70">
-            <TextBlock x:ConnectionId='22' Name="Title_textblock"
-                   FontSize="17"
-                   Text="本地音乐"
-                    Margin="0,13,0,0"
-                    VerticalAlignment="Top"
-                   Visibility="Visible"/>
-            <Button x:ConnectionId='23' Name="music_button"
-                    FontFamily="Segoe MDL2 Assets"
-                    Content="&#xE90B;"
-                    Style="{StaticResource TransparentPathIconButtonStyle}"
-                    Background="Transparent"
-                    FontSize="40"
-                    VerticalAlignment="Top"
-                    Foreground="LightBlue"
-                                              />
-            <Button x:ConnectionId='24' Name="model_button"
-                    Content="播放模式"
-                    FontSize="15"
-                    Height="50"
-                    Width="80"
-                    Style="{StaticResource TransparentPathIconButtonStyle}"
-                    Background="SkyBlue"
-                    Foreground="Black"
-                    Margin="70,2,0,0"
-                    Opacity="0.3"
-                    VerticalAlignment="Top"
-                                                                
-                                                              
-                                              
-                    >
-                <Button.Flyout>
-                    <MenuFlyout x:ConnectionId='25' x:Name="model_flyout">
-                        <MenuFlyoutItem x:ConnectionId='26' Name="item_1" 
-                                        Text="单曲循环"
-                                        FontSize="13"
-                                                            />
-                        <MenuFlyoutItem x:ConnectionId='27' Name="item_2"
-                                        Text="顺序播放"
-                                        FontSize="13"
-                                                            />
-                        <MenuFlyoutItem x:ConnectionId='28' Name="item_3"
-                                        Text="随机播放"
-                                        FontSize="13"
-                                                            />
-                        <MenuFlyoutItem x:ConnectionId='29' Name="item_4"
-                                        Text="None"
-                                        FontSize="13"
-                                                            />
-                    </MenuFlyout>
-                </Button.Flyout>
-            </Button>
-        </StackPanel>
-        <ListView x:ConnectionId='7' Name="main_listview"
+
+
+        <ListView x:ConnectionId='6' Name="main_listview"
                   SelectionMode="Single"
-                  Grid.Row="1"                 
-                  Grid.RowSpan="4"
+                  Grid.Row="1"      
+                  Margin="10,0,0,0"
                   IsItemClickEnabled="True"             
                                                   
                                                                
@@ -170,29 +105,26 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <TextBlock x:ConnectionId='8' Name="status_textblock"
-                   FontSize="27"
-                   Margin="0,30,0,0"
-                   Foreground="AntiqueWhite"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Grid.Column="1"/>
-
-        <Grid x:ConnectionId='9' Name="ellipse_Grid"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                     HorizontalAlignment="Stretch"
-                     VerticalAlignment="Stretch">
-
-
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock x:ConnectionId='17' Name="BackIcon_textblock"
+        <ScrollViewer x:ConnectionId='7' Name="ellipse_scrollViewer"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      IsDeferredScrollingEnabled="False"
+                      HorizontalScrollMode="Enabled" 
+                      VerticalScrollMode="Enabled"
+                      HorizontalScrollBarVisibility="Hidden"  
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel x:ConnectionId='11' Name="musicDetails_stackPanel"
+                        Orientation="Vertical"
+                        Grid.Row="1"
+                        Grid.Column="1">
+                <Grid x:ConnectionId='12' Name="ellipse_Grid"
+                  VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:ConnectionId='23' Name="BackIcon_textblock"
                     FontFamily="Segoe MDL2 Assets"
                     Text="&#xE76B;"
                        Foreground="AliceBlue"
@@ -202,29 +134,29 @@
                                                                          
                                                                        
                                                          />
-            <Ellipse x:ConnectionId='18' Name="main_ellipse"
-                     Height="300"
-                     Width="300" 
+                    <Ellipse x:ConnectionId='24' Name="main_ellipse"
+                     Height="200"
+                     Width="200" 
                      Grid.Column="1"
                      RenderTransformOrigin="0.5,0.5">
-                <Ellipse.RenderTransform>
-                    <CompositeTransform/>
-                </Ellipse.RenderTransform>
-                <Ellipse.Resources>
-                    <Storyboard x:ConnectionId='20' x:Name="story_board"
+                        <Ellipse.RenderTransform>
+                            <CompositeTransform/>
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Resources>
+                            <Storyboard x:ConnectionId='26' x:Name="story_board"
                                 RepeatBehavior="Forever">
-                        <DoubleAnimation Duration="0:0:50"
+                                <DoubleAnimation Duration="0:0:50"
                                          To="360"
                                          Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
                                          Storyboard.TargetName="main_ellipse"
                                          d:IsOptimized="True"/>
-                    </Storyboard>
-                </Ellipse.Resources>
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource="Assets/girl.jpg"/>
-                </Ellipse.Fill>
-            </Ellipse>
-            <TextBlock x:ConnectionId='19' Name="ForwardIcon_textblock"
+                            </Storyboard>
+                        </Ellipse.Resources>
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="Assets/girl.jpg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock x:ConnectionId='25' Name="ForwardIcon_textblock"
                     FontFamily="Segoe MDL2 Assets"
                     Text="&#xE76C;"
                     FontSize="50"
@@ -236,42 +168,69 @@
                                                                           
                                                             />
 
-        </Grid>
-
-        <MediaElement x:ConnectionId='10' Name="main_mediaElement"                         
-                          AutoPlay="False"/>
-        <TextBlock x:ConnectionId='11' Name="songTile_textblock"
-                      Grid.Row="2"
-                       Grid.Column="1"
+                </Grid>
+                <TextBlock x:ConnectionId='13' Name="songTile_textblock"
                    FontSize="20"
                    Foreground="AntiqueWhite"
-                   Margin="0,0,0,10"
+                   Margin="0,10,0,0"
                        HorizontalAlignment="Center"/>
-        <Grid Grid.Row="3"
-              Grid.Column="1"
-              Margin="50,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Slider x:ConnectionId='15' Name="main_slider"
+                <Grid Margin="50,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider x:ConnectionId='21' Name="main_slider"
                     Minimum="0"
                     StepFrequency="1"
                     Foreground="SkyBlue"
                     Background="Snow"
                     Value="{Binding ElementName=main_mediaElement, Path=Position, Converter={StaticResource progressConvert }, Mode=TwoWay}"
                                                            />
-            <TextBlock x:ConnectionId='16' Name="playTime_textblock"
+                    <TextBlock x:ConnectionId='22' Name="playTime_textblock"
                        Grid.Column="1"
                        FontSize="15"
                        Margin="7,0,0,10"
                        Width="90"
                        Foreground="AntiqueWhite"
                        VerticalAlignment="Center"/>
-        </Grid>
-        <Button x:ConnectionId='12' Name="setting_button"
-                Grid.Row="4"
-                Grid.Column="1"
+                </Grid>
+                <Button x:ConnectionId='14' Name="model_button"
+                    Content="播放模式"
+                    FontSize="15"
+                    Height="50"
+                    Width="80"
+                    Margin="0,5,0,5"
+                    Style="{StaticResource TransparentPathIconButtonStyle}"
+                    Background="SkyBlue"
+                    Foreground="Black"
+                    Opacity="0.3"
+                    HorizontalAlignment="Center"
+                                                                
+                                                              
+                                              
+                    >
+                    <Button.Flyout>
+                        <MenuFlyout x:ConnectionId='16' x:Name="model_flyout">
+                            <MenuFlyoutItem x:ConnectionId='17' Name="item_1" 
+                                        Text="单曲循环"
+                                        FontSize="13"
+                                                            />
+                            <MenuFlyoutItem x:ConnectionId='18' Name="item_2"
+                                        Text="顺序播放"
+                                        FontSize="13"
+                                                            />
+                            <MenuFlyoutItem x:ConnectionId='19' Name="item_3"
+                                        Text="随机播放"
+                                        FontSize="13"
+                                                            />
+                            <MenuFlyoutItem x:ConnectionId='20' Name="item_4"
+                                        Text="None"
+                                        FontSize="13"
+                                                            />
+                        </MenuFlyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:ConnectionId='15' Name="setting_button"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xE890;"
                 Background="Transparent"
@@ -283,13 +242,13 @@
                                                               
                                                             
                                             />
-        <ProgressBar x:ConnectionId='13' Name="main_progressbar"
-                     Grid.Row="3"
-                     Grid.Column="1"
+            </StackPanel>
+        </ScrollViewer>
+        <MediaElement x:ConnectionId='8' Name="main_mediaElement"                         
+                          AutoPlay="False"/>
+        <ProgressBar x:ConnectionId='9' Name="main_progressbar"
                      Visibility="Collapsed"/>
-        <ProgressBar x:ConnectionId='14' Name="main_progressbar2"
-                     Grid.Row="3"
-                     Grid.Column="1"
+        <ProgressBar x:ConnectionId='10' Name="main_progressbar2"
                      Visibility="Collapsed"/>
         <!--<TextBlock Name="lyrics_textblock"
                    Grid.Row="1"
@@ -300,52 +259,52 @@
                    HorizontalAlignment="Center"/>-->
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar x:ConnectionId='30' Background="Snow"
+        <CommandBar x:ConnectionId='28' Background="Snow"
                     Name="main_commanBar">
-            <AppBarButton x:ConnectionId='31' Name="back_button"
+            <AppBarButton x:ConnectionId='29' Name="back_button"
                           Icon="Previous"
                           Label="上一首"
                                                    />
-            <AppBarButton x:ConnectionId='32' Name="play_button"
+            <AppBarButton x:ConnectionId='30' Name="play_button"
                           Icon="Play"
                           Label="播放"
                                                    />
-            <AppBarButton x:ConnectionId='33' Name="forward_button"
+            <AppBarButton x:ConnectionId='31' Name="forward_button"
                           Icon="Next"
                           Label="下一首"
                                                       />
-            <AppBarButton x:ConnectionId='34' Name="stop_button"
+            <AppBarButton x:ConnectionId='32' Name="stop_button"
                           Icon="Stop"
                           Label="停止"
                                                    />
-            <AppBarButton x:ConnectionId='35' Name="add_button"
+            <AppBarButton x:ConnectionId='33' Name="add_button"
                           Icon="OpenFile"
                           Label="添加文件"
                                                   />
-            <AppBarButton x:ConnectionId='36' Name="volume"
+            <AppBarButton x:ConnectionId='34' Name="volume"
                           Icon="Volume"
                           Label="音量"
                                               >
                 <AppBarButton.Flyout>
-                    <Flyout x:ConnectionId='45' x:Name="volume_flyout">
-                        <StackPanel x:ConnectionId='46' Name="volume_stackPanel"
+                    <Flyout x:ConnectionId='43' x:Name="volume_flyout">
+                        <StackPanel x:ConnectionId='44' Name="volume_stackPanel"
                                     Orientation="Horizontal"
                                     Height="30"
                                     Width="260">
-                            <TextBlock x:ConnectionId='47' Name="volumeIcon_textblock"
+                            <TextBlock x:ConnectionId='45' Name="volumeIcon_textblock"
                                        FontFamily="Segoe MDL2 Assets"
                                        Text="&#xE994;"
                                        FontSize="30"
                                        Margin="0,4,0,0"
                                                                            />
-                            <Slider x:ConnectionId='48' Name="volume_slider"
+                            <Slider x:ConnectionId='46' Name="volume_slider"
                                     Maximum="100"
                                     Minimum="0"
                                     Margin="10,0,0,0"
                                     Height="30"
                                     Width="150"
                                                                              />
-                            <TextBlock x:ConnectionId='49' Name="volume_textblock"
+                            <TextBlock x:ConnectionId='47' Name="volume_textblock"
                                        FontSize="30"
                                        Margin="10,4,0,0"
                                        Text="30"
@@ -357,37 +316,37 @@
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:ConnectionId='37' Name="display_button"
+            <AppBarButton x:ConnectionId='35' Name="display_button"
                           Icon="FullScreen"
                           Label="全屏"
                                                       />
-            <AppBarButton x:ConnectionId='38' Name="setting_Button"
+            <AppBarButton x:ConnectionId='36' Name="setting_Button"
                           Icon="Setting"
                           Label="设置"
                                                         >
                 <AppBarButton.Flyout>
-                    <MenuFlyout x:ConnectionId='39' x:Name="menu_flyout">
-                        <MenuFlyoutItem x:ConnectionId='40' Name="background_menu"
+                    <MenuFlyout x:ConnectionId='37' x:Name="menu_flyout">
+                        <MenuFlyoutItem x:ConnectionId='38' Name="background_menu"
                                     Text="自定义背景图片(.jpg)"
                                         FontSize="13"
                                                                  />
                         <MenuFlyoutSubItem Text="专辑封面是否转动"
                                            FontSize="13">
-                            <MenuFlyoutItem x:ConnectionId='43' Name="Yes_item"
+                            <MenuFlyoutItem x:ConnectionId='41' Name="Yes_item"
                                             Text="是"
                                             FontSize="13"
                                                                   />
-                            <MenuFlyoutItem x:ConnectionId='44' Name="No_item"
+                            <MenuFlyoutItem x:ConnectionId='42' Name="No_item"
                                             Text="否"
                                             FontSize="13"
                                                                  />
                         </MenuFlyoutSubItem>
-                        <MenuFlyoutItem x:ConnectionId='41' Name="hidden_menu"
+                        <MenuFlyoutItem x:ConnectionId='39' Name="hidden_menu"
                                         Text="隐藏底栏"
                                         FontSize="13"
                                         FontStyle="Oblique"
                                                                  />
-                        <MenuFlyoutItem x:ConnectionId='42' Name="about_menu"
+                        <MenuFlyoutItem x:ConnectionId='40' Name="about_menu"
                                         Text="关于软件"
                                         FontSize="13"
                                                                 />

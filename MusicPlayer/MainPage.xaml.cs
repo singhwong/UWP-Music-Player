@@ -46,7 +46,6 @@ namespace MusicPlayer
             ExtendAcrylicIntoTitleBar();
             use_music = new ObservableCollection<Music>();
             allMusic = new ObservableCollection<StorageFile>();
-            this.MinHeight = 500;
         }
         private bool RandomPlay_bool = false;
         private bool ListPlay_bool = false;
@@ -104,7 +103,7 @@ namespace MusicPlayer
                 {
                     main_mediaElement.Pause();
                     play_button.Foreground = darkRed;
-                    status_textblock.Text = "暂停中";
+                    //status_textblock.Text = "暂停中";
                     play_button.Icon = new SymbolIcon(Symbol.Play);
                     play_button.Label = "播放";
                     IsMusicPlaying = false;
@@ -131,7 +130,7 @@ namespace MusicPlayer
             play_button.Foreground = black;
             stop_button.Foreground = darkRed;
             main_mediaElement.Stop();
-            status_textblock.Text = "";
+            //status_textblock.Text = "";
         }
 
         private void main_slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -196,7 +195,7 @@ namespace MusicPlayer
                 }
                 else
                 {
-                    status_textblock.Text = "";
+                    //status_textblock.Text = "";
                     IsMusicPlaying = false;
                 }
             }
@@ -549,22 +548,22 @@ namespace MusicPlayer
         }
         private void StatusTextBlock_Text()
         {
-            if (SingleCycle_bool)
-            {
-                status_textblock.Text = "单曲循环中";
-            }
-            else if (ListPlay_bool)
-            {
-                status_textblock.Text = "列表循环中";
-            }
-            else if (RandomPlay_bool)
-            {
-                status_textblock.Text = "随机循环中";
-            }
-            else
-            {
-                status_textblock.Text = "正在播放";
-            }
+            //if (SingleCycle_bool)
+            //{
+            //    status_textblock.Text = "单曲循环中";
+            //}
+            //else if (ListPlay_bool)
+            //{
+            //    status_textblock.Text = "列表循环中";
+            //}
+            //else if (RandomPlay_bool)
+            //{
+            //    status_textblock.Text = "随机循环中";
+            //}
+            //else
+            //{
+            //    status_textblock.Text = "正在播放";
+            //}
         }
 
         private void setting_button_Click(object sender, RoutedEventArgs e)
@@ -698,7 +697,7 @@ namespace MusicPlayer
             SingleCycle_bool = true;
             ListPlay_bool = false;
             RandomPlay_bool = false;
-            status_textblock.Text = "单曲循环中";
+            //status_textblock.Text = "单曲循环中";
             model_button.Content = "单曲循环";
             back_button.IsEnabled = false;
             forward_button.IsEnabled = false;
@@ -711,7 +710,7 @@ namespace MusicPlayer
             ListPlay_bool = true;
             SingleCycle_bool = false;
             RandomPlay_bool = false;
-            status_textblock.Text = "顺序播放中";
+            //status_textblock.Text = "顺序播放中";
             model_button.Content = "顺序播放";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
@@ -727,7 +726,7 @@ namespace MusicPlayer
             RandomPlay_bool = true;
             SingleCycle_bool = false;
             ListPlay_bool = false;
-            status_textblock.Text = "随机播放中";         
+            //status_textblock.Text = "随机播放中";         
             model_button.Content = "随机播放";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
@@ -743,7 +742,7 @@ namespace MusicPlayer
             SingleCycle_bool = false;
             ListPlay_bool = false;
             RandomPlay_bool = false;
-            status_textblock.Text = "正在播放";
+            //status_textblock.Text = "正在播放";
             model_button.Content = "播放模式";
             back_button.IsEnabled = false;
             forward_button.IsEnabled = false;
@@ -817,15 +816,15 @@ namespace MusicPlayer
         private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             main_listview.Background = lightYellow;
-            music_button.Foreground = lightYellow;
-            Title_textblock.Foreground = hotPink;
+            //music_button.Foreground = lightYellow;
+            //Title_textblock.Foreground = hotPink;
         }
 
         private void main_listview_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             main_listview.Background = transParent;
-            music_button.Foreground = lightBlue;
-            Title_textblock.Foreground = black;
+            //music_button.Foreground = lightBlue;
+            //Title_textblock.Foreground = black;
         }
 
         private void music_button_Click(object sender, RoutedEventArgs e)
@@ -833,13 +832,13 @@ namespace MusicPlayer
             if (IsListViewOpen)
             {
                 main_listview.Visibility = Visibility.Collapsed;
-                music_button.Foreground = black;
+                //music_button.Foreground = black;
                 IsListViewOpen = false;
             }
             else
             {
                 main_listview.Visibility = Visibility.Visible;
-                music_button.Foreground = lightBlue;
+                //music_button.Foreground = lightBlue;
                 IsListViewOpen = true;
             }
         }
@@ -862,7 +861,12 @@ namespace MusicPlayer
         private void ForwardIcon_textblock_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             ForwardIcon_textblock.Foreground = aliceBlue;
-        }       
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ellipse_scrollViewer.Height = this.Height;
+        }
     }
 }
 
