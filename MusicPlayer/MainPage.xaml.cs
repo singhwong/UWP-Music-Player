@@ -39,6 +39,7 @@ namespace MusicPlayer
     {
         private ObservableCollection<Music> use_music;
         private ObservableCollection<StorageFile> allMusic;
+        private Music main_music = new Music();
         //private bool IsComplete_bool = false;
         public MainPage()
         {
@@ -52,7 +53,6 @@ namespace MusicPlayer
         private bool SingleCycle_bool = false;
         private bool IsBackButtonClick = false;
         private bool IsMusicPlaying = false;
-        private bool IsHiddenButtonClick = false;
         private string source_path;
         private string image_source_path;
         private SolidColorBrush skyblue = new SolidColorBrush(Colors.SkyBlue);
@@ -87,7 +87,7 @@ namespace MusicPlayer
             if (source_path != null)
             {
                 stop_button.Foreground = black;
-                if (IsMusicPlaying==false)
+                if (IsMusicPlaying == false)
                 {
                     main_mediaElement.Play();
                     play_button.Foreground = skyblue;
@@ -104,7 +104,7 @@ namespace MusicPlayer
                     play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                     play_button.Content = "\uE768";
                     IsMusicPlaying = false;
-                }              
+                }
             }
         }
 
@@ -175,6 +175,7 @@ namespace MusicPlayer
 
             if (main_slider.Value == main_slider.Maximum)
             {
+                main_music.ForeColor = black;
                 play_button.Foreground = black;
                 play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                 play_button.Content = "\uE768";
@@ -197,29 +198,31 @@ namespace MusicPlayer
             }
         }
         private void Random_Source()
-        {           
+        {
             Random rm = new Random();
             int index = rm.Next(0, allsong_count);
-            var auto_value = use_music[index];
+            main_music = use_music[index];
 
-            source_path = auto_value.Music_Path;
+            source_path = main_music.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
             //BitmapImage album_cover = new BitmapImage();
-            Album_Cover = auto_value.Cover;
+            Album_Cover = main_music.Cover;
             imageBrush_ellipse.ImageSource = Album_Cover;
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = auto_value.Title + " - " + auto_value.Artist;
+            songTile_textblock.Text = main_music.Title + " - " + main_music.Artist;
             bottomTitle_textblock.Text = songTile_textblock.Text;
             main_storyBoard.Begin();
+
+            main_music.ForeColor = skyblue;
         }
         private void List_Source()
         {
-            Music list_music = SetMusicById.GetIDByPathSource(use_music,source_path);
-            int index = list_music.id;          
-            var list_value = new Music();
+            var list_music = SetMusicById.GetIDByPathSource(use_music, source_path);
+            int index = list_music.id;
+            //var list_value = new Music();
             if (IsBackButtonClick)
             {
                 num = index - 1;
@@ -229,32 +232,34 @@ namespace MusicPlayer
             {
                 num = index + 1;
             }
-            if (num==use_music.Count)
+            if (num == use_music.Count)
             {
                 num = 0;
             }
-            else if (num==-1)
+            else if (num == -1)
             {
                 num = use_music.Count - 1;
             }
-            list_value = use_music[num];
-            source_path = list_value.Music_Path;
+            main_music = use_music[num];
+            source_path = main_music.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
             //BitmapImage album_cover = new BitmapImage();
-            Album_Cover = list_value.Cover;
+            Album_Cover = main_music.Cover;
             imageBrush_ellipse.ImageSource = Album_Cover;
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = list_value.Title + " - " + list_value.Artist;
+            songTile_textblock.Text = main_music.Title + " - " + main_music.Artist;
             bottomTitle_textblock.Text = songTile_textblock.Text;
+                       
             main_storyBoard.Begin();
-
+            main_music.ForeColor = skyblue;
         }
         private void Single_Cycle()
         {
             main_storyBoard.Begin();
+            main_music.ForeColor = skyblue;
         }
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
@@ -286,7 +291,7 @@ namespace MusicPlayer
                 songTile_textblock.Text = song_Properties.Title + " - " + song_Properties.Artist;
                 bottomTitle_textblock.Text = songTile_textblock.Text;
                 fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
-                source_path =media_file.Name;//获取选定音乐文件路径
+                source_path = media_file.Name;//获取选定音乐文件路径
                 main_mediaElement.Source = new Uri("ms-appdata:///local/" + source_path);
                 play_button.Foreground = black;
                 play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
@@ -320,18 +325,13 @@ namespace MusicPlayer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            back_button.IsEnabled = false;
-            forward_button.IsEnabled = false;
+            ListPlay_bool = true;
+            back_button.IsEnabled = true;
+            forward_button.IsEnabled = true;
             main_progressRing.IsActive = true;
             GetLocalMusic();//获取本地音乐文件ListView
             main_progressRing.IsActive = false;
-            forward_button.IsEnabled = false;
-            back_button.IsEnabled = false;
-
-            BackIcon_textblock.Visibility = Visibility.Collapsed;
-            ForwardIcon_textblock.Visibility = Visibility.Collapsed;
             main_progressRing.Visibility = Visibility.Collapsed;
-            setting_button.Visibility = Visibility.Collapsed;
             playTime_textblock.Text = "00:00/00:00";
             try
             {
@@ -374,23 +374,6 @@ namespace MusicPlayer
             main_mediaElement.Volume = volume_num / 100;
             local_volume.Values["Volume"] = volume_num;
         }
-        //private void SetAcrylic()
-        //{
-        //    #region 设置亚克力背景
-        //    if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.XamlCompositionBrushBase"))
-        //    {
-        //        AcrylicBrush myBrush = new AcrylicBrush();
-        //        myBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
-        //        myBrush.TintColor = Colors.AliceBlue;
-        //        myBrush.FallbackColor = Colors.AliceBlue;
-        //        myBrush.TintOpacity = 0.3;
-        //    }
-        //    else
-        //    {
-        //        SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(100, 20, 24, 37));
-        //    }
-        //    #endregion
-        //}
 
         private void background_menu_Click(object sender, RoutedEventArgs e)
         {
@@ -497,6 +480,7 @@ namespace MusicPlayer
                 music.Music_Path = song.Name;
                 music.id = num;
                 music.SongFile = song;
+                music.ForeColor = black;
                 use_music.Add(music);
                 num++;
             }
@@ -510,45 +494,27 @@ namespace MusicPlayer
         }
 
         private void main_listview_ItemClick(object sender, ItemClickEventArgs e)
-        {           
-            var value = (Music)e.ClickedItem;
-            source_path =  value.Music_Path;
+        {
+            main_music.ForeColor = black;
+            main_music = (Music)e.ClickedItem;
+            source_path = main_music.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
             //BitmapImage album_cover = new BitmapImage();
-            Album_Cover = value.Cover;
+            Album_Cover = main_music.Cover;
             imageBrush_ellipse.ImageSource = Album_Cover;
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = value.Title + " - " + value.Artist;
+            songTile_textblock.Text = main_music.Title + " - " + main_music.Artist;
             bottomTitle_textblock.Text = songTile_textblock.Text;
             play_button.Foreground = black;
             main_storyBoard2.Begin();
             IsMusicPlaying = true;
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
-        }     
 
-        private void setting_button_Click(object sender, RoutedEventArgs e)
-        {
-            main_AppBar.Visibility = Visibility.Visible;
-            setting_button.Visibility = Visibility.Collapsed;
-            BackIcon_textblock.Visibility = Visibility.Collapsed;
-            ForwardIcon_textblock.Visibility = Visibility.Collapsed;
-            IsHiddenButtonClick = false;
-        }
-
-        private void hidden_menu_Click(object sender, RoutedEventArgs e)
-        {
-            IsHiddenButtonClick = true;
-            main_AppBar.Visibility = Visibility.Collapsed;
-            setting_button.Visibility = Visibility.Visible;
-            if (ListPlay_bool||RandomPlay_bool)
-            {
-                BackIcon_textblock.Visibility = Visibility.Visible;
-                ForwardIcon_textblock.Visibility = Visibility.Visible;
-            }           
+            main_music.ForeColor = skyblue;
         }
 
         private void main_storyBoard_Completed(object sender, object e)
@@ -569,14 +535,15 @@ namespace MusicPlayer
         {
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
-            play_button.Foreground = skyblue;          
+            play_button.Foreground = skyblue;
             main_mediaElement.Play();
-            main_slider.Maximum = main_mediaElement.NaturalDuration.TimeSpan.TotalSeconds;            
+            main_slider.Maximum = main_mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
         }
 
 
         private void forward_button_Click(object sender, RoutedEventArgs e)
         {
+            main_music.ForeColor = black;
             forward_button.Foreground = skyblue;
             play_button.Foreground = black;
             stop_button.Foreground = black;
@@ -595,6 +562,7 @@ namespace MusicPlayer
 
         private void back_button_Click(object sender, RoutedEventArgs e)
         {
+            main_music.ForeColor = black;
             back_button.Foreground = skyblue;
             play_button.Foreground = black;
             stop_button.Foreground = black;
@@ -612,27 +580,14 @@ namespace MusicPlayer
 
         }
 
-        private void setting_button_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            setting_button.Opacity = 1;
-        }
-
-        private void setting_button_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            setting_button.Opacity = 0.1;
-        }
-
-
         private void item_1_Click(object sender, RoutedEventArgs e)
         {
             SingleCycle_bool = true;
             ListPlay_bool = false;
             RandomPlay_bool = false;
-            model_button.Content = "单曲循环";
+            //model_button.Content = "单曲循环";
             back_button.IsEnabled = false;
             forward_button.IsEnabled = false;
-            BackIcon_textblock.Visibility = Visibility.Collapsed;
-            ForwardIcon_textblock.Visibility = Visibility.Collapsed;
         }
 
         private void item_2_Click(object sender, RoutedEventArgs e)
@@ -640,71 +595,19 @@ namespace MusicPlayer
             ListPlay_bool = true;
             SingleCycle_bool = false;
             RandomPlay_bool = false;
-            model_button.Content = "顺序播放";
+            //model_button.Content = "顺序播放";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
-            if (IsHiddenButtonClick)
-            {
-                BackIcon_textblock.Visibility = Visibility.Visible;
-                ForwardIcon_textblock.Visibility = Visibility.Visible;
-            }
         }
 
         private void item_3_Click(object sender, RoutedEventArgs e)
         {
             RandomPlay_bool = true;
             SingleCycle_bool = false;
-            ListPlay_bool = false;       
-            model_button.Content = "随机播放";
+            ListPlay_bool = false;
+            //model_button.Content = "随机播放";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
-            if (IsHiddenButtonClick)
-            {
-                BackIcon_textblock.Visibility = Visibility.Visible;
-                ForwardIcon_textblock.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void item_4_Click(object sender, RoutedEventArgs e)
-        {
-            SingleCycle_bool = false;
-            ListPlay_bool = false;
-            RandomPlay_bool = false;
-            model_button.Content = "播放模式";
-            back_button.IsEnabled = false;
-            forward_button.IsEnabled = false;
-            BackIcon_textblock.Visibility = Visibility.Collapsed;
-            ForwardIcon_textblock.Visibility = Visibility.Collapsed;
-        }
-
-        private void BackIcon_textblock_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            play_button.Content = "\uE769";
-            IsBackButtonClick = true;
-            if (ListPlay_bool)
-            {
-                List_Source();
-            }
-            else if (RandomPlay_bool)
-            {
-                Random_Source();
-            }
-        }
-
-        private void ForwardIcon_textblock_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            play_button.Content = "\uE769";
-            IsBackButtonClick = false;
-            if (ListPlay_bool)
-            {
-                List_Source();
-            }
-            else if (RandomPlay_bool)
-            {
-                Random_Source();
-            }
         }
 
         private async void about_menu_Click(object sender, RoutedEventArgs e)
@@ -730,16 +633,6 @@ namespace MusicPlayer
             menu_flyout.Hide();
         }
 
-        private void model_button_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            model_button.Opacity = 1;
-        }
-
-        private void model_button_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            model_button.Opacity = 0.3;
-        }
-
         private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             main_listview.Background = white;
@@ -750,30 +643,6 @@ namespace MusicPlayer
             main_listview.Background = transParent;
         }
 
-        private void BackIcon_textblock_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            BackIcon_textblock.Foreground = hotPink;
-        }
-
-        private void BackIcon_textblock_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            BackIcon_textblock.Foreground = aliceBlue;
-        }
-
-        private void ForwardIcon_textblock_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            ForwardIcon_textblock.Foreground = hotPink;
-        }
-
-        private void ForwardIcon_textblock_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            ForwardIcon_textblock.Foreground = aliceBlue;
-        }
-
-        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ellipse_scrollViewer.Height = this.Height;
-        }
     }
 }
 

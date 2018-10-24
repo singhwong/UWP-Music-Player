@@ -7,26 +7,38 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
-
+    d:DesignWidth="400"
+    Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
+                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+                                           Storyboard.TargetName="control_progressBar"
+                                           Storyboard.TargetProperty="(RangeBase.Value)">
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:0.1"
+                                        Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <Image Name="iamge_Image"
-                               Height="30"
-                               Width="30"
-                               Margin="0,0,10,0"
-                               Source="{x:Bind this_music.Cover}"/>
+            <TextBlock Name="num_textblock"
+                       FontSize="15"
+                       Margin="0,0,10,0"/>
             <TextBlock Name="title_textblock"
-                                   FontSize="15"
-                                   VerticalAlignment="Center"
-                                   Text="{x:Bind this_music.Title}"/>
+                       FontSize="15"
+                       VerticalAlignment="Center"
+                       Text="{x:Bind this_music.Title}"/>
             <TextBlock Text=" - "
-                                   VerticalAlignment="Center"
-                                   FontFamily="13"/>
+                       VerticalAlignment="Center"
+                       FontFamily="13"/>
             <TextBlock Name="artist_textblock"
-                                   FontSize="13"
-                                   VerticalAlignment="Center"
-                                   Text="{x:Bind this_music.Artist}"/>
+                       FontSize="13"
+                       VerticalAlignment="Center"
+                       Text="{x:Bind this_music.Artist}"/>
         </StackPanel>
+        <ProgressBar Name="control_progressBar"
+                     Visibility="Collapsed"/>
     </Grid>
 </UserControl>

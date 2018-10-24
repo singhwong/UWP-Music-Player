@@ -8,8 +8,7 @@
     xmlns:local1="using:MusicPlayer.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    Loaded="Page_Loaded"
-    SizeChanged="Page_SizeChanged">
+    Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -41,21 +40,9 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="songTile_textblock.FontSize" Value="15"/>
                         <Setter Target="main_listview.Visibility" Value="Collapsed"/>
-                        <Setter Target="songTile_textblock.FontSize" Value="15"/>
-                        <!--<Setter Target="main_ellipse.VerticalAlignment" Value="Top"/>-->
-                        <!--<Setter Target="BackIcon_textblock.VerticalAlignment" Value="Top"/>
-                        <Setter Target="ForwardIcon_textblock.VerticalAlignment" Value="Top"/>-->
-                        <!--<Setter Target="BackIcon_textblock.Margin" Value="5,60,0,0"/>
-                        <Setter Target="ForwardIcon_textblock.Margin" Value="0,60,5,0"/>-->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="700"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="songTile_textblock.FontSize" Value="15"/>
+                        <Setter Target="name_textblock.Visibility" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -68,7 +55,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -78,17 +65,18 @@
         <ProgressRing Name="main_progressRing"
                       Height="50"
                       Width="50"
-                      Grid.Row="2"
-                      Grid.RowSpan="4"
                       Visibility="Visible"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"/>
-
-
+        <TextBlock Name="name_textblock"
+                   Text="Own MusicPlayer"                   
+                   Margin="2"
+                   FontSize="12"
+                   Foreground="White"/>
         <ListView Name="main_listview"
-                  SelectionMode="Single"
-                  Grid.Row="1"      
-                  Margin="10,0,0,0"
+                  Grid.Row="1"
+                  SelectionMode="Single"                      
+                  Margin="0,20,0,0"
                   IsItemClickEnabled="True"             
                   ItemsSource="{x:Bind use_music}"
                   PointerEntered="main_listview_PointerEntered"
@@ -100,6 +88,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
         <ScrollViewer Name="ellipse_scrollViewer"
                       Grid.Row="1"
                       Grid.Column="1"
@@ -112,27 +101,10 @@
                         Orientation="Vertical"
                         Grid.Row="1"
                         Grid.Column="1">
-                <Grid Name="ellipse_Grid"
-                  VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Name="BackIcon_textblock"
-                    FontFamily="Segoe MDL2 Assets"
-                    Text="&#xE76B;"
-                       Foreground="AliceBlue"
-                    FontSize="50"
-                       Margin="10,0,0,0"
-                       VerticalAlignment="Center"
-                       PointerEntered="BackIcon_textblock_PointerEntered"
-                       PointerExited="BackIcon_textblock_PointerExited"
-                       Tapped="BackIcon_textblock_Tapped"/>
+
                     <Ellipse Name="main_ellipse"
                      Height="200"
                      Width="200" 
-                     Grid.Column="1"
                      RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <CompositeTransform/>
@@ -151,73 +123,14 @@
                             <ImageBrush ImageSource="Assets/girl.jpg"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <TextBlock Name="ForwardIcon_textblock"
-                    FontFamily="Segoe MDL2 Assets"
-                    Text="&#xE76C;"
-                    FontSize="50"
-                       Foreground="AliceBlue"
-                       Grid.Column="2"
-                       Margin="0,0,10,0"
-                       VerticalAlignment="Center"
-                       PointerEntered="ForwardIcon_textblock_PointerEntered"
-                       PointerExited="ForwardIcon_textblock_PointerExited"
-                       Tapped="ForwardIcon_textblock_Tapped"/>
 
-                </Grid>
                 <TextBlock Name="songTile_textblock"
                    FontSize="20"
-                   Foreground="AntiqueWhite"
+                   Foreground="AliceBlue"
                    Margin="0,10,0,0"
                        HorizontalAlignment="Center"/>
 
-                <Button Name="model_button"
-                    Content="播放模式"
-                    FontSize="15"
-                    Height="50"
-                    Width="80"
-                    Margin="0,5,0,5"
-                    Style="{StaticResource TransparentPathIconButtonStyle}"
-                    Background="SkyBlue"
-                    Foreground="Black"
-                    Opacity="0.3"
-                    HorizontalAlignment="Center"
-                    PointerEntered="model_button_PointerEntered"
-                    PointerExited="model_button_PointerExited"
-                    Click="model_button_Click"
-                    >
-                    <Button.Flyout>
-                        <MenuFlyout x:Name="model_flyout">
-                            <MenuFlyoutItem Name="item_1" 
-                                        Text="单曲循环"
-                                        FontSize="13"
-                                        Click="item_1_Click"/>
-                            <MenuFlyoutItem Name="item_2"
-                                        Text="顺序播放"
-                                        FontSize="13"
-                                        Click="item_2_Click"/>
-                            <MenuFlyoutItem Name="item_3"
-                                        Text="随机播放"
-                                        FontSize="13"
-                                        Click="item_3_Click"/>
-                            <MenuFlyoutItem Name="item_4"
-                                        Text="None"
-                                        FontSize="13"
-                                        Click="item_4_Click"/>
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </Button>
-                <Button Name="setting_button"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE890;"
-                Background="Transparent"
-                FontSize="30"
-                BorderThickness="0"
-                Opacity="0.1"
-                Style="{StaticResource TransparentPathIconButtonStyle}"
-                HorizontalAlignment="Center"
-                PointerEntered="setting_button_PointerEntered"
-                PointerExited="setting_button_PointerExited"
-                Click="setting_button_Click"/>
+                
             </StackPanel>
         </ScrollViewer>
 
@@ -235,7 +148,7 @@
     </Grid>
     <Page.BottomAppBar>
         <AppBar Name="main_AppBar"
-                Background="Snow"              
+                Background="White"              
                 IsOpen="True"
                 IsSticky="True"
                 >
@@ -246,19 +159,18 @@
                             <ResourceDictionary Source="ButtonStyle.xaml"/>
                         </ResourceDictionary.MergedDictionaries>
                         <local1:ProgressConvert x:Key="progressConvert"/>
-                        </ResourceDictionary>
+                    </ResourceDictionary>
                 </Grid.Resources>
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                <MediaElement Name="main_mediaElement"                         
+                              AutoPlay="False"
+                              Visibility="Collapsed"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">
-                    <MediaElement Name="main_mediaElement"                         
-                          AutoPlay="False"
-                                  Visibility="Collapsed"/>
                     <Image Name="bottom_image"
                        Height="62"
                        Width="62"
@@ -271,6 +183,7 @@
                             Height="45"
                             Width="45"
                         Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
                         Background="LightPink"                          
                         Click="back_button_Click"/>
                     <Button Name="play_button"
@@ -281,22 +194,24 @@
                             Height="45"
                             Width="45"
                         Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
                         Background="LightPink"   
                           Click="play_button_Click"/>
                     <Button Name="forward_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE893;"
-                        FontSize="20"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE893;"
+                            FontSize="20"
+                            Margin='17,0,0,0'
                             Height="45"
                             Width="45"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
-                        Background="LightPink"    
-                          Click="forward_button_Click"/>
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
+                            Background="LightPink"    
+                            Click="forward_button_Click"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                                Grid.Column="1">
+                            Grid.Column="1">
                     <Grid Margin="26,0,10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -312,7 +227,6 @@
                                    Foreground="Black"
                                    HorizontalAlignment="Right"/>
                     </Grid>
-                    
                     <Slider Name="main_slider"
                             Minimum="0"                          
                             StepFrequency="1"
@@ -321,118 +235,141 @@
                             Margin="26,0,10,0"
                             Value="{Binding ElementName=main_mediaElement, Path=Position, Converter={StaticResource progressConvert }, Mode=TwoWay}"
                             ValueChanged="main_slider_ValueChanged"/>
-                    
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
-                                Grid.Column="2">
+                            Grid.Column="2">
                     <Button Name="stop_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE71A;" 
-                        FontSize="20"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE71A;" 
+                            FontSize="20"
+                            Margin='17,0,0,0'
                             Height="45"
                             Width="45"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
-                        Background="LightPink"   
-                          Click="stop_button_Click"/>
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
+                            Background="LightPink"   
+                           Click="stop_button_Click"/>
+                    <Button Name="model_button"
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE8B1;" 
+                            FontSize="20"
+                            Margin='17,0,0,0'
+                             Height="45"
+                            Width="45"
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
+                            Background="LightPink" 
+                            Click="model_button_Click">
+                        <Button.Flyout>
+                            <MenuFlyout x:Name="model_flyout">
+                                <MenuFlyoutItem Name="item_1" 
+                                                Text="单曲循环"
+                                                FontSize="13"
+                                                Click="item_1_Click"/>
+                                <MenuFlyoutItem Name="item_2"
+                                                Text="顺序播放"
+                                                FontSize="13"
+                                                Click="item_2_Click"/>
+                                <MenuFlyoutItem Name="item_3"
+                                                Text="随机播放"
+                                                FontSize="13"
+                                                Click="item_3_Click"/>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
                     <Button Name="add_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE710;" 
-                        FontSize="20"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE710;" 
+                            FontSize="20"
+                            Margin='17,0,0,0'
                             Height="45"
                             Width="45"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
-                        Background="LightPink"    
-                          Click="add_button_Click"/>
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
+                            Background="LightPink"    
+                            Click="add_button_Click"/>
                     <Button Name="volume"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xF0EE;"
-                        FontSize="20"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xF0EE;"
+                            FontSize="20"
+                            Margin='17,0,0,0'
                             Height="45"
                             Width="45"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
-                        Background="LightPink"    
-                          Click="volume_Click">
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
+                            Background="LightPink"    
+                            Click="volume_Click">
                         <Button.Flyout>
                             <Flyout x:Name="volume_flyout">
                                 <StackPanel Name="volume_stackPanel"
-                                    Orientation="Horizontal"
-                                    Height="30"
-                                    Width="260">
+                                            Orientation="Horizontal"
+                                            Height="30"
+                                            Width="260">
                                     <TextBlock Name="volumeIcon_textblock"
-                                       FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE994;"
-                                       FontSize="30"
-                                       Margin="0,4,0,0"
-                                       Tapped="volumeIcon_textblock_Tapped"/>
+                                               FontFamily="Segoe MDL2 Assets"
+                                               Text="&#xE994;"
+                                               FontSize="30"
+                                               Margin="0,4,0,0"
+                                               Tapped="volumeIcon_textblock_Tapped"/>
                                     <Slider Name="volume_slider"
-                                    Maximum="100"
-                                    Minimum="0"
-                                    Margin="10,0,0,0"
-                                    Height="30"
-                                    Width="150"
-                                    ValueChanged="volume_slider_ValueChanged"/>
+                                            Maximum="100"
+                                            Minimum="0"
+                                            Margin="10,0,0,0"
+                                            Height="30"
+                                            Width="150"
+                                            ValueChanged="volume_slider_ValueChanged"/>
                                     <TextBlock Name="volume_textblock"
-                                       FontSize="30"
-                                       Margin="10,4,0,0"
-                                       Text="30"
-                                       VerticalAlignment="Center"/>
+                                               FontSize="30"
+                                               Margin="10,4,0,0"
+                                               Text="30"
+                                               VerticalAlignment="Center"/>
                                 </StackPanel>
-
-
-
                             </Flyout>
                         </Button.Flyout>
                     </Button>
                     <Button Name="display_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE740;" 
-                        FontSize="20"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE740;" 
+                            FontSize="20"
+                            Margin='17,0,0,0'
                             Height="45"
                             Width="45"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
-                        Background="LightPink"    
-                          Click="display_button_Click"/>
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
+                            Background="LightPink"    
+                            Click="display_button_Click"/>
                     <Button Name="setting_Button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE713;"
-                        FontSize="20"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE713;"
+                            FontSize="20"
+                            Margin='17,0,0,0'
                             Height="45"
                             Width="45"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
-                        Background="LightPink"    
-                          Click="setting_Button_Click_1">
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Foreground="White"
+                            Background="LightPink"    
+                            Click="setting_Button_Click_1">
                         <Button.Flyout>
                             <MenuFlyout x:Name="menu_flyout">
                                 <MenuFlyoutItem Name="background_menu"
-                                    Text="自定义背景图片(.jpg)"
-                                        FontSize="13"
-                                    Click="background_menu_Click"/>
+                                                Text="自定义背景图片(.jpg)"
+                                                FontSize="13"
+                                                Click="background_menu_Click"/>
                                 <MenuFlyoutSubItem Text="专辑封面是否转动"
-                                           FontSize="13">
+                                                   FontSize="13">
                                     <MenuFlyoutItem Name="Yes_item"
-                                            Text="是"
-                                            FontSize="13"
-                                            Click="Yes_item_Click"/>
+                                                    Text="是"
+                                                    FontSize="13"
+                                                    Click="Yes_item_Click"/>
                                     <MenuFlyoutItem Name="No_item"
-                                            Text="否"
-                                            FontSize="13"
-                                            Click="No_item_Click"/>
+                                                    Text="否"
+                                                    FontSize="13"
+                                                    Click="No_item_Click"/>
                                 </MenuFlyoutSubItem>
-                                <MenuFlyoutItem Name="hidden_menu"
-                                        Text="隐藏底栏"
-                                        FontSize="13"
-                                        FontStyle="Oblique"
-                                        Click="hidden_menu_Click"/>
                                 <MenuFlyoutItem Name="about_menu"
-                                        Text="关于软件"
-                                        FontSize="13"
-                                        Click="about_menu_Click"/>
-
+                                                Text="关于软件"
+                                                FontSize="13"
+                                                Click="about_menu_Click"/>
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>

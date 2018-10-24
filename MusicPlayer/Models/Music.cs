@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace MusicPlayer.Models
@@ -16,5 +17,6 @@ namespace MusicPlayer.Models
         public BitmapImage Cover { get; set; }
         public StorageFile SongFile { get; set; }
         public int id { get; set; }
+        public SolidColorBrush ForeColor { get; set; }
     }
 }
