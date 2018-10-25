@@ -29,14 +29,7 @@
             <TextBlock Name="title_textblock"
                        FontSize="15"
                        VerticalAlignment="Center"
-                       Text="{x:Bind this_music.Title}"/>
-            <TextBlock Text=" - "
-                       VerticalAlignment="Center"
-                       FontFamily="13"/>
-            <TextBlock Name="artist_textblock"
-                       FontSize="13"
-                       VerticalAlignment="Center"
-                       Text="{x:Bind this_music.Artist}"/>
+                       Text="{x:Bind this_music.Music_Path}"/>
         </StackPanel>
         <ProgressBar Name="control_progressBar"
                      Visibility="Collapsed"/>

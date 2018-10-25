@@ -29,14 +29,7 @@
             <TextBlock x:ConnectionId='5' Name="title_textblock"
                        FontSize="15"
                        VerticalAlignment="Center"
-                                                       />
-            <TextBlock Text=" - "
-                       VerticalAlignment="Center"
-                       FontFamily="13"/>
-            <TextBlock x:ConnectionId='6' Name="artist_textblock"
-                       FontSize="13"
-                       VerticalAlignment="Center"
-                                                        />
+                                                            />
         </StackPanel>
         <ProgressBar x:ConnectionId='3' Name="control_progressBar"
                      Visibility="Collapsed"/>

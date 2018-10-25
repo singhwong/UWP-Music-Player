@@ -82,11 +82,12 @@ namespace MusicPlayer
         private SolidColorBrush hotPink = new SolidColorBrush(Colors.HotPink);
         private SolidColorBrush aliceBlue = new SolidColorBrush(Colors.AliceBlue);
         private SolidColorBrush darkRed = new SolidColorBrush(Colors.DarkRed);
+        private AcrylicBrush myBrush = new AcrylicBrush();
         private void play_button_Click(object sender, RoutedEventArgs e)
         {
             if (source_path != null)
             {
-                stop_button.Foreground = black;
+                stop_button.Foreground = white;
                 if (IsMusicPlaying == false)
                 {
                     main_mediaElement.Play();
@@ -99,8 +100,7 @@ namespace MusicPlayer
                 else
                 {
                     main_mediaElement.Pause();
-                    play_button.Foreground = darkRed;
-                    //status_textblock.Text = "暂停中";
+                    play_button.Foreground = white;
                     play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                     play_button.Content = "\uE768";
                     IsMusicPlaying = false;
@@ -124,8 +124,8 @@ namespace MusicPlayer
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE768";
             IsMusicPlaying = false;
-            play_button.Foreground = black;
-            stop_button.Foreground = darkRed;
+            play_button.Foreground = white;
+            stop_button.Foreground = skyblue;
             main_mediaElement.Stop();
             //status_textblock.Text = "";
         }
@@ -212,7 +212,7 @@ namespace MusicPlayer
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = main_music.Title + " - " + main_music.Artist;
+            songTile_textblock.Text = source_path;
             bottomTitle_textblock.Text = songTile_textblock.Text;
             main_storyBoard.Begin();
 
@@ -250,7 +250,7 @@ namespace MusicPlayer
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = main_music.Title + " - " + main_music.Artist;
+            songTile_textblock.Text = source_path;
             bottomTitle_textblock.Text = songTile_textblock.Text;
                        
             main_storyBoard.Begin();
@@ -287,11 +287,14 @@ namespace MusicPlayer
             try
             {
 
-                MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
-                songTile_textblock.Text = song_Properties.Title + " - " + song_Properties.Artist;
-                bottomTitle_textblock.Text = songTile_textblock.Text;
+                //MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
+                //songTile_textblock.Text = song_Properties.;
+                //bottomTitle_textblock.Text = songTile_textblock.Text;
+                //lyric_textblock.Text = song_Properties.
                 fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
-                source_path = media_file.Name;//获取选定音乐文件路径
+                source_path = media_file.Name;
+                songTile_textblock.Text = source_path;
+                bottomTitle_textblock.Text = songTile_textblock.Text;
                 main_mediaElement.Source = new Uri("ms-appdata:///local/" + source_path);
                 play_button.Foreground = black;
                 play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
@@ -325,6 +328,7 @@ namespace MusicPlayer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            SetAcrylic();
             ListPlay_bool = true;
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
@@ -427,6 +431,27 @@ namespace MusicPlayer
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
         #endregion
+
+        private void SetAcrylic()
+        {
+            #region 设置亚克力背景
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.XamlCompositionBrushBase"))
+            {
+                
+                myBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
+                myBrush.TintColor = Colors.WhiteSmoke;
+                myBrush.FallbackColor = Colors.WhiteSmoke;
+                myBrush.TintOpacity = 0.3;
+                main_AppBar.Background = myBrush;
+            }
+            else
+            {
+                SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(100, 20, 24, 37));
+                main_AppBar.Background = myBrush;
+            }
+            #endregion
+        }
+
         private void volumeIcon_textblock_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (IsVolumeOpen)
@@ -506,7 +531,7 @@ namespace MusicPlayer
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = main_music.Title + " - " + main_music.Artist;
+            songTile_textblock.Text =source_path;
             bottomTitle_textblock.Text = songTile_textblock.Text;
             play_button.Foreground = black;
             main_storyBoard2.Begin();
@@ -515,12 +540,15 @@ namespace MusicPlayer
             play_button.Content = "\uE769";
 
             main_music.ForeColor = skyblue;
+
+
+            
         }
 
         private void main_storyBoard_Completed(object sender, object e)
         {
-            forward_button.Foreground = black;
-            back_button.Foreground = black;
+            forward_button.Foreground = white;
+            back_button.Foreground = white;
             StoryBoardBegin();
             main_storyBoard2.Stop();
 
@@ -545,8 +573,8 @@ namespace MusicPlayer
         {
             main_music.ForeColor = black;
             forward_button.Foreground = skyblue;
-            play_button.Foreground = black;
-            stop_button.Foreground = black;
+            play_button.Foreground = white;
+            stop_button.Foreground = white;
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE768";
             IsBackButtonClick = false;
@@ -564,8 +592,8 @@ namespace MusicPlayer
         {
             main_music.ForeColor = black;
             back_button.Foreground = skyblue;
-            play_button.Foreground = black;
-            stop_button.Foreground = black;
+            play_button.Foreground = white;
+            stop_button.Foreground = white;
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE768";
             IsBackButtonClick = true;
@@ -638,14 +666,13 @@ namespace MusicPlayer
 
         private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            main_listview.Background = white;
+            main_listview.Background = myBrush;
         }
 
         private void main_listview_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             main_listview.Background = transParent;
         }
-
     }
 }
 
