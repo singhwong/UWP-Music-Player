@@ -83,6 +83,8 @@ namespace MusicPlayer
         private SolidColorBrush aliceBlue = new SolidColorBrush(Colors.AliceBlue);
         private SolidColorBrush darkRed = new SolidColorBrush(Colors.DarkRed);
         private AcrylicBrush myBrush = new AcrylicBrush();
+
+        private SystemMediaTransportControls systemMedia_TransportControls = SystemMediaTransportControls.GetForCurrentView();
         private void play_button_Click(object sender, RoutedEventArgs e)
         {
             if (source_path != null)
@@ -212,7 +214,9 @@ namespace MusicPlayer
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = source_path;
+            songTile_textblock.Text = main_music.Title;
+            artist_textblock.Text = "演唱者:   " + main_music.Artist;
+            album_textblock.Text = "专辑:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
             main_storyBoard.Begin();
 
@@ -250,7 +254,9 @@ namespace MusicPlayer
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text = source_path;
+            songTile_textblock.Text = main_music.Title;
+            artist_textblock.Text = "演唱者:   "+main_music.Artist;
+            album_textblock.Text = "专辑:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
                        
             main_storyBoard.Begin();
@@ -287,13 +293,15 @@ namespace MusicPlayer
             try
             {
 
-                //MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
+                MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
                 //songTile_textblock.Text = song_Properties.;
                 //bottomTitle_textblock.Text = songTile_textblock.Text;
                 //lyric_textblock.Text = song_Properties.
                 fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
                 source_path = media_file.Name;
-                songTile_textblock.Text = source_path;
+                songTile_textblock.Text = song_Properties.Title;
+                artist_textblock.Text = "演唱者:   " + song_Properties.Artist;
+                album_textblock.Text = "专辑:   " + song_Properties.Album;
                 bottomTitle_textblock.Text = songTile_textblock.Text;
                 main_mediaElement.Source = new Uri("ms-appdata:///local/" + source_path);
                 play_button.Foreground = black;
@@ -506,6 +514,7 @@ namespace MusicPlayer
                 music.id = num;
                 music.SongFile = song;
                 music.ForeColor = black;
+                music.album_title = song_Properties.Album;
                 use_music.Add(music);
                 num++;
             }
@@ -531,9 +540,11 @@ namespace MusicPlayer
             main_ellipse.Fill = imageBrush_ellipse;
             bottom_image.Source = Album_Cover;
 
-            songTile_textblock.Text =source_path;
+            songTile_textblock.Text = main_music.Title;
+            artist_textblock.Text = "演唱者:   " + main_music.Artist;
+            album_textblock.Text = "专辑:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
-            play_button.Foreground = black;
+            play_button.Foreground = white;
             main_storyBoard2.Begin();
             IsMusicPlaying = true;
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
@@ -673,6 +684,55 @@ namespace MusicPlayer
         {
             main_listview.Background = transParent;
         }
+        //private void BackGroundPlay()
+        //{
+        //    //MediaElement me = new MediaElement();
+            
+        //}
+
+        //private void main_mediaElement_CurrentStateChanged(object sender, RoutedEventArgs e)
+        //{
+        //    switch (main_mediaElement.CurrentState)
+        //    {
+        //        case MediaElementState.Playing:
+        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+        //            break;
+        //        case MediaElementState.Paused:
+        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+        //            break;
+        //        case MediaElementState.Stopped:
+        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+        //            break;
+        //        case MediaElementState.Closed:
+        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+
+    //    private async void SystemControls_ButtonPressed(SystemMediaTransportControls sender,
+    //SystemMediaTransportControlsButtonPressedEventArgs args)
+    //    {
+
+    //        switch (args.Button)
+    //        {
+    //            case SystemMediaTransportControlsButton.Play:
+    //                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+    //                {
+    //                    main_mediaElement.Play();
+    //                });
+    //                break;
+    //            case SystemMediaTransportControlsButton.Pause:
+    //                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+    //                {
+    //                    main_mediaElement.Pause();
+    //                });
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
     }
 }
 

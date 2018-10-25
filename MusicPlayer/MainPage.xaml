@@ -131,8 +131,23 @@
                    Foreground="AliceBlue"
                    Margin="0,10,0,0"
                        HorizontalAlignment="Center"/>
+               
+                <TextBlock Name="artist_textblock"
+                           FontSize="15"
+                           Margin="0,10,0,0"
+                           Foreground="AliceBlue"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Name="album_textblock"
+                           FontSize="15"
+                           Margin="0,10,0,0"
+                           Foreground="AliceBlue"
+                           HorizontalAlignment="Center"/>
                 <TextBlock Name="lyric_textblock"
-           FontSize="20"/>
+                           FontSize="20"
+                           Text="无歌词"
+                           Foreground="AliceBlue"
+                           Margin="0,50,0,0"
+                           HorizontalAlignment="Center"/>
 
             </StackPanel>
         </ScrollViewer>
@@ -141,13 +156,6 @@
                      Visibility="Collapsed"/>
         <ProgressBar Name="main_progressbar2"
                      Visibility="Collapsed"/>
-        <!--<TextBlock Name="lyrics_textblock"
-                   Grid.Row="1"
-                   Grid.RowSpan="3"
-                   Grid.Column="2"
-                   Text="歌词部分"
-                   FontSize="40"
-                   HorizontalAlignment="Center"/>-->
     </Grid>
     <Page.BottomAppBar>
         <AppBar Name="main_AppBar"
@@ -171,7 +179,8 @@
                 </Grid.ColumnDefinitions>
                 <MediaElement Name="main_mediaElement"                         
                               AutoPlay="False"
-                              Visibility="Collapsed"/>
+                              Visibility="Collapsed"
+                              AreTransportControlsEnabled="True"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <Image Name="bottom_image"
@@ -181,10 +190,10 @@
                     <Button Name="back_button"
                         FontFamily="Segoe MDL2 Assets"
                         Content="&#xE892;"
-                        FontSize="20"
+                        FontSize="15"
                         Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            Height="36"
+                            Width="36"
                         Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                         Background="LightPink"                          
@@ -192,10 +201,10 @@
                     <Button Name="play_button"
                         FontFamily="Segoe MDL2 Assets"
                         Content="&#xE768;"
-                        FontSize="20"
+                        FontSize="15"
                         Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            Height="36"
+                            Width="36"
                         Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                         Background="LightPink"   
@@ -203,10 +212,10 @@
                     <Button Name="forward_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE893;"
-                            FontSize="20"
+                            FontSize="15"
                             Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            Height="36"
+                            Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"    
@@ -236,7 +245,7 @@
                             Foreground="SkyBlue"
                             Background="Black"
                             Margin="26,0,10,0"
-                            Value="{Binding ElementName=main_mediaElement, Path=Position, Converter={StaticResource progressConvert }, Mode=TwoWay}"
+                            Value="{Binding ElementName=main_mediaElement,Path=Position,Converter={StaticResource progressConvert }, Mode=TwoWay}"
                             ValueChanged="main_slider_ValueChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -244,10 +253,10 @@
                     <Button Name="stop_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE71A;" 
-                            FontSize="20"
-                            Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            FontSize="15"
+                            Margin='18,0,0,0'
+                            Height="36"
+                            Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"   
@@ -255,10 +264,10 @@
                     <Button Name="model_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE777;" 
-                            FontSize="20"
-                            Margin='17,0,0,0'
-                             Height="45"
-                            Width="45"
+                            FontSize="15"
+                            Margin='18,0,0,0'
+                             Height="36"
+                            Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink" 
@@ -283,10 +292,10 @@
                     <Button Name="add_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE710;" 
-                            FontSize="20"
-                            Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            FontSize="15"
+                            Margin='18,0,0,0'
+                            Height="36"
+                            Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"    
@@ -294,10 +303,10 @@
                     <Button Name="volume"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xF0EE;"
-                            FontSize="20"
-                            Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            FontSize="15"
+                            Margin='18,0,0,0'
+                            Height="36"
+                            Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"    
@@ -333,10 +342,10 @@
                     <Button Name="display_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE740;" 
-                            FontSize="20"
-                            Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            FontSize="15"
+                            Margin='18,0,0,0'
+                            Height="36"
+                            Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"    
@@ -344,10 +353,10 @@
                     <Button Name="setting_Button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE713;"
-                            FontSize="20"
-                            Margin='17,0,0,0'
-                            Height="45"
-                            Width="45"
+                            FontSize="15"
+                            Margin='18,0,0,0'
+                            Height="36"
+                            Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"    

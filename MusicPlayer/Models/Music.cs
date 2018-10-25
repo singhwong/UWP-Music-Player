@@ -18,5 +18,6 @@ namespace MusicPlayer.Models
         public StorageFile SongFile { get; set; }
         public int id { get; set; }
         public SolidColorBrush ForeColor { get; set; }
+        public string album_title { get; set; }
     }
 }

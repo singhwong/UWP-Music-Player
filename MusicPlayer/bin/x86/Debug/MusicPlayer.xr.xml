@@ -199,6 +199,7 @@
       <RootProperty Name="Name" />
       <RootProperty Name="AutoPlay" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="AreTransportControlsEnabled" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">
