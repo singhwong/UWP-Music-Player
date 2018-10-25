@@ -75,7 +75,7 @@ namespace MusicPlayer
         private int allsong_count;
         StorageFolder localFolder;
         StorageFile fileCopy;
-        private int num = 0;
+        private int num = 1;
         private SolidColorBrush white = new SolidColorBrush(Colors.White);
         private SolidColorBrush transParent = new SolidColorBrush(Colors.Transparent);
         private SolidColorBrush lightBlue = new SolidColorBrush(Colors.LightBlue);
@@ -232,15 +232,15 @@ namespace MusicPlayer
             {
                 num = index + 1;
             }
-            if (num == use_music.Count)
+            if (num == use_music.Count+1)
             {
-                num = 0;
+                num = 1;
             }
-            else if (num == -1)
+            else if (num == 0)
             {
-                num = use_music.Count - 1;
+                num = use_music.Count;
             }
-            main_music = use_music[num];
+            main_music = use_music[num-1];
             source_path = main_music.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
@@ -585,7 +585,8 @@ namespace MusicPlayer
             SingleCycle_bool = true;
             ListPlay_bool = false;
             RandomPlay_bool = false;
-            //model_button.Content = "单曲循环";
+            model_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            model_button.Content = "\uE8ED";
             back_button.IsEnabled = false;
             forward_button.IsEnabled = false;
         }
@@ -595,7 +596,8 @@ namespace MusicPlayer
             ListPlay_bool = true;
             SingleCycle_bool = false;
             RandomPlay_bool = false;
-            //model_button.Content = "顺序播放";
+            model_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            model_button.Content = "\uE777";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
         }
@@ -605,7 +607,8 @@ namespace MusicPlayer
             RandomPlay_bool = true;
             SingleCycle_bool = false;
             ListPlay_bool = false;
-            //model_button.Content = "随机播放";
+            model_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            model_button.Content = "\uE8B1";
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
         }

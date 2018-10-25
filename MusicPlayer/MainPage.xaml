@@ -76,7 +76,7 @@
         <ListView Name="main_listview"
                   Grid.Row="1"
                   SelectionMode="Single"                      
-                  Margin="0,20,0,0"
+                  Margin="0,20,0,38"
                   IsItemClickEnabled="True"             
                   ItemsSource="{x:Bind use_music}"
                   PointerEntered="main_listview_PointerEntered"
@@ -251,7 +251,7 @@
                            Click="stop_button_Click"/>
                     <Button Name="model_button"
                             FontFamily="Segoe MDL2 Assets"
-                            Content="&#xE8B1;" 
+                            Content="&#xE777;" 
                             FontSize="20"
                             Margin='17,0,0,0'
                              Height="45"

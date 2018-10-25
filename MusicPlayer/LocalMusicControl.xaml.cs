@@ -28,12 +28,6 @@ namespace MusicPlayer
             main_storyBoard.Begin();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            num_textblock.Text = (this_music.id + 1).ToString();
-        }
-
-
         private void main_storyBoard_Completed(object sender, object e)
         {
             num_textblock.Foreground = this_music.ForeColor;
