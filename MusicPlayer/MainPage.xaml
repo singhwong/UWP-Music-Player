@@ -180,6 +180,8 @@
                 <MediaElement Name="main_mediaElement"                         
                               AutoPlay="False"
                               Visibility="Collapsed"
+                              AudioCategory="BackgroundCapableMedia"
+                              CurrentStateChanged="main_mediaElement_CurrentStateChanged"
                               AreTransportControlsEnabled="True"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">

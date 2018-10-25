@@ -180,6 +180,8 @@
                 <MediaElement x:ConnectionId='20' Name="main_mediaElement"                         
                               AutoPlay="False"
                               Visibility="Collapsed"
+                              AudioCategory="BackgroundCapableMedia"
+                                                                                         
                               AreTransportControlsEnabled="True"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">

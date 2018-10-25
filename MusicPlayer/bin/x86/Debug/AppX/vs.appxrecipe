@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>6687254C3DB6683C762F6435CAD8A4843A7DD24F01A8326ED4E328A181749DE2</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>C1E330039C7C0CF33EDDDD0CEF1943169E380CD704E47D84792BE7484151D45D</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>bb311f35-d890-4f48-88a9-5573fc4216d4_1.0.0.0_x86__f0ft2qc6perkc</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>bb311f35-d890-4f48-88a9-5573fc4216d4_f0ft2qc6perkc!App</RegisteredUserModeAppID>
     <RegisteredPackageID>bb311f35-d890-4f48-88a9-5573fc4216d4</RegisteredPackageID>
@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-25T16:51:56.928</Modified>
+      <Modified>2018-10-25T18:37:38.822</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MusicPlayer.exe">
       <PackagePath>entrypoint\MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-25T16:51:56.359</Modified>
+      <Modified>2018-10-25T18:37:38.285</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -738,23 +738,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MusicPlayer.xr.xml">
       <PackagePath>MusicPlayer.xr.xml</PackagePath>
-      <Modified>2018-10-25T16:51:56.094</Modified>
+      <Modified>2018-10-25T18:37:38.001</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-10-25T16:51:56.115</Modified>
+      <Modified>2018-10-25T18:37:38.021</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\ButtonStyle.xbf">
       <PackagePath>ButtonStyle.xbf</PackagePath>
-      <Modified>2018-10-25T16:51:56.115</Modified>
+      <Modified>2018-10-25T18:37:38.021</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\LocalMusicControl.xbf">
       <PackagePath>LocalMusicControl.xbf</PackagePath>
-      <Modified>2018-10-25T16:51:56.115</Modified>
+      <Modified>2018-10-25T18:37:38.022</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-10-25T16:51:56.116</Modified>
+      <Modified>2018-10-25T18:37:38.022</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -763,11 +763,11 @@
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-25T16:49:50.752</Modified>
+      <Modified>2018-10-25T18:21:40.543</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\MusicPlayer.exe">
       <PackagePath>MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-25T16:51:56.923</Modified>
+      <Modified>2018-10-25T18:37:38.817</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

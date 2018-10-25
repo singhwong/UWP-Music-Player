@@ -199,7 +199,9 @@
       <RootProperty Name="Name" />
       <RootProperty Name="AutoPlay" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="AudioCategory" />
       <RootProperty Name="AreTransportControlsEnabled" />
+      <RootEvent Name="CurrentStateChanged" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">

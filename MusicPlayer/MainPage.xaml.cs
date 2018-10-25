@@ -236,7 +236,7 @@ namespace MusicPlayer
             {
                 num = index + 1;
             }
-            if (num == use_music.Count+1)
+            if (num == use_music.Count + 1)
             {
                 num = 1;
             }
@@ -244,7 +244,7 @@ namespace MusicPlayer
             {
                 num = use_music.Count;
             }
-            main_music = use_music[num-1];
+            main_music = use_music[num - 1];
             source_path = main_music.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
 
@@ -255,10 +255,10 @@ namespace MusicPlayer
             bottom_image.Source = Album_Cover;
 
             songTile_textblock.Text = main_music.Title;
-            artist_textblock.Text = "演唱者:   "+main_music.Artist;
+            artist_textblock.Text = "演唱者:   " + main_music.Artist;
             album_textblock.Text = "专辑:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
-                       
+
             main_storyBoard.Begin();
             main_music.ForeColor = skyblue;
         }
@@ -336,6 +336,9 @@ namespace MusicPlayer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            systemMedia_TransportControls.IsPlayEnabled = true;
+            systemMedia_TransportControls.IsPauseEnabled = true;
+            systemMedia_TransportControls.ButtonPressed += SystemControls_ButtonPressed;
             SetAcrylic();
             ListPlay_bool = true;
             back_button.IsEnabled = true;
@@ -445,7 +448,7 @@ namespace MusicPlayer
             #region 设置亚克力背景
             if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.XamlCompositionBrushBase"))
             {
-                
+
                 myBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
                 myBrush.TintColor = Colors.WhiteSmoke;
                 myBrush.FallbackColor = Colors.WhiteSmoke;
@@ -553,7 +556,7 @@ namespace MusicPlayer
             main_music.ForeColor = skyblue;
 
 
-            
+
         }
 
         private void main_storyBoard_Completed(object sender, object e)
@@ -684,55 +687,60 @@ namespace MusicPlayer
         {
             main_listview.Background = transParent;
         }
-        //private void BackGroundPlay()
-        //{
-        //    //MediaElement me = new MediaElement();
-            
-        //}
+        private async void SystemControls_ButtonPressed(SystemMediaTransportControls sender,
+    SystemMediaTransportControlsButtonPressedEventArgs args)
+        {
+            switch (args.Button)
+            {
+                case SystemMediaTransportControlsButton.Play:
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        main_mediaElement.Play();
+                    });
+                    break;
+                case SystemMediaTransportControlsButton.Pause:
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        main_mediaElement.Pause();
+                    });
+                    break;
+                //case SystemMediaTransportControlsButton.Previous:
+                //    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                //    {
+                //        main_mediaElement.Pause();
+                //    });
+                //    break;
+                //case SystemMediaTransportControlsButton.Next:
+                //    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                //    {
+                //        main_mediaElement.Pause();
+                //    });
+                //    break;
+                default:
+                    break;
+            }
+        }
 
-        //private void main_mediaElement_CurrentStateChanged(object sender, RoutedEventArgs e)
-        //{
-        //    switch (main_mediaElement.CurrentState)
-        //    {
-        //        case MediaElementState.Playing:
-        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-        //            break;
-        //        case MediaElementState.Paused:
-        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
-        //            break;
-        //        case MediaElementState.Stopped:
-        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
-        //            break;
-        //        case MediaElementState.Closed:
-        //            systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-
-    //    private async void SystemControls_ButtonPressed(SystemMediaTransportControls sender,
-    //SystemMediaTransportControlsButtonPressedEventArgs args)
-    //    {
-
-    //        switch (args.Button)
-    //        {
-    //            case SystemMediaTransportControlsButton.Play:
-    //                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-    //                {
-    //                    main_mediaElement.Play();
-    //                });
-    //                break;
-    //            case SystemMediaTransportControlsButton.Pause:
-    //                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-    //                {
-    //                    main_mediaElement.Pause();
-    //                });
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
+        private void main_mediaElement_CurrentStateChanged(object sender, RoutedEventArgs e)
+        {
+            switch (main_mediaElement.CurrentState)
+            {
+                case MediaElementState.Playing:
+                    systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                    break;
+                case MediaElementState.Paused:
+                    systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+                    break;
+                case MediaElementState.Stopped:
+                    systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+                    break;
+                case MediaElementState.Closed:
+                    systemMedia_TransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 
