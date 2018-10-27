@@ -26,7 +26,8 @@ namespace MusicPlayer
         /// 初始化单一实例应用程序对象。这是执行的创作代码的第一行，
         /// 已执行，逻辑上等同于 main() 或 WinMain()。
         /// </summary>
-        private bool _isInBackgroundMode = false;
+
+        public bool _isInBackgroundMode = false;
         public App()
         {
             this.InitializeComponent();
@@ -36,15 +37,16 @@ namespace MusicPlayer
             this.LeavingBackground += App_LeavingBackground;
         }
 
-        private void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
+        public void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             _isInBackgroundMode = true;
         }
 
-        private void App_LeavingBackground(object sender, LeavingBackgroundEventArgs e)
+        public void App_LeavingBackground(object sender, LeavingBackgroundEventArgs e)
         {
             _isInBackgroundMode = false;
         }
+        
         /// <summary>
         /// 在应用程序由最终用户正常启动时进行调用。
         /// 将在启动应用程序以打开特定文件等情况下使用。

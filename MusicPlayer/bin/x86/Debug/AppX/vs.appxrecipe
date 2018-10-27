@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-25T18:37:38.822</Modified>
+      <Modified>2018-10-27T13:59:11.402</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MusicPlayer.exe">
       <PackagePath>entrypoint\MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-25T18:37:38.285</Modified>
+      <Modified>2018-10-27T13:59:10.904</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -742,19 +742,19 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-10-25T18:37:38.021</Modified>
+      <Modified>2018-10-27T13:59:10.669</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\ButtonStyle.xbf">
       <PackagePath>ButtonStyle.xbf</PackagePath>
-      <Modified>2018-10-25T18:37:38.021</Modified>
+      <Modified>2018-10-27T13:59:10.668</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\LocalMusicControl.xbf">
       <PackagePath>LocalMusicControl.xbf</PackagePath>
-      <Modified>2018-10-25T18:37:38.022</Modified>
+      <Modified>2018-10-27T13:59:10.669</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-10-25T18:37:38.022</Modified>
+      <Modified>2018-10-27T13:59:10.669</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -767,7 +767,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\singhwong\Source\Repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\MusicPlayer.exe">
       <PackagePath>MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-25T18:37:38.817</Modified>
+      <Modified>2018-10-27T13:59:11.397</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

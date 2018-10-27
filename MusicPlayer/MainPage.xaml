@@ -14,24 +14,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
-                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                           Storyboard.TargetName="main_progressbar"
-                                           Storyboard.TargetProperty="(RangeBase.Value)">
-                    <DiscreteDoubleKeyFrame KeyTime="0:0:1"
-                                        Value="0"/>
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
-            <Storyboard x:Name="main_storyBoard2" Completed="main_storyBoard2_Completed">
-                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
-                                           Storyboard.TargetName="main_progressbar2"
-                                           Storyboard.TargetProperty="(RangeBase.Value)">
-                    <DiscreteDoubleKeyFrame KeyTime="0:0:1"
-                                        Value="1"/>
-                    <DiscreteDoubleKeyFrame KeyTime="0:0:2"
-                                        Value="0"/>
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
     <Grid Name="main_grid">
@@ -178,7 +160,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <MediaElement Name="main_mediaElement"                         
-                              AutoPlay="False"
+                              AutoPlay="True"
                               Visibility="Collapsed"
                               AudioCategory="BackgroundCapableMedia"
                               CurrentStateChanged="main_mediaElement_CurrentStateChanged"
