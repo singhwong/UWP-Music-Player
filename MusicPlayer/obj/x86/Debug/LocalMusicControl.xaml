@@ -28,6 +28,8 @@
                                                     />
             <TextBlock x:ConnectionId='5' Name="title_textblock"
                        FontSize="15"
+                       TextWrapping="Wrap"
+                       Width="300"
                        VerticalAlignment="Center"
                                                             />
         </StackPanel>

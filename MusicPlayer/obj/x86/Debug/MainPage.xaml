@@ -11,12 +11,26 @@
                         >
     <Page.Resources>
         <ResourceDictionary>
+            <Storyboard x:ConnectionId='2' x:Name="main_storyBoard"                                      >
+
+                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+
+                                           Storyboard.TargetName="main_progressBar"
+
+                                           Storyboard.TargetProperty="(RangeBase.Value)">
+
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:1"/>
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:2"/>
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:3"/>
+                </DoubleAnimationUsingKeyFrames>
+
+            </Storyboard>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid x:ConnectionId='2' Name="main_grid">
+    <Grid x:ConnectionId='3' Name="main_grid">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -46,18 +60,20 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ProgressRing x:ConnectionId='3' Name="main_progressRing"
+        <ProgressBar x:ConnectionId='4' Name="main_progressBar"
+                     Visibility="Collapsed"/>
+        <ProgressRing x:ConnectionId='5' Name="main_progressRing"
                       Height="50"
                       Width="50"
                       Visibility="Visible"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"/>
-        <TextBlock x:ConnectionId='4' Name="name_textblock"
+        <TextBlock x:ConnectionId='6' Name="name_textblock"
                    Text="Own MusicPlayer"                   
                    Margin="2"
                    FontSize="12"
                    Foreground="White"/>
-        <ListView x:ConnectionId='5' Name="main_listview"
+        <ListView x:ConnectionId='7' Name="main_listview"
                   Grid.Row="1"
                   SelectionMode="Single"                      
                   Margin="0,20,0,38"
@@ -73,7 +89,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ScrollViewer x:ConnectionId='6' Name="ellipse_scrollViewer"
+        <ScrollViewer x:ConnectionId='8' Name="ellipse_scrollViewer"
                       Grid.Row="1"
                       Grid.Column="1"
                       IsDeferredScrollingEnabled="False"
@@ -81,26 +97,26 @@
                       VerticalScrollMode="Enabled"
                       HorizontalScrollBarVisibility="Hidden"  
                       VerticalScrollBarVisibility="Auto">
-            <StackPanel x:ConnectionId='9' Name="musicDetails_stackPanel"
+            <StackPanel x:ConnectionId='11' Name="musicDetails_stackPanel"
                         Orientation="Vertical"
                         Grid.Row="1"
                         Grid.Column="1">
 
-                    <Ellipse x:ConnectionId='10' Name="main_ellipse"
-                     Height="200"
-                     Width="200" 
-                     RenderTransformOrigin="0.5,0.5">
+                    <Ellipse x:ConnectionId='12' Name="main_ellipse"
+                             Height="200"
+                             Width="200" 
+                             RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <CompositeTransform/>
                         </Ellipse.RenderTransform>
                         <Ellipse.Resources>
-                            <Storyboard x:ConnectionId='15' x:Name="story_board"
-                                RepeatBehavior="Forever">
+                            <Storyboard x:ConnectionId='17' x:Name="story_board"
+                                        RepeatBehavior="Forever">
                                 <DoubleAnimation Duration="0:0:50"
-                                         To="360"
-                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
-                                         Storyboard.TargetName="main_ellipse"
-                                         d:IsOptimized="True"/>
+                                                 To="360"
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
+                                                 Storyboard.TargetName="main_ellipse"
+                                                 d:IsOptimized="True"/>
                             </Storyboard>
                         </Ellipse.Resources>
                         <Ellipse.Fill>
@@ -108,23 +124,23 @@
                         </Ellipse.Fill>
                     </Ellipse>
 
-                <TextBlock x:ConnectionId='11' Name="songTile_textblock"
-                   FontSize="20"
-                   Foreground="AliceBlue"
-                   Margin="0,10,0,0"
-                       HorizontalAlignment="Center"/>
+                <TextBlock x:ConnectionId='13' Name="songTile_textblock"
+                           FontSize="20"
+                           Foreground="AliceBlue"
+                           Margin="0,10,0,0"
+                           HorizontalAlignment="Center"/>
                
-                <TextBlock x:ConnectionId='12' Name="artist_textblock"
+                <TextBlock x:ConnectionId='14' Name="artist_textblock"
                            FontSize="15"
                            Margin="0,10,0,0"
                            Foreground="AliceBlue"
                            HorizontalAlignment="Center"/>
-                <TextBlock x:ConnectionId='13' Name="album_textblock"
+                <TextBlock x:ConnectionId='15' Name="album_textblock"
                            FontSize="15"
                            Margin="0,10,0,0"
                            Foreground="AliceBlue"
                            HorizontalAlignment="Center"/>
-                <TextBlock x:ConnectionId='14' Name="lyric_textblock"
+                <TextBlock x:ConnectionId='16' Name="lyric_textblock"
                            FontSize="20"
                            Text="无歌词"
                            Foreground="AliceBlue"
@@ -134,13 +150,13 @@
             </StackPanel>
         </ScrollViewer>
 
-        <ProgressBar x:ConnectionId='7' Name="main_progressbar"
+        <ProgressBar x:ConnectionId='9' Name="main_progressbar"
                      Visibility="Collapsed"/>
-        <ProgressBar x:ConnectionId='8' Name="main_progressbar2"
+        <ProgressBar x:ConnectionId='10' Name="main_progressbar2"
                      Visibility="Collapsed"/>
     </Grid>
     <Page.BottomAppBar>
-        <AppBar x:ConnectionId='17' Name="main_AppBar"
+        <AppBar x:ConnectionId='19' Name="main_AppBar"
                 Background="White"              
                 IsOpen="True"
                 IsSticky="True"
@@ -159,7 +175,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <MediaElement x:ConnectionId='18' Name="main_mediaElement"                         
+                <MediaElement x:ConnectionId='20' Name="main_mediaElement"                         
                               AutoPlay="True"
                               Visibility="Collapsed"
                               AudioCategory="BackgroundCapableMedia"
@@ -167,33 +183,38 @@
                               AreTransportControlsEnabled="True"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">
-                    <Image x:ConnectionId='42' Name="bottom_image"
-                       Height="62"
-                       Width="62"
-                       Margin="0,0,0,0"/>
-                    <Button x:ConnectionId='43' Name="back_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE892;"
-                        FontSize="15"
-                        Margin='17,0,0,0'
+                    <Image x:ConnectionId='44' Name="bottom_image"
+                           Height="62"
+                           Width="62"
+                           Margin="0,0,0,0"
+                           Source="Assets/girl.jpg"/>
+                    <Button x:ConnectionId='45' Name="back_button"
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE892;"
+                            FontSize="15"
+                            Margin='17,0,0,0'
                             Height="36"
                             Width="36"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                        Background="LightPink"                          
-                                                 />
-                    <Button x:ConnectionId='44' Name="play_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE768;"
-                        FontSize="15"
-                        Margin='17,0,0,0'
+                            Background="LightPink"
+                                                                       
+                                                                     
+                                                     />
+                    <Button x:ConnectionId='46' Name="play_button"
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE768;"
+                            FontSize="15"
+                            Margin='17,0,0,0'
                             Height="36"
                             Width="36"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                        Background="LightPink"   
-                                                   />
-                    <Button x:ConnectionId='45' Name="forward_button"
+                            Background="LightPink"
+                                                                       
+                                                                     
+                                                     />
+                    <Button x:ConnectionId='47' Name="forward_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE893;"
                             FontSize="15"
@@ -202,7 +223,9 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                                                                          
+                                                                        
                                                         />
                 </StackPanel>
 
@@ -213,17 +236,17 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock x:ConnectionId='40' Name="bottomTitle_textblock"
+                        <TextBlock x:ConnectionId='42' Name="bottomTitle_textblock"
                                    FontSize='12'
                                    Foreground="Black"
                                    HorizontalAlignment="Left"/>
-                        <TextBlock x:ConnectionId='41' Name="playTime_textblock"
+                        <TextBlock x:ConnectionId='43' Name="playTime_textblock"
                                    FontSize="12"                             
                                    Grid.Column="1"
                                    Foreground="Black"
                                    HorizontalAlignment="Right"/>
                     </Grid>
-                    <Slider x:ConnectionId='39' Name="main_slider"
+                    <Slider x:ConnectionId='41' Name="main_slider"
                             Minimum="0"                          
                             StepFrequency="1"
                             Foreground="SkyBlue"
@@ -234,7 +257,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="2">
-                    <Button x:ConnectionId='19' Name="stop_button"
+                    <Button x:ConnectionId='21' Name="stop_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE71A;" 
                             FontSize="15"
@@ -243,9 +266,11 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"   
+                            Background="LightPink"
+                                                                       
+                                                                     
                                                     />
-                    <Button x:ConnectionId='20' Name="model_button"
+                    <Button x:ConnectionId='22' Name="model_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE777;" 
                             FontSize="15"
@@ -255,25 +280,27 @@
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink" 
+                                                                        
+                                                                      
                                                       >
                         <Button.Flyout>
-                            <MenuFlyout x:ConnectionId='35' x:Name="model_flyout">
-                                <MenuFlyoutItem x:ConnectionId='36' Name="item_1" 
+                            <MenuFlyout x:ConnectionId='37' x:Name="model_flyout">
+                                <MenuFlyoutItem x:ConnectionId='38' Name="item_1" 
                                                 Text="单曲循环"
                                                 FontSize="13"
                                                                     />
-                                <MenuFlyoutItem x:ConnectionId='37' Name="item_2"
+                                <MenuFlyoutItem x:ConnectionId='39' Name="item_2"
                                                 Text="顺序播放"
                                                 FontSize="13"
                                                                     />
-                                <MenuFlyoutItem x:ConnectionId='38' Name="item_3"
+                                <MenuFlyoutItem x:ConnectionId='40' Name="item_3"
                                                 Text="随机播放"
                                                 FontSize="13"
                                                                     />
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>
-                    <Button x:ConnectionId='21' Name="add_button"
+                    <Button x:ConnectionId='23' Name="add_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE710;" 
                             FontSize="15"
@@ -282,9 +309,11 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                                                                      
+                                                                    
                                                     />
-                    <Button x:ConnectionId='22' Name="volume"
+                    <Button x:ConnectionId='24' Name="volume"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xF0EE;"
                             FontSize="15"
@@ -293,28 +322,30 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                                                                  
+                                                                
                                                 >
                         <Button.Flyout>
-                            <Flyout x:ConnectionId='30' x:Name="volume_flyout">
-                                <StackPanel x:ConnectionId='31' Name="volume_stackPanel"
+                            <Flyout x:ConnectionId='32' x:Name="volume_flyout">
+                                <StackPanel x:ConnectionId='33' Name="volume_stackPanel"
                                             Orientation="Horizontal"
                                             Height="30"
                                             Width="260">
-                                    <TextBlock x:ConnectionId='32' Name="volumeIcon_textblock"
+                                    <TextBlock x:ConnectionId='34' Name="volumeIcon_textblock"
                                                FontFamily="Segoe MDL2 Assets"
                                                Text="&#xE994;"
                                                FontSize="30"
                                                Margin="0,4,0,0"
                                                                                    />
-                                    <Slider x:ConnectionId='33' Name="volume_slider"
+                                    <Slider x:ConnectionId='35' Name="volume_slider"
                                             Maximum="100"
                                             Minimum="0"
                                             Margin="10,0,0,0"
                                             Height="30"
                                             Width="150"
                                                                                      />
-                                    <TextBlock x:ConnectionId='34' Name="volume_textblock"
+                                    <TextBlock x:ConnectionId='36' Name="volume_textblock"
                                                FontSize="30"
                                                Margin="10,4,0,0"
                                                Text="30"
@@ -323,7 +354,7 @@
                             </Flyout>
                         </Button.Flyout>
                     </Button>
-                    <Button x:ConnectionId='23' Name="display_button"
+                    <Button x:ConnectionId='25' Name="display_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE740;" 
                             FontSize="15"
@@ -332,9 +363,11 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                                                                          
+                                                                        
                                                         />
-                    <Button x:ConnectionId='24' Name="setting_Button"
+                    <Button x:ConnectionId='26' Name="setting_Button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE713;"
                             FontSize="15"
@@ -343,26 +376,28 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                                                                          
+                                                                        
                                                           >
                         <Button.Flyout>
-                            <MenuFlyout x:ConnectionId='25' x:Name="menu_flyout">
-                                <MenuFlyoutItem x:ConnectionId='26' Name="background_menu"
+                            <MenuFlyout x:ConnectionId='27' x:Name="menu_flyout">
+                                <MenuFlyoutItem x:ConnectionId='28' Name="background_menu"
                                                 Text="自定义背景图片(.jpg)"
                                                 FontSize="13"
                                                                              />
                                 <MenuFlyoutSubItem Text="专辑封面是否转动"
                                                    FontSize="13">
-                                    <MenuFlyoutItem x:ConnectionId='28' Name="Yes_item"
+                                    <MenuFlyoutItem x:ConnectionId='30' Name="Yes_item"
                                                     Text="是"
                                                     FontSize="13"
                                                                           />
-                                    <MenuFlyoutItem x:ConnectionId='29' Name="No_item"
+                                    <MenuFlyoutItem x:ConnectionId='31' Name="No_item"
                                                     Text="否"
                                                     FontSize="13"
                                                                          />
                                 </MenuFlyoutSubItem>
-                                <MenuFlyoutItem x:ConnectionId='27' Name="about_menu"
+                                <MenuFlyoutItem x:ConnectionId='29' Name="about_menu"
                                                 Text="关于软件"
                                                 FontSize="13"
                                                                         />

@@ -11,6 +11,20 @@
     Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary>
+            <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
+
+                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
+
+                                           Storyboard.TargetName="main_progressBar"
+
+                                           Storyboard.TargetProperty="(RangeBase.Value)">
+
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:1"/>
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:2"/>
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:3"/>
+                </DoubleAnimationUsingKeyFrames>
+
+            </Storyboard>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
@@ -46,6 +60,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <ProgressBar Name="main_progressBar"
+                     Visibility="Collapsed"/>
         <ProgressRing Name="main_progressRing"
                       Height="50"
                       Width="50"
@@ -87,20 +103,20 @@
                         Grid.Column="1">
 
                     <Ellipse Name="main_ellipse"
-                     Height="200"
-                     Width="200" 
-                     RenderTransformOrigin="0.5,0.5">
+                             Height="200"
+                             Width="200" 
+                             RenderTransformOrigin="0.5,0.5">
                         <Ellipse.RenderTransform>
                             <CompositeTransform/>
                         </Ellipse.RenderTransform>
                         <Ellipse.Resources>
                             <Storyboard x:Name="story_board"
-                                RepeatBehavior="Forever">
+                                        RepeatBehavior="Forever">
                                 <DoubleAnimation Duration="0:0:50"
-                                         To="360"
-                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
-                                         Storyboard.TargetName="main_ellipse"
-                                         d:IsOptimized="True"/>
+                                                 To="360"
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)"
+                                                 Storyboard.TargetName="main_ellipse"
+                                                 d:IsOptimized="True"/>
                             </Storyboard>
                         </Ellipse.Resources>
                         <Ellipse.Fill>
@@ -109,10 +125,10 @@
                     </Ellipse>
 
                 <TextBlock Name="songTile_textblock"
-                   FontSize="20"
-                   Foreground="AliceBlue"
-                   Margin="0,10,0,0"
-                       HorizontalAlignment="Center"/>
+                           FontSize="20"
+                           Foreground="AliceBlue"
+                           Margin="0,10,0,0"
+                           HorizontalAlignment="Center"/>
                
                 <TextBlock Name="artist_textblock"
                            FontSize="15"
@@ -168,31 +184,36 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <Image Name="bottom_image"
-                       Height="62"
-                       Width="62"
-                       Margin="0,0,0,0"/>
+                           Height="62"
+                           Width="62"
+                           Margin="0,0,0,0"
+                           Source="Assets/girl.jpg"/>
                     <Button Name="back_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE892;"
-                        FontSize="15"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE892;"
+                            FontSize="15"
+                            Margin='17,0,0,0'
                             Height="36"
                             Width="36"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                        Background="LightPink"                          
-                        Click="back_button_Click"/>
+                            Background="LightPink"
+                            PointerEntered="back_button_PointerEntered"
+                            PointerExited="back_button_PointerExited"
+                            Click="back_button_Click"/>
                     <Button Name="play_button"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE768;"
-                        FontSize="15"
-                        Margin='17,0,0,0'
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE768;"
+                            FontSize="15"
+                            Margin='17,0,0,0'
                             Height="36"
                             Width="36"
-                        Style="{StaticResource TransparentPathIconButtonStyle}"
+                            Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                        Background="LightPink"   
-                          Click="play_button_Click"/>
+                            Background="LightPink"
+                            PointerEntered="play_button_PointerEntered"
+                            PointerExited="play_button_PointerExited"
+                            Click="play_button_Click"/>
                     <Button Name="forward_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE893;"
@@ -202,7 +223,9 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                            PointerEntered="forward_button_PointerEntered"
+                            PointerExited="forward_button_PointerExited"
                             Click="forward_button_Click"/>
                 </StackPanel>
 
@@ -243,7 +266,9 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"   
+                            Background="LightPink"
+                            PointerEntered="stop_button_PointerEntered"
+                            PointerExited="stop_button_PointerExited"
                            Click="stop_button_Click"/>
                     <Button Name="model_button"
                             FontFamily="Segoe MDL2 Assets"
@@ -255,6 +280,8 @@
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink" 
+                            PointerEntered="model_button_PointerEntered"
+                            PointerExited="model_button_PointerExited"
                             Click="model_button_Click">
                         <Button.Flyout>
                             <MenuFlyout x:Name="model_flyout">
@@ -282,7 +309,9 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                            PointerEntered="add_button_PointerEntered"
+                            PointerExited="add_button_PointerExited"
                             Click="add_button_Click"/>
                     <Button Name="volume"
                             FontFamily="Segoe MDL2 Assets"
@@ -293,7 +322,9 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                            PointerEntered="volume_PointerEntered"
+                            PointerExited="volume_PointerExited"
                             Click="volume_Click">
                         <Button.Flyout>
                             <Flyout x:Name="volume_flyout">
@@ -332,7 +363,9 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                            PointerEntered="display_button_PointerEntered"
+                            PointerExited="display_button_PointerExited"
                             Click="display_button_Click"/>
                     <Button Name="setting_Button"
                             FontFamily="Segoe MDL2 Assets"
@@ -343,7 +376,9 @@
                             Width="36"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
-                            Background="LightPink"    
+                            Background="LightPink"
+                            PointerEntered="setting_Button_PointerEntered"
+                            PointerExited="setting_Button_PointerExited"
                             Click="setting_Button_Click_1">
                         <Button.Flyout>
                             <MenuFlyout x:Name="menu_flyout">

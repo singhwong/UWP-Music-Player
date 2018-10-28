@@ -41,6 +41,7 @@ namespace MusicPlayer
         private ObservableCollection<Music> use_music;
         private ObservableCollection<StorageFile> allMusic;
         private Music main_music = new Music();
+        private Music local_music;
 
         private bool RandomPlay_bool = false;
         private bool ListPlay_bool = false;
@@ -54,6 +55,8 @@ namespace MusicPlayer
 
         private ApplicationDataContainer local_volume = ApplicationData.Current.LocalSettings;
         private ApplicationDataContainer local_backGround = ApplicationData.Current.LocalSettings;
+        private ApplicationDataContainer local_musicPath = ApplicationData.Current.LocalSettings;
+        private ApplicationDataContainer local_allTime = ApplicationData.Current.LocalSettings;
         private string backGround_path;
         private double volume_value;
 
@@ -73,17 +76,18 @@ namespace MusicPlayer
         private SolidColorBrush white = new SolidColorBrush(Colors.White);
         private SolidColorBrush transParent = new SolidColorBrush(Colors.Transparent);
         private SolidColorBrush hotPink = new SolidColorBrush(Colors.HotPink);
+        private SolidColorBrush lightPink = new SolidColorBrush(Colors.LightPink);
         private AcrylicBrush myBrush = new AcrylicBrush();
-
+        string local_allTimeStr;
         private SystemMediaTransportControls systemMedia_TransportControls = SystemMediaTransportControls.GetForCurrentView();
         public MainPage()
         {
             this.InitializeComponent();
             ExtendAcrylicIntoTitleBar();
             use_music = new ObservableCollection<Music>();
-            allMusic = new ObservableCollection<StorageFile>();          
+            allMusic = new ObservableCollection<StorageFile>();
         }
-                 
+
         private void play_button_Click(object sender, RoutedEventArgs e)
         {
             if (source_path != null)
@@ -91,9 +95,10 @@ namespace MusicPlayer
                 stop_button.Foreground = white;
                 if (IsMusicPlaying == false)
                 {
+                    main_mediaElement.AutoPlay = true;
                     main_mediaElement.Play();
                     play_button.Foreground = skyblue;
-                    main_slider.Maximum = main_mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+
                     play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                     play_button.Content = "\uE769";
                     IsMusicPlaying = true;
@@ -123,6 +128,43 @@ namespace MusicPlayer
         private void main_slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
 
+            SetAllTimeMethod();
+
+            if (main_slider.Value == main_slider.Maximum)
+            {
+                try
+                {
+                    local_music.ForeColor = black;
+                }
+                catch
+                {
+                }
+                main_music.ForeColor = black;
+                //play_button.Foreground = black;
+                //play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                //play_button.Content = "\uE768";
+                if (SingleCycle_bool)
+                {
+                    Single_Cycle();
+                }
+                else if (ListPlay_bool)
+                {
+                    List_Source();
+                }
+                else if (RandomPlay_bool)
+                {
+                    Random_Source();
+                }
+                else
+                {
+                    IsMusicPlaying = false;
+                }
+                local_musicPath.Values["music_path"] = source_path;
+                
+            }
+        }
+        private void SetAllTimeMethod()
+        {
             int allSeconds = (int)main_slider.Maximum;
             int currentSeconds = (int)main_slider.Value;
             int mm = currentSeconds / 60;
@@ -162,30 +204,7 @@ namespace MusicPlayer
                 allss_str = "0" + all_ss.ToString();
             }
             playTime_textblock.Text = mm_str + ":" + ss_str + "/" + allmm_str + ":" + allss_str;
-
-            if (main_slider.Value == main_slider.Maximum)
-            {
-                main_music.ForeColor = black;
-                play_button.Foreground = black;
-                play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-                play_button.Content = "\uE768";
-                if (SingleCycle_bool)
-                {
-                    Single_Cycle();
-                }
-                else if (ListPlay_bool)
-                {
-                    List_Source();
-                }
-                else if (RandomPlay_bool)
-                {
-                    Random_Source();
-                }
-                else
-                {
-                    IsMusicPlaying = false;
-                }
-            }
+            local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
         }
         private void Random_Source()
         {
@@ -210,11 +229,12 @@ namespace MusicPlayer
 
             main_music.ForeColor = skyblue;
 
-            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            play_button.Content = "\uE769";
-            play_button.Foreground = skyblue;
+            //play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            //play_button.Content = "\uE769";
+            //play_button.Foreground = skyblue;
+
         }
-        private  void List_Source()
+        private void List_Source()
         {
             var list_music = SetMusicById.GetIDByPathSource(use_music, source_path);
             int index = list_music.id;
@@ -254,18 +274,30 @@ namespace MusicPlayer
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
             play_button.Foreground = skyblue;
+
+
         }
         private void Single_Cycle()
         {
-
+            main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
+            try
+            {
+                local_music.ForeColor = skyblue;
+            }
+            catch
+            {
+            }            
             main_music.ForeColor = skyblue;
-            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            play_button.Content = "\uE769";
-            play_button.Foreground = skyblue;
-
         }
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                local_music.ForeColor = black;
+            }
+            catch
+            {
+            }
             FileOpenPicker file = new FileOpenPicker();
             file.FileTypeFilter.Add(".mp3");
             StorageFile media_file = await file.PickSingleFileAsync();
@@ -306,6 +338,9 @@ namespace MusicPlayer
             catch
             {
             }
+
+            local_musicPath.Values["music_path"] = source_path;
+            local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
         }
 
         private void display_button_Click(object sender, RoutedEventArgs e)
@@ -369,6 +404,8 @@ namespace MusicPlayer
                 main_mediaElement.Volume = 0.3;
             }
             story_board.Begin();
+            main_storyBoard.Begin();
+            main_mediaElement.AutoPlay = false;
 
         }
 
@@ -490,7 +527,7 @@ namespace MusicPlayer
             }
         }
         //获取本地lrc文件
-        private async void GetLocalLyric(ObservableCollection<StorageFile> lyric_list,StorageFolder lyric_folder)
+        private async void GetLocalLyric(ObservableCollection<StorageFile> lyric_list, StorageFolder lyric_folder)
         {
             foreach (var lyric in await lyric_folder.GetFilesAsync())
             {
@@ -542,6 +579,15 @@ namespace MusicPlayer
 
         private void main_listview_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
+            try
+            {
+                main_mediaElement.AutoPlay = true;
+                local_music.ForeColor = black;
+            }
+            catch
+            {
+            }           
             main_music.ForeColor = black;
             main_music = (Music)e.ClickedItem;
             source_path = main_music.Music_Path;
@@ -568,6 +614,8 @@ namespace MusicPlayer
             play_button.Content = "\uE769";
             play_button.Foreground = skyblue;
 
+            local_musicPath.Values["music_path"] = source_path;
+            local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
         }
 
         private void forward_button_Click(object sender, RoutedEventArgs e)
@@ -580,15 +628,24 @@ namespace MusicPlayer
         {
             IsBackButtonClick = true;
             SwitchMusic();
+
         }
 
         private void SwitchMusic()
         {
+            try
+            {
+                local_music.ForeColor = black;
+                main_mediaElement.AutoPlay = true;
+            }
+            catch
+            {
+            }           
             main_music.ForeColor = black;
             stop_button.Foreground = white;
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE768";
-            
+
             if (ListPlay_bool)
             {
                 List_Source();
@@ -597,6 +654,9 @@ namespace MusicPlayer
             {
                 Random_Source();
             }
+            local_musicPath.Values["music_path"] = source_path;
+            local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
+            
         }
         private void item_1_Click(object sender, RoutedEventArgs e)
         {
@@ -666,12 +726,13 @@ namespace MusicPlayer
         private async void SystemControls_ButtonPressed(SystemMediaTransportControls sender,
     SystemMediaTransportControlsButtonPressedEventArgs args)
         {
-           
+
             switch (args.Button)
             {
                 case SystemMediaTransportControlsButton.Play:
                     await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                     {
+                        main_mediaElement.AutoPlay = true;
                         main_mediaElement.Play();
                         play_button.Foreground = skyblue;
                         play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
@@ -702,7 +763,7 @@ namespace MusicPlayer
                     {
                         IsBackButtonClick = false;
                         SwitchMusic();
-                    });                    
+                    });
                     break;
                 default:
                     break;
@@ -726,6 +787,124 @@ namespace MusicPlayer
                 default:
                     break;
             }
+        }
+
+        private void main_storyBoard_Completed(object sender, object e)//启动加载上一次播放歌曲
+        {
+            try
+            {
+                source_path = local_musicPath.Values["music_path"].ToString();
+                local_allTimeStr = local_allTime.Values["allTime"].ToString();
+                local_music = SetMusicById.GetIDByPathSource(use_music, source_path);
+                main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
+
+                Album_Cover = local_music.Cover;
+                imageBrush_ellipse.ImageSource = Album_Cover;
+                main_ellipse.Fill = imageBrush_ellipse;
+                bottom_image.Source = Album_Cover;
+
+                songTile_textblock.Text = local_music.Title;
+                artist_textblock.Text = "演唱者:   " + local_music.Artist;
+                album_textblock.Text = "专辑:   " + local_music.album_title;
+                bottomTitle_textblock.Text = songTile_textblock.Text;
+
+                playTime_textblock.Text = "00:00"+"/" + local_allTimeStr;
+                local_music.ForeColor = skyblue;
+            }
+            catch
+            {
+            }
+           
+        }
+
+        private void back_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            back_button.Background = hotPink;
+        }
+
+        private void back_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            back_button.Background = lightPink;
+        }
+
+        private void play_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            play_button.Background = hotPink;
+        }
+
+        private void play_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            play_button.Background = lightPink;
+        }
+
+        private void forward_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            forward_button.Background = hotPink;
+        }
+
+        private void forward_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            forward_button.Background = lightPink;
+        }
+
+        private void stop_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            stop_button.Background = hotPink;
+        }
+
+        private void stop_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            stop_button.Background = lightPink;
+        }
+
+        private void model_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            model_button.Background = hotPink;
+        }
+
+        private void model_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            model_button.Background = lightPink;
+        }
+
+        private void add_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            add_button.Background = hotPink;
+        }
+
+        private void add_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            add_button.Background = lightPink;
+        }
+
+        private void volume_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            volume.Background = hotPink;
+        }
+
+        private void volume_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            volume.Background = lightPink;
+        }
+
+        private void display_button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            display_button.Background = hotPink;
+        }
+
+        private void display_button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            display_button.Background = lightPink;
+        }
+
+        private void setting_Button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            setting_Button.Background = hotPink;
+        }
+
+        private void setting_Button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            setting_Button.Background = lightPink;
         }
     }
 }
