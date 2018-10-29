@@ -30,7 +30,8 @@ namespace MusicPlayer
 
         private void main_storyBoard_Completed(object sender, object e)
         {
-            num_textblock.Foreground = this_music.ForeColor;
+            //num_textblock.Foreground = this_music.ForeColor;
+            isPlay_textblock.Foreground = this_music.ForeColor;
             main_storyBoard.Begin();
         }
     }

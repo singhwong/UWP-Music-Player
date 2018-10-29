@@ -135,14 +135,8 @@ namespace MusicPlayer
 
             if (main_slider.Value == main_slider.Maximum)
             {
-                try
-                {
-                    local_music.ForeColor = black;
-                }
-                catch
-                {
-                }
-                main_music.ForeColor = black;
+                
+                
                 //play_button.Foreground = black;
                 //play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                 //play_button.Content = "\uE768";
@@ -152,10 +146,26 @@ namespace MusicPlayer
                 }
                 else if (ListPlay_bool)
                 {
+                    try
+                    {
+                        local_music.ForeColor = transParent;
+                    }
+                    catch
+                    {                       
+                    }
+                    main_music.ForeColor = transParent;
                     List_Source();
                 }
                 else if (RandomPlay_bool)
                 {
+                    try
+                    {
+                        local_music.ForeColor = transParent;
+                    }
+                    catch
+                    {                      
+                    }
+                    main_music.ForeColor = transParent;
                     Random_Source();
                 }
                 else
@@ -283,20 +293,21 @@ namespace MusicPlayer
         private void Single_Cycle()
         {
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
-            try
-            {
-                local_music.ForeColor = skyblue;
-            }
-            catch
-            {
-            }
-            main_music.ForeColor = skyblue;
+            //try
+            //{
+            //    local_music.ForeColor = skyblue;
+            //}
+            //catch
+            //{
+            //    main_music.ForeColor = skyblue;
+            //}
+            
         }
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                local_music.ForeColor = black;
+                local_music.ForeColor = transParent;
             }
             catch
             {
@@ -564,7 +575,7 @@ namespace MusicPlayer
                 music.Music_Path = song.Name;
                 music.id = num;
                 music.SongFile = song;
-                music.ForeColor = black;
+                music.ForeColor = transParent;
                 music.str = song_Properties.Genre.ToString();//当前对象字符串
                 music.album_title = song_Properties.Album;
                 use_music.Add(music);
@@ -588,12 +599,12 @@ namespace MusicPlayer
             try
             {
                 main_mediaElement.AutoPlay = true;
-                local_music.ForeColor = black;
+                local_music.ForeColor = transParent;
             }
             catch
             {
             }
-            main_music.ForeColor = black;
+            main_music.ForeColor = transParent;
             main_music = (Music)e.ClickedItem;
             source_path = main_music.Music_Path;
             main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
@@ -640,13 +651,13 @@ namespace MusicPlayer
         {
             try
             {
-                local_music.ForeColor = black;
+                local_music.ForeColor = transParent;
                 main_mediaElement.AutoPlay = true;
             }
             catch
             {
             }
-            main_music.ForeColor = black;
+            main_music.ForeColor = transParent;
             stop_button.Foreground = white;
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
