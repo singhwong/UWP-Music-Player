@@ -160,7 +160,7 @@ namespace MusicPlayer
                     IsMusicPlaying = false;
                 }
                 local_musicPath.Values["music_path"] = source_path;
-                
+
             }
         }
         private void SetAllTimeMethod()
@@ -286,7 +286,7 @@ namespace MusicPlayer
             }
             catch
             {
-            }            
+            }
             main_music.ForeColor = skyblue;
         }
         private async void add_button_Click(object sender, RoutedEventArgs e)
@@ -404,9 +404,8 @@ namespace MusicPlayer
                 main_mediaElement.Volume = 0.3;
             }
             story_board.Begin();
-            main_storyBoard.Begin();
-            main_mediaElement.AutoPlay = false;
-
+            
+            //加载慢的话，会报错，暂时注释
         }
 
         private void volume_Click(object sender, RoutedEventArgs e)
@@ -575,11 +574,14 @@ namespace MusicPlayer
             StorageFolder folder = KnownFolders.MusicLibrary;
             await GetAllSongs(allMusic, folder);
             await ListView_Songs(allMusic);
+            main_mediaElement.AutoPlay = false;
+            GetHistoryMusic();
+            
         }
 
         private void main_listview_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+
             try
             {
                 main_mediaElement.AutoPlay = true;
@@ -587,7 +589,7 @@ namespace MusicPlayer
             }
             catch
             {
-            }           
+            }
             main_music.ForeColor = black;
             main_music = (Music)e.ClickedItem;
             source_path = main_music.Music_Path;
@@ -640,11 +642,11 @@ namespace MusicPlayer
             }
             catch
             {
-            }           
+            }
             main_music.ForeColor = black;
             stop_button.Foreground = white;
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            play_button.Content = "\uE768";
+            play_button.Content = "\uE769";
 
             if (ListPlay_bool)
             {
@@ -656,7 +658,7 @@ namespace MusicPlayer
             }
             local_musicPath.Values["music_path"] = source_path;
             local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
-            
+
         }
         private void item_1_Click(object sender, RoutedEventArgs e)
         {
@@ -789,7 +791,7 @@ namespace MusicPlayer
             }
         }
 
-        private void main_storyBoard_Completed(object sender, object e)//启动加载上一次播放歌曲
+        private void GetHistoryMusic()
         {
             try
             {
@@ -808,15 +810,13 @@ namespace MusicPlayer
                 album_textblock.Text = "专辑:   " + local_music.album_title;
                 bottomTitle_textblock.Text = songTile_textblock.Text;
 
-                playTime_textblock.Text = "00:00"+"/" + local_allTimeStr;
+                playTime_textblock.Text = "00:00" + "/" + local_allTimeStr;
                 local_music.ForeColor = skyblue;
             }
             catch
             {
             }
-           
         }
-
         private void back_button_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             back_button.Background = hotPink;
@@ -905,6 +905,28 @@ namespace MusicPlayer
         private void setting_Button_PointerExited(object sender, PointerRoutedEventArgs e)
         {
             setting_Button.Background = lightPink;
+        }
+
+        private void txt_Nombre_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Escape)
+            {
+                ApplicationView view = ApplicationView.GetForCurrentView();
+                bool isInFullScreenMode = view.IsFullScreenMode;
+                if (isInFullScreenMode)
+                {
+
+                    view.ExitFullScreenMode();
+                    display_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                    display_button.Content = "\uE740";
+                }
+                //else
+                //{
+                //    view.TryEnterFullScreenMode();
+                //    display_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                //    display_button.Content = "\uE73F";
+                //}
+            }
         }
     }
 }

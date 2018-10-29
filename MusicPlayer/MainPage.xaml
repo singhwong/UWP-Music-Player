@@ -11,20 +11,6 @@
     Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary>
-            <Storyboard x:Name="main_storyBoard" Completed="main_storyBoard_Completed">
-
-                <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
-
-                                           Storyboard.TargetName="main_progressBar"
-
-                                           Storyboard.TargetProperty="(RangeBase.Value)">
-
-                    <DiscreteDoubleKeyFrame KeyTime="0:0:1"/>
-                    <DiscreteDoubleKeyFrame KeyTime="0:0:2"/>
-                    <DiscreteDoubleKeyFrame KeyTime="0:0:3"/>
-                </DoubleAnimationUsingKeyFrames>
-
-            </Storyboard>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
@@ -60,8 +46,6 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ProgressBar Name="main_progressBar"
-                     Visibility="Collapsed"/>
         <ProgressRing Name="main_progressRing"
                       Height="50"
                       Width="50"
