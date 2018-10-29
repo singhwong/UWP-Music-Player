@@ -16,7 +16,9 @@ using Windows.Media.Playback;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
+using Windows.System;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -86,6 +88,7 @@ namespace MusicPlayer
             ExtendAcrylicIntoTitleBar();
             use_music = new ObservableCollection<Music>();
             allMusic = new ObservableCollection<StorageFile>();
+            //this.PreviewKeyDown
         }
 
         private void play_button_Click(object sender, RoutedEventArgs e)
@@ -928,6 +931,21 @@ namespace MusicPlayer
                 //}
             }
         }
+        //private void MainPage_KeyDown(object sender, KeyRoutedEventArgs e)
+        //{
+        //    if (e.Key == VirtualKey.Escape)
+        //    {
+        //        ApplicationView view = ApplicationView.GetForCurrentView();
+        //        bool isInFullScreenMode = view.IsFullScreenMode;
+        //        if (isInFullScreenMode)
+        //        {
+
+        //            view.ExitFullScreenMode();
+        //            display_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+        //            display_button.Content = "\uE740";
+        //        }              
+        //    }
+        //}
     }
 }
 
