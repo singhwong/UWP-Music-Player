@@ -319,10 +319,10 @@ namespace MusicPlayer
                     ThumbnailMode.MusicView,
                     300,
                     ThumbnailOptions.UseCurrentScale);
-
-                    Album_Cover.SetSource(current_Thumb);
-                    bottom_image.Source = Album_Cover;
-                    imageBrush_ellipse.ImageSource = Album_Cover;
+                    BitmapImage add_AlbumCover = new BitmapImage();//重新实例化，不然会出现专辑封面显示错乱bug
+                    add_AlbumCover.SetSource(current_Thumb);
+                    bottom_image.Source = add_AlbumCover;
+                    imageBrush_ellipse.ImageSource = add_AlbumCover;
                     #endregion                   
                     main_ellipse.Fill = imageBrush_ellipse;
                 }
@@ -411,7 +411,7 @@ namespace MusicPlayer
             }
             catch
             {
-                imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/girl.jpg", UriKind.Absolute));
+                imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/rain.jpg", UriKind.Absolute));
             }
             main_grid.Background = imageBrush;
             main_grid.Background.Opacity = 0.7;
@@ -548,21 +548,7 @@ namespace MusicPlayer
                 await GetAllSongs(list, item);
             }
         }
-        //获取本地lrc文件
-        //private async void GetLocalLyric(ObservableCollection<StorageFile> lyric_list, StorageFolder lyric_folder)
-        //{
-        //    foreach (var lyric in await lyric_folder.GetFilesAsync())
-        //    {
-        //        if (lyric.FileType == ".lrc")
-        //        {
-        //            lyric_list.Add(lyric);
-        //        }
-        //    }
-        //    foreach (var item in await lyric_folder.GetFoldersAsync())
-        //    {
-        //        await GetAllSongs(lyric_list, item);
-        //    }
-        //}
+      
         private async Task ListView_Songs(ObservableCollection<StorageFile> files)
         {
 

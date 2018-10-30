@@ -104,7 +104,7 @@
                             </Storyboard>
                         </Ellipse.Resources>
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="Assets/girl.jpg"/>
+                            <ImageBrush ImageSource="Assets/music.jpg"/>
                         </Ellipse.Fill>
                     </Ellipse>
 
@@ -171,7 +171,7 @@
                            Height="62"
                            Width="62"
                            Margin="0,0,0,0"
-                           Source="Assets/girl.jpg"/>
+                           Source="Assets/music.jpg"/>
                     <Button Name="back_button"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE892;"
