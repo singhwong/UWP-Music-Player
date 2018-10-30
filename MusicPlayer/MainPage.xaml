@@ -370,6 +370,21 @@
                                                 Text="自定义背景图片(.jpg)"
                                                 FontSize="13"
                                                 Click="background_menu_Click"/>
+                                <MenuFlyoutSubItem Text="歌曲列表背景显示"
+                                                   FontSize="13">
+                                    <MenuFlyoutItem Name="Auto_item"
+                                                    Text="自动"
+                                                    FontSize="13"
+                                                    Click="Auto_item_Click"/>
+                                    <MenuFlyoutItem Name="true_item"
+                                                    Text="显示"
+                                                    FontSize="13"
+                                                    Click="true_item_Click"/>
+                                    <MenuFlyoutItem Name="false_item"
+                                                    Text="隐藏"
+                                                    FontSize="13"
+                                                    Click="false_item_Click"/>
+                                </MenuFlyoutSubItem>
                                 <MenuFlyoutSubItem Text="专辑封面是否转动"
                                                    FontSize="13">
                                     <MenuFlyoutItem Name="Yes_item"

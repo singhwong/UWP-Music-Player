@@ -50,6 +50,7 @@ namespace MusicPlayer
         private bool SingleCycle_bool = false;
         private bool IsBackButtonClick = false;
         private bool IsMusicPlaying = false;
+        private bool IsMusicListAutoShow = true;
         private string source_path;
         private string image_source_path;
         private SolidColorBrush skyblue = new SolidColorBrush(Colors.SkyBlue);
@@ -384,6 +385,7 @@ namespace MusicPlayer
             systemMedia_TransportControls.IsPreviousEnabled = true;
             systemMedia_TransportControls.IsNextEnabled = true;
             systemMedia_TransportControls.ButtonPressed += SystemControls_ButtonPressed;
+            play_button.IsEnabled = false;
             SetAcrylic();
             ListPlay_bool = true;
             back_button.IsEnabled = true;
@@ -540,20 +542,20 @@ namespace MusicPlayer
             }
         }
         //获取本地lrc文件
-        private async void GetLocalLyric(ObservableCollection<StorageFile> lyric_list, StorageFolder lyric_folder)
-        {
-            foreach (var lyric in await lyric_folder.GetFilesAsync())
-            {
-                if (lyric.FileType == ".lrc")
-                {
-                    lyric_list.Add(lyric);
-                }
-            }
-            foreach (var item in await lyric_folder.GetFoldersAsync())
-            {
-                await GetAllSongs(lyric_list, item);
-            }
-        }
+        //private async void GetLocalLyric(ObservableCollection<StorageFile> lyric_list, StorageFolder lyric_folder)
+        //{
+        //    foreach (var lyric in await lyric_folder.GetFilesAsync())
+        //    {
+        //        if (lyric.FileType == ".lrc")
+        //        {
+        //            lyric_list.Add(lyric);
+        //        }
+        //    }
+        //    foreach (var item in await lyric_folder.GetFoldersAsync())
+        //    {
+        //        await GetAllSongs(lyric_list, item);
+        //    }
+        //}
         private async Task ListView_Songs(ObservableCollection<StorageFile> files)
         {
 
@@ -590,7 +592,8 @@ namespace MusicPlayer
             await ListView_Songs(allMusic);
             main_mediaElement.AutoPlay = false;
             GetHistoryMusic();
-            
+            play_button.IsEnabled = true;
+
         }
 
         private void main_listview_ItemClick(object sender, ItemClickEventArgs e)
@@ -732,12 +735,18 @@ namespace MusicPlayer
 
         private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            main_listview.Background = myBrush;
+            if (IsMusicListAutoShow)
+            {
+                main_listview.Background = myBrush;
+            }        
         }
 
         private void main_listview_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            main_listview.Background = transParent;
+            if (IsMusicListAutoShow)
+            {
+                main_listview.Background = transParent;
+            }          
         }
         private async void SystemControls_ButtonPressed(SystemMediaTransportControls sender,
     SystemMediaTransportControlsButtonPressedEventArgs args)
@@ -941,6 +950,23 @@ namespace MusicPlayer
                 //    display_button.Content = "\uE73F";
                 //}
             }
+        }
+
+        private void Auto_item_Click(object sender, RoutedEventArgs e)
+        {
+            IsMusicListAutoShow = true;
+        }
+
+        private void true_item_Click(object sender, RoutedEventArgs e)
+        {
+            IsMusicListAutoShow = false;
+            main_listview.Background = myBrush;
+        }
+
+        private void false_item_Click(object sender, RoutedEventArgs e)
+        {
+            IsMusicListAutoShow = false;
+            main_listview.Background = transParent;
         }
         //private void MainPage_KeyDown(object sender, KeyRoutedEventArgs e)
         //{

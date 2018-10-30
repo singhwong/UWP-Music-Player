@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T09:47:34.941</Modified>
+      <Modified>2018-10-30T05:51:45.614</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MusicPlayer.exe">
       <PackagePath>entrypoint\MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-29T09:47:34.478</Modified>
+      <Modified>2018-10-30T05:51:44.970</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\UWPNuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -506,202 +506,202 @@
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\LargeTile.scale-100.png">
       <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.047</Modified>
+      <Modified>2018-10-30T03:52:57.709</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\LargeTile.scale-125.png">
       <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.052</Modified>
+      <Modified>2018-10-30T03:52:57.758</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\LargeTile.scale-150.png">
       <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.054</Modified>
+      <Modified>2018-10-30T03:52:57.818</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\LargeTile.scale-200.png">
       <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.057</Modified>
+      <Modified>2018-10-30T03:52:57.897</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\LargeTile.scale-400.png">
       <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.061</Modified>
+      <Modified>2018-10-30T03:52:58.123</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SmallTile.scale-100.png">
       <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.068</Modified>
+      <Modified>2018-10-30T03:52:56.971</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SmallTile.scale-125.png">
       <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.070</Modified>
+      <Modified>2018-10-30T03:52:57.002</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SmallTile.scale-150.png">
       <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.073</Modified>
+      <Modified>2018-10-30T03:52:57.037</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SmallTile.scale-200.png">
       <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.076</Modified>
+      <Modified>2018-10-30T03:52:57.078</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SmallTile.scale-400.png">
       <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.079</Modified>
+      <Modified>2018-10-30T03:52:57.124</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.082</Modified>
+      <Modified>2018-10-30T03:52:58.628</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SplashScreen.scale-125.png">
       <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.086</Modified>
+      <Modified>2018-10-30T03:52:58.699</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SplashScreen.scale-150.png">
       <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.089</Modified>
+      <Modified>2018-10-30T03:52:58.775</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SplashScreen.scale-400.png">
       <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.095</Modified>
+      <Modified>2018-10-30T03:52:59.273</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square150x150Logo.scale-100.png">
       <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.098</Modified>
+      <Modified>2018-10-30T03:52:57.168</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square150x150Logo.scale-125.png">
       <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.100</Modified>
+      <Modified>2018-10-30T03:52:57.202</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square150x150Logo.scale-150.png">
       <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.103</Modified>
+      <Modified>2018-10-30T03:52:57.235</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square150x150Logo.scale-400.png">
       <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.112</Modified>
+      <Modified>2018-10-30T03:52:57.368</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.114</Modified>
+      <Modified>2018-10-30T03:52:58.444</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.118</Modified>
+      <Modified>2018-10-30T03:52:58.574</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.120</Modified>
+      <Modified>2018-10-30T03:52:58.494</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.123</Modified>
+      <Modified>2018-10-30T03:52:58.523</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.scale-100.png">
       <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.126</Modified>
+      <Modified>2018-10-30T03:52:58.149</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.scale-125.png">
       <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.134</Modified>
+      <Modified>2018-10-30T03:52:58.175</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.scale-150.png">
       <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.144</Modified>
+      <Modified>2018-10-30T03:52:58.203</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.scale-400.png">
       <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.156</Modified>
+      <Modified>2018-10-30T03:52:58.275</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.162</Modified>
+      <Modified>2018-10-30T03:52:58.300</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.targetsize-24.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.168</Modified>
+      <Modified>2018-10-30T03:52:58.325</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.181</Modified>
+      <Modified>2018-10-30T03:52:58.421</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.188</Modified>
+      <Modified>2018-10-30T03:52:58.349</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.190</Modified>
+      <Modified>2018-10-30T03:52:58.375</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.196</Modified>
+      <Modified>2018-10-30T03:52:59.301</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\StoreLogo.scale-125.png">
       <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.199</Modified>
+      <Modified>2018-10-30T03:52:59.327</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\StoreLogo.scale-150.png">
       <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.204</Modified>
+      <Modified>2018-10-30T03:52:59.354</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\StoreLogo.scale-200.png">
       <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.205</Modified>
+      <Modified>2018-10-30T03:52:59.384</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\StoreLogo.scale-400.png">
       <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.207</Modified>
+      <Modified>2018-10-30T03:52:59.428</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Wide310x150Logo.scale-100.png">
       <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.210</Modified>
+      <Modified>2018-10-30T03:52:57.405</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Wide310x150Logo.scale-125.png">
       <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.213</Modified>
+      <Modified>2018-10-30T03:52:57.440</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Wide310x150Logo.scale-150.png">
       <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.248</Modified>
+      <Modified>2018-10-30T03:52:57.480</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Wide310x150Logo.scale-400.png">
       <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.274</Modified>
+      <Modified>2018-10-30T03:52:57.666</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -710,27 +710,27 @@
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.091</Modified>
+      <Modified>2018-10-30T03:52:58.909</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.108</Modified>
+      <Modified>2018-10-30T03:52:57.284</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.149</Modified>
+      <Modified>2018-10-30T03:52:58.232</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.178</Modified>
+      <Modified>2018-10-30T03:52:58.468</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:38:04.267</Modified>
+      <Modified>2018-10-30T03:52:57.535</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -738,23 +738,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MusicPlayer.xr.xml">
       <PackagePath>MusicPlayer.xr.xml</PackagePath>
-      <Modified>2018-10-29T09:47:34.013</Modified>
+      <Modified>2018-10-30T05:51:44.613</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-10-29T09:47:34.078</Modified>
+      <Modified>2018-10-30T05:51:44.658</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\ButtonStyle.xbf">
       <PackagePath>ButtonStyle.xbf</PackagePath>
-      <Modified>2018-10-29T09:47:34.078</Modified>
+      <Modified>2018-10-30T05:51:44.657</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\LocalMusicControl.xbf">
       <PackagePath>LocalMusicControl.xbf</PackagePath>
-      <Modified>2018-10-29T09:47:34.079</Modified>
+      <Modified>2018-10-30T05:51:44.659</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-10-29T09:47:34.079</Modified>
+      <Modified>2018-10-30T05:51:44.660</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -763,11 +763,11 @@
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-29T08:53:32.900</Modified>
+      <Modified>2018-10-30T03:53:19.854</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\MusicPlayer.exe">
       <PackagePath>MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-29T09:47:34.931</Modified>
+      <Modified>2018-10-30T05:51:45.603</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
