@@ -306,13 +306,7 @@ namespace MusicPlayer
         }
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                local_music.ForeColor = transParent;
-            }
-            catch
-            {
-            }
+            main_mediaElement.AutoPlay = false;
             FileOpenPicker file = new FileOpenPicker();
             file.FileTypeFilter.Add(".mp3");
             StorageFile media_file = await file.PickSingleFileAsync();
@@ -332,6 +326,14 @@ namespace MusicPlayer
                     #endregion                   
                     main_ellipse.Fill = imageBrush_ellipse;
                 }
+                try
+                {
+                    local_music.ForeColor = transParent;
+                }
+                catch
+                {
+                }
+                main_music.ForeColor = transParent;
             }
             localFolder = ApplicationData.Current.LocalFolder;
             try
@@ -345,7 +347,7 @@ namespace MusicPlayer
                 album_textblock.Text = "专辑:   " + song_Properties.Album;
                 bottomTitle_textblock.Text = songTile_textblock.Text;
                 main_mediaElement.Source = new Uri("ms-appdata:///local/" + source_path);
-                play_button.Foreground = black;
+                play_button.Foreground = white;
                 play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                 play_button.Content = "\uE768";
                 IsMusicPlaying = false;
@@ -353,9 +355,9 @@ namespace MusicPlayer
             catch
             {
             }
-
-            local_musicPath.Values["music_path"] = source_path;
-            local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
+           
+            //local_musicPath.Values["music_path"] = source_path;
+            //local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
         }
 
         private void display_button_Click(object sender, RoutedEventArgs e)
@@ -386,6 +388,13 @@ namespace MusicPlayer
             systemMedia_TransportControls.IsNextEnabled = true;
             systemMedia_TransportControls.ButtonPressed += SystemControls_ButtonPressed;
             play_button.IsEnabled = false;
+            add_button.IsEnabled = false;
+
+            if (Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported())
+            {
+                this.feedback_menu.Visibility = Visibility.Visible;
+            }//确定设备是否显示反馈按钮
+
             SetAcrylic();
             ListPlay_bool = true;
             back_button.IsEnabled = true;
@@ -419,9 +428,7 @@ namespace MusicPlayer
                 volume_textblock.Text = "30";
                 main_mediaElement.Volume = 0.3;
             }
-            story_board.Begin();
-            
-            //加载慢的话，会报错，暂时注释
+            story_board.Begin();           
         }
 
         private void volume_Click(object sender, RoutedEventArgs e)
@@ -593,6 +600,8 @@ namespace MusicPlayer
             main_mediaElement.AutoPlay = false;
             GetHistoryMusic();
             play_button.IsEnabled = true;
+            add_button.IsEnabled = true;
+            main_listview.IsItemClickEnabled = true;
 
         }
 
@@ -821,7 +830,7 @@ namespace MusicPlayer
                 source_path = local_musicPath.Values["music_path"].ToString();
                 local_allTimeStr = local_allTime.Values["allTime"].ToString();
                 local_music = SetMusicById.GetIDByPathSource(use_music, source_path);
-                main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
+                main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + local_music.Music_Path);
 
                 Album_Cover = local_music.Cover;
                 imageBrush_ellipse.ImageSource = Album_Cover;
@@ -967,6 +976,12 @@ namespace MusicPlayer
         {
             IsMusicListAutoShow = false;
             main_listview.Background = transParent;
+        }
+
+        private async void feedback_menu_Click(object sender, RoutedEventArgs e)
+        {
+            var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
+            await launcher.LaunchAsync();
         }
         //private void MainPage_KeyDown(object sender, KeyRoutedEventArgs e)
         //{

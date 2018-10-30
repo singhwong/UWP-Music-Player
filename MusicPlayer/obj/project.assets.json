@@ -287,6 +287,12 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -2440,6 +2446,12 @@
       },
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
+      },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
       },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
@@ -4737,6 +4749,12 @@
       },
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
+      },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
       },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
@@ -7067,6 +7085,12 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -8989,6 +9013,12 @@
       },
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
+      },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
       },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
@@ -11295,6 +11325,12 @@
       },
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
+      },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
       },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
@@ -13636,6 +13672,12 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -15941,6 +15983,12 @@
       },
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
+      },
+      "Microsoft.Services.Store.Engagement/10.1711.28001": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Services.Store.Engagement.targets": {}
+        }
       },
       "Microsoft.VisualBasic/10.0.1": {
         "type": "package",
@@ -20638,6 +20686,25 @@
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.json"
+      ]
+    },
+    "Microsoft.Services.Store.Engagement/10.1711.28001": {
+      "sha512": "WOlPS1X+zj9V3JRUAtrnilmTIVOqKdmAr8zOgl524NZxbzdxRrU3nK9UnmpscMEO7a9pn7B6dzL+07LaN/IE6w==",
+      "type": "package",
+      "path": "microsoft.services.store.engagement/10.1711.28001",
+      "files": [
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/Appx/ARM/Microsoft.Services.Store.Engagement.ARM.10.0.appx",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/Appx/x64/Microsoft.Services.Store.Engagement.x64.10.0.appx",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/Appx/x86/Microsoft.Services.Store.Engagement.x86.10.0.appx",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/Extension.vsixmanifest",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/License.rtf",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/Redist.txt",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/References/CommonConfiguration/neutral/Microsoft.Services.Store.Engagement.winmd",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/References/CommonConfiguration/neutral/en/Microsoft.Services.Store.Engagement.xml",
+        "SDK/Windows Kits/10/ExtensionSDKs/Microsoft.Services.Store.Engagement/10.0/SDKManifest.xml",
+        "build/Microsoft.Services.Store.Engagement.targets",
+        "microsoft.services.store.engagement.10.1711.28001.nupkg.sha512",
+        "microsoft.services.store.engagement.nuspec"
       ]
     },
     "Microsoft.VisualBasic/10.0.1": {
@@ -27497,7 +27564,8 @@
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.15063": [
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 6.1.9"
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 6.1.9",
+      "Microsoft.Services.Store.Engagement >= 10.1711.28001"
     ]
   },
   "packageFolders": {
@@ -27540,6 +27608,10 @@
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
             "version": "[6.1.9, )"
+          },
+          "Microsoft.Services.Store.Engagement": {
+            "target": "Package",
+            "version": "[10.1711.28001, )"
           }
         }
       }

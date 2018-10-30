@@ -61,7 +61,7 @@
                   Grid.Row="1"
                   SelectionMode="Single"                      
                   Margin="0,20,0,38"
-                  IsItemClickEnabled="True"             
+                  IsItemClickEnabled="False"             
                   ItemsSource="{x:Bind use_music}"
                   PointerEntered="main_listview_PointerEntered"
                   PointerExited="main_listview_PointerExited"
@@ -396,6 +396,11 @@
                                                     FontSize="13"
                                                     Click="No_item_Click"/>
                                 </MenuFlyoutSubItem>
+                                <MenuFlyoutItem Name="feedback_menu"
+                                                Text="反馈"
+                                                FontSize="13"
+                                                Visibility="Collapsed"
+                                                Click="feedback_menu_Click"/>
                                 <MenuFlyoutItem Name="about_menu"
                                                 Text="关于软件"
                                                 FontSize="13"
