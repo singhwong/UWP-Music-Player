@@ -42,6 +42,10 @@ namespace MusicPlayer
     {
         private ObservableCollection<Music> use_music;
         private ObservableCollection<StorageFile> allMusic;
+
+        private ObservableCollection<StorageFile> lyric_list;
+        private ObservableCollection<Lyric> lyricList_value;
+        string lyric_path;
         private Music main_music = new Music();
         private Music local_music;
 
@@ -89,6 +93,9 @@ namespace MusicPlayer
             ExtendAcrylicIntoTitleBar();
             use_music = new ObservableCollection<Music>();
             allMusic = new ObservableCollection<StorageFile>();
+
+            lyric_list = new ObservableCollection<StorageFile>();
+            lyricList_value = new ObservableCollection<Lyric>();
             //this.PreviewKeyDown
         }
 
@@ -389,6 +396,8 @@ namespace MusicPlayer
             systemMedia_TransportControls.ButtonPressed += SystemControls_ButtonPressed;
             play_button.IsEnabled = false;
             add_button.IsEnabled = false;
+            back_button.IsEnabled = false;
+            forward_button.IsEnabled = false;
 
             if (Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported())
             {
@@ -397,8 +406,6 @@ namespace MusicPlayer
 
             SetAcrylic();
             ListPlay_bool = true;
-            back_button.IsEnabled = true;
-            forward_button.IsEnabled = true;
             main_progressRing.IsActive = true;
             GetLocalMusic();//获取本地音乐文件ListView
             main_progressRing.IsActive = false;
@@ -588,6 +595,12 @@ namespace MusicPlayer
             play_button.IsEnabled = true;
             add_button.IsEnabled = true;
             main_listview.IsItemClickEnabled = true;
+            back_button.IsEnabled = true;
+            forward_button.IsEnabled = true;
+
+            StorageFolder lyric_folder = KnownFolders.MusicLibrary;
+            await GetLyricFile.GetLocalLyrics(lyric_list, lyric_folder);
+            GetLyricFile.GetLyricList(lyric_list, lyricList_value);
 
         }
 
@@ -630,6 +643,10 @@ namespace MusicPlayer
 
             local_musicPath.Values["music_path"] = source_path;
             local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
+
+            //GetTheMusicLyric(main_music.Title);
+            
+            
         }
 
         private void forward_button_Click(object sender, RoutedEventArgs e)
@@ -983,6 +1000,18 @@ namespace MusicPlayer
         //            display_button.Content = "\uE740";
         //        }              
         //    }
+        //}
+        //private void GetTheMusicLyric(string music_title)//获取正在播放音乐歌词文件
+        //{
+        //    lyric_textblock.Text = "";
+           
+        //    var lyric_value = GetLyricFile.GetPlayingLyric(lyricList_value,music_title);
+        //    lyric_path = lyric_value.Lyric_Path;
+        //    if (lyric_path!=null)
+        //    {
+        //        lyric_textblock.Text = lyric_path;
+        //    }
+           
         //}
     }
 }

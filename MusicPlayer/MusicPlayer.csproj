@@ -103,7 +103,6 @@
     </Compile>
     <Compile Include="Models\GetLyricFIle.cs" />
     <Compile Include="Models\Lyric.cs" />
-    <Compile Include="Models\LyricApi.cs" />
     <Compile Include="Models\Music.cs" />
     <Compile Include="Models\ProgressConvert.cs" />
     <Compile Include="Models\SetMusicById.cs" />

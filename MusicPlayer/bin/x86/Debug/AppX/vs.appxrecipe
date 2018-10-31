@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>DBBD3A6EE7DA43E839CE4F1F4411DCF7691A9304677826607A222F9CEFD17F53</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>EFAF29D7C3CF79F5A21094722A87640834569B38279BB6C473B366758D014B4D</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>bb311f35-d890-4f48-88a9-5573fc4216d4_1.0.0.0_x86__f0ft2qc6perkc</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>bb311f35-d890-4f48-88a9-5573fc4216d4_f0ft2qc6perkc!App</RegisteredUserModeAppID>
     <RegisteredPackageID>bb311f35-d890-4f48-88a9-5573fc4216d4</RegisteredPackageID>
@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-31T01:27:34.506</Modified>
+      <Modified>2018-10-31T09:26:38.205</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MusicPlayer.exe">
       <PackagePath>entrypoint\MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-31T01:27:30.117</Modified>
+      <Modified>2018-10-31T09:26:37.410</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\Microsoft SDKs\UWPNuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -746,23 +746,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MusicPlayer.xr.xml">
       <PackagePath>MusicPlayer.xr.xml</PackagePath>
-      <Modified>2018-10-31T01:13:56.744</Modified>
+      <Modified>2018-10-31T09:24:58.049</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-10-31T01:27:29.725</Modified>
+      <Modified>2018-10-31T09:26:37.110</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\ButtonStyle.xbf">
       <PackagePath>ButtonStyle.xbf</PackagePath>
-      <Modified>2018-10-31T01:27:29.724</Modified>
+      <Modified>2018-10-31T09:26:37.109</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\LocalMusicControl.xbf">
       <PackagePath>LocalMusicControl.xbf</PackagePath>
-      <Modified>2018-10-31T01:27:29.726</Modified>
+      <Modified>2018-10-31T09:26:37.111</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-10-31T01:27:29.727</Modified>
+      <Modified>2018-10-31T09:26:37.111</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -771,11 +771,11 @@
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-10-31T01:27:33.672</Modified>
+      <Modified>2018-10-31T09:19:57.134</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\wang\source\repos\UWP-Music-Player\MusicPlayer\bin\x86\Debug\Core\MusicPlayer.exe">
       <PackagePath>MusicPlayer.exe</PackagePath>
-      <Modified>2018-10-31T01:27:34.490</Modified>
+      <Modified>2018-10-31T09:26:38.190</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
