@@ -101,7 +101,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetLocalLyric.cs" />
+    <Compile Include="Models\GetLyricFIle.cs" />
+    <Compile Include="Models\Lyric.cs" />
     <Compile Include="Models\LyricApi.cs" />
     <Compile Include="Models\Music.cs" />
     <Compile Include="Models\ProgressConvert.cs" />
