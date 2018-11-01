@@ -45,7 +45,6 @@ namespace MusicPlayer
 
         private ObservableCollection<StorageFile> lyric_list;
         private ObservableCollection<Lyric> lyricList_value;
-        string lyric_path;
         private Music main_music = new Music();
         private Music local_music;
 
@@ -316,6 +315,7 @@ namespace MusicPlayer
             main_mediaElement.AutoPlay = false;
             FileOpenPicker file = new FileOpenPicker();
             file.FileTypeFilter.Add(".mp3");
+            file.FileTypeFilter.Add(".wav");
             StorageFile media_file = await file.PickSingleFileAsync();
             if (media_file != null)
             {
@@ -343,8 +343,8 @@ namespace MusicPlayer
                 main_music.ForeColor = transParent;
             }
             localFolder = ApplicationData.Current.LocalFolder;
-            try
-            {
+            //try
+            //{
 
                 MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
                 fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
@@ -358,10 +358,10 @@ namespace MusicPlayer
                 play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                 play_button.Content = "\uE768";
                 IsMusicPlaying = false;
-            }
-            catch
-            {
-            }
+        //}
+        //    catch
+        //    {
+        //    }
            
             //local_musicPath.Values["music_path"] = source_path;
             //local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
@@ -470,6 +470,7 @@ namespace MusicPlayer
         {
             FileOpenPicker file = new FileOpenPicker();
             file.FileTypeFilter.Add(".jpg");
+            file.FileTypeFilter.Add(".png");
             StorageFile image_file = await file.PickSingleFileAsync();
             if (image_file != null)
             {
@@ -578,7 +579,6 @@ namespace MusicPlayer
                 music.id = num;
                 music.SongFile = song;
                 music.ForeColor = transParent;
-                music.str = song_Properties.Genre.ToString();//当前对象字符串
                 music.album_title = song_Properties.Album;
                 use_music.Add(music);
                 num++;
@@ -645,7 +645,7 @@ namespace MusicPlayer
             local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
 
             //GetTheMusicLyric(main_music.Title);
-            
+
             
         }
 

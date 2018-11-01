@@ -367,7 +367,7 @@
                         <Button.Flyout>
                             <MenuFlyout x:Name="menu_flyout">
                                 <MenuFlyoutItem Name="background_menu"
-                                                Text="自定义背景图片(.jpg)"
+                                                Text="自定义背景图片"
                                                 FontSize="13"
                                                 Click="background_menu_Click"/>
                                 <MenuFlyoutSubItem Text="歌曲列表背景显示"

@@ -22,36 +22,38 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Name="num_textblock"
+                <TextBlock Name="num_textblock"
                        FontSize="10"
                        Width="30"
                        VerticalAlignment="Center"
                        Text="{x:Bind this_music.id}"/>
-            <TextBlock Name="artist_textblock"
+                <TextBlock Name="artist_textblock"
                        FontSize="13"
                        VerticalAlignment="Center"
                        Text="{x:Bind this_music.Artist}"/>
-            <TextBlock Name="size_textblock"
+                <TextBlock Name="size_textblock"
                        FontSize="13"
                        VerticalAlignment="Center"
                        Margin="10,0,10,0"
                        FontFamily="Segoe MDL2 Assets"
-                       Text="&#xE724;"/>
-            <TextBlock Name="title_textblock"
+                       Text="&#xE949;"
+                           FontWeight="Bold"/>
+                <TextBlock Name="title_textblock"
                        FontSize="15"
                        TextWrapping="Wrap"                    
                        VerticalAlignment="Center"
                        Width="200"
                        Text="{x:Bind this_music.Title}"/>
-            <TextBlock Name="isPlay_textblock"
+                <TextBlock Name="isPlay_textblock"
                        FontSize="20"
                        VerticalAlignment="Center"
                        FontFamily="Segoe MDL2 Assets"
                        Text="&#xEC4F;"
                        Foreground="Transparent"
                        FontWeight="Bold"/>
-        </StackPanel>
-        <ProgressBar Name="control_progressBar"
+            </StackPanel>
+
+            <ProgressBar Name="control_progressBar"
                      Visibility="Collapsed"/>
     </Grid>
 </UserControl>

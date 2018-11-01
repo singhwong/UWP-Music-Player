@@ -19,6 +19,5 @@ namespace MusicPlayer.Models
         public int id { get; set; }
         public SolidColorBrush ForeColor { get; set; }
         public string album_title { get; set; }
-        public string str { get; set; }
     }
 }
