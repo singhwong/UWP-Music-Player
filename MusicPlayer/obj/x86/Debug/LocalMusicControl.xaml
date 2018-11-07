@@ -48,7 +48,7 @@
                        FontSize="20"
                        VerticalAlignment="Center"
                        FontFamily="Segoe MDL2 Assets"
-                       Text="&#xEC4F;"
+                       Text="&#xE8D6;"
                        Foreground="Transparent"
                        FontWeight="Bold"/>
             </StackPanel>

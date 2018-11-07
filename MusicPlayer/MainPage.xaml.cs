@@ -58,6 +58,7 @@ namespace MusicPlayer
         private string image_source_path;
         private SolidColorBrush skyblue = new SolidColorBrush(Colors.SkyBlue);
         private SolidColorBrush black = new SolidColorBrush(Colors.Black);
+        private SolidColorBrush red = new SolidColorBrush(Colors.Red);
 
         private ApplicationDataContainer local_volume = ApplicationData.Current.LocalSettings;
         private ApplicationDataContainer local_backGround = ApplicationData.Current.LocalSettings;
@@ -247,7 +248,7 @@ namespace MusicPlayer
             bottomTitle_textblock.Text = songTile_textblock.Text;
             //main_storyBoard.Begin();
 
-            main_music.ForeColor = skyblue;
+            main_music.ForeColor = red;
 
             //play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             //play_button.Content = "\uE769";
@@ -289,7 +290,7 @@ namespace MusicPlayer
             album_textblock.Text = "专辑:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
 
-            main_music.ForeColor = skyblue;
+            main_music.ForeColor = red;
 
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
@@ -635,7 +636,7 @@ namespace MusicPlayer
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
 
-            main_music.ForeColor = skyblue;
+            main_music.ForeColor = red;
 
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
@@ -846,7 +847,7 @@ namespace MusicPlayer
                 bottomTitle_textblock.Text = songTile_textblock.Text;
 
                 playTime_textblock.Text = "00:00" + "/" + local_allTimeStr;
-                local_music.ForeColor = skyblue;
+                local_music.ForeColor = red;
             }
             catch
             {
