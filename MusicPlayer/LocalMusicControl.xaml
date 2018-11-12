@@ -21,29 +21,44 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Name="control_stackPanel"
+                    Orientation="Horizontal"
+                    PointerEntered="control_stackPanel_PointerEntered"
+                    PointerExited="control_stackPanel_PointerExited">
                 <TextBlock Name="num_textblock"
                        FontSize="10"
                        Width="30"
+                           Foreground="White"
                        VerticalAlignment="Center"
                        Text="{x:Bind this_music.id}"/>
+            <Grid Width="100">
                 <TextBlock Name="artist_textblock"
                        FontSize="13"
+                           Foreground="White"
+                           TextWrapping="Wrap"
                        VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
                        Text="{x:Bind this_music.Artist}"/>
+            </Grid>
+                
                 <TextBlock Name="size_textblock"
                        FontSize="13"
+                           Foreground="White"
                        VerticalAlignment="Center"
                        Margin="10,0,10,0"
                        FontFamily="Segoe MDL2 Assets"
                        Text="&#xE949;"
                            FontWeight="Bold"/>
+            <Grid Width="200">
                 <TextBlock Name="title_textblock"
                        FontSize="15"
+                           Foreground="White"
                        TextWrapping="Wrap"                    
                        VerticalAlignment="Center"
-                       Width="200"
+                           HorizontalAlignment="Center"
                        Text="{x:Bind this_music.Title}"/>
+            </Grid>
+               
                 <TextBlock Name="isPlay_textblock"
                        FontSize="20"
                        VerticalAlignment="Center"

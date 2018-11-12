@@ -7,10 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local1="using:MusicPlayer.Models"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="{StaticResource ButtonBackgroundPressed}"
     Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ButtonBack" Color="{ThemeResource SystemAccentColor}"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource SystemAccentColorLight1}"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{ThemeResource SystemAccentColorDark1}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
@@ -47,9 +54,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ProgressRing Name="main_progressRing"
-                      Height="50"
-                      Width="50"
-                      Visibility="Visible"
+                      Height="100"
+                      Width="100"
+                      Grid.Row="1"
+                      Foreground="White"
+                      Visibility="Collapsed"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"/>
         <TextBlock Name="name_textblock"
@@ -60,11 +69,10 @@
         <ListView Name="main_listview"
                   Grid.Row="1"
                   SelectionMode="Single"                      
-                  Margin="0,20,0,38"
+                  Margin="0,20,0,55"
+                  Width="410"
                   IsItemClickEnabled="False"             
                   ItemsSource="{x:Bind use_music}"
-                  PointerEntered="main_listview_PointerEntered"
-                  PointerExited="main_listview_PointerExited"
                   ItemClick="main_listview_ItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local1:Music">
@@ -141,10 +149,9 @@
     </Grid>
     <Page.BottomAppBar>
         <AppBar Name="main_AppBar"
-                Background="White"              
                 IsOpen="True"
                 IsSticky="True"
-                >
+                Background="{StaticResource ButtonBackgroundPointerOver}">
             <Grid>
                 <Grid.Resources>
                     <ResourceDictionary>
@@ -168,8 +175,8 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <Image Name="bottom_image"
-                           Height="62"
-                           Width="62"
+                           Height="75"
+                           Width="75"
                            Margin="0,0,0,0"
                            Source="Assets/music.jpg"/>
                     <Button Name="back_button"
@@ -177,8 +184,8 @@
                             Content="&#xE892;"
                             FontSize="15"
                             Margin='17,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -190,8 +197,8 @@
                             Content="&#xE768;"
                             FontSize="15"
                             Margin='17,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -203,8 +210,8 @@
                             Content="&#xE893;"
                             FontSize="15"
                             Margin='17,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -215,26 +222,25 @@
 
                 <StackPanel Orientation="Vertical"
                             Grid.Column="1">
-                    <Grid Margin="26,0,10,0">
+                    <Grid Margin="26,15,10,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Name="bottomTitle_textblock"
                                    FontSize='12'
-                                   Foreground="Black"
+                                   Foreground="White"
                                    HorizontalAlignment="Left"/>
                         <TextBlock Name="playTime_textblock"
                                    FontSize="12"                             
                                    Grid.Column="1"
-                                   Foreground="Black"
+                                   Foreground="White"
                                    HorizontalAlignment="Right"/>
                     </Grid>
                     <Slider Name="main_slider"
                             Minimum="0"                          
                             StepFrequency="1"
-                            Foreground="SkyBlue"
-                            Background="Black"
+                            Foreground="White"
                             Margin="26,0,10,0"
                             Value="{Binding ElementName=main_mediaElement,Path=Position,Converter={StaticResource progressConvert }, Mode=TwoWay}"
                             ValueChanged="main_slider_ValueChanged"/>
@@ -246,8 +252,8 @@
                             Content="&#xE71A;" 
                             FontSize="15"
                             Margin='18,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -259,8 +265,8 @@
                             Content="&#xE777;" 
                             FontSize="15"
                             Margin='18,0,0,0'
-                             Height="36"
-                            Width="36"
+                             Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink" 
@@ -289,8 +295,8 @@
                             Content="&#xE710;" 
                             FontSize="15"
                             Margin='18,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -302,8 +308,8 @@
                             Content="&#xF0EE;"
                             FontSize="15"
                             Margin='18,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -343,8 +349,8 @@
                             Content="&#xE740;" 
                             FontSize="15"
                             Margin='18,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -356,8 +362,8 @@
                             Content="&#xE713;"
                             FontSize="15"
                             Margin='18,0,0,0'
-                            Height="36"
-                            Width="36"
+                            Height="40"
+                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
                             Foreground="White"
                             Background="LightPink"
@@ -370,7 +376,7 @@
                                                 Text="自定义背景图片"
                                                 FontSize="13"
                                                 Click="background_menu_Click"/>
-                                <MenuFlyoutSubItem Text="歌曲列表背景显示"
+                                <!--<MenuFlyoutSubItem Text="歌曲列表背景显示"
                                                    FontSize="13">
                                     <MenuFlyoutItem Name="Auto_item"
                                                     Text="自动"
@@ -384,7 +390,7 @@
                                                     Text="隐藏"
                                                     FontSize="13"
                                                     Click="false_item_Click"/>
-                                </MenuFlyoutSubItem>
+                                </MenuFlyoutSubItem>-->
                                 <MenuFlyoutSubItem Text="专辑封面是否转动"
                                                    FontSize="13">
                                     <MenuFlyoutItem Name="Yes_item"

@@ -43,8 +43,8 @@ namespace MusicPlayer
         private ObservableCollection<Music> use_music;
         private ObservableCollection<StorageFile> allMusic;
 
-        private ObservableCollection<StorageFile> lyric_list;
-        private ObservableCollection<Lyric> lyricList_value;
+        //private ObservableCollection<StorageFile> lyric_list;
+        //private ObservableCollection<Lyric> lyricList_value;
         private Music main_music = new Music();
         private Music local_music;
 
@@ -53,37 +53,37 @@ namespace MusicPlayer
         private bool SingleCycle_bool = false;
         private bool IsBackButtonClick = false;
         private bool IsMusicPlaying = false;
-        private bool IsMusicListAutoShow = true;
-        private string source_path;
-        private string image_source_path;
-        private SolidColorBrush skyblue = new SolidColorBrush(Colors.SkyBlue);
-        private SolidColorBrush black = new SolidColorBrush(Colors.Black);
-        private SolidColorBrush red = new SolidColorBrush(Colors.Red);
-
-        private ApplicationDataContainer local_volume = ApplicationData.Current.LocalSettings;
-        private ApplicationDataContainer local_backGround = ApplicationData.Current.LocalSettings;
-        private ApplicationDataContainer local_musicPath = ApplicationData.Current.LocalSettings;
-        private ApplicationDataContainer local_allTime = ApplicationData.Current.LocalSettings;
-        private string backGround_path;
-        private double volume_value;
-
-        private ImageBrush imageBrush = new ImageBrush();
-        private ImageBrush imageBrush_ellipse = new ImageBrush();
-        private BitmapImage Album_Cover = new BitmapImage();
+        //private bool IsMusicListAutoShow = true;
         private bool IsVolumeOpen = true;
-        private double volume_num;
+        private string source_path;
+        private string image_source_path;          
+        private string backGround_path;
         string mm_str;
         string ss_str;
         string allmm_str;
         string allss_str;
+        private double volume_value;
+        private double volume_num;
+        private ImageBrush imageBrush = new ImageBrush();
+        private ImageBrush imageBrush_ellipse = new ImageBrush();
+        private BitmapImage Album_Cover = new BitmapImage();                
         private int allsong_count;
-        StorageFolder localFolder;
-        StorageFile fileCopy;
         private int num = 1;
+        StorageFolder localFolder;
+        StorageFile fileCopy;        
+        private ApplicationDataContainer local_volume = ApplicationData.Current.LocalSettings;
+        private ApplicationDataContainer local_backGround = ApplicationData.Current.LocalSettings;
+        private ApplicationDataContainer local_musicPath = ApplicationData.Current.LocalSettings;
+        private ApplicationDataContainer local_allTime = ApplicationData.Current.LocalSettings;
+        #region 初始化并设置颜色
         private SolidColorBrush white = new SolidColorBrush(Colors.White);
         private SolidColorBrush transParent = new SolidColorBrush(Colors.Transparent);
         private SolidColorBrush hotPink = new SolidColorBrush(Colors.HotPink);
         private SolidColorBrush lightPink = new SolidColorBrush(Colors.LightPink);
+        private SolidColorBrush skyblue = new SolidColorBrush(Colors.SkyBlue);
+        private SolidColorBrush black = new SolidColorBrush(Colors.Black);
+        //private SolidColorBrush red = new SolidColorBrush(Colors.Red);
+        #endregion
         private AcrylicBrush myBrush = new AcrylicBrush();
         string local_allTimeStr;
         private SystemMediaTransportControls systemMedia_TransportControls = SystemMediaTransportControls.GetForCurrentView();
@@ -94,8 +94,8 @@ namespace MusicPlayer
             use_music = new ObservableCollection<Music>();
             allMusic = new ObservableCollection<StorageFile>();
 
-            lyric_list = new ObservableCollection<StorageFile>();
-            lyricList_value = new ObservableCollection<Lyric>();
+            //lyric_list = new ObservableCollection<StorageFile>();
+            //lyricList_value = new ObservableCollection<Lyric>();
             //this.PreviewKeyDown
         }
 
@@ -142,12 +142,7 @@ namespace MusicPlayer
             SetAllTimeMethod();
 
             if (main_slider.Value == main_slider.Maximum)
-            {
-                
-                
-                //play_button.Foreground = black;
-                //play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-                //play_button.Content = "\uE768";
+            {                
                 if (SingleCycle_bool)
                 {
                     Single_Cycle();
@@ -246,14 +241,8 @@ namespace MusicPlayer
             artist_textblock.Text = "演唱者:   " + main_music.Artist;
             album_textblock.Text = "专辑:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
-            //main_storyBoard.Begin();
 
-            main_music.ForeColor = red;
-
-            //play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            //play_button.Content = "\uE769";
-            //play_button.Foreground = skyblue;
-
+            main_music.ForeColor = white;
         }
         private void List_Source()
         {
@@ -290,26 +279,16 @@ namespace MusicPlayer
             album_textblock.Text = "专辑:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
 
-            main_music.ForeColor = red;
+            main_music.ForeColor = white;
 
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
             play_button.Foreground = skyblue;
 
-
         }
         private void Single_Cycle()
         {
-            main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
-            //try
-            //{
-            //    local_music.ForeColor = skyblue;
-            //}
-            //catch
-            //{
-            //    main_music.ForeColor = skyblue;
-            //}
-            
+            main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);       
         }
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
@@ -342,11 +321,7 @@ namespace MusicPlayer
                 {
                 }
                 main_music.ForeColor = transParent;
-            }
-            localFolder = ApplicationData.Current.LocalFolder;
-            //try
-            //{
-
+                localFolder = ApplicationData.Current.LocalFolder;
                 MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
                 fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
                 source_path = media_file.Name;
@@ -359,13 +334,7 @@ namespace MusicPlayer
                 play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
                 play_button.Content = "\uE768";
                 IsMusicPlaying = false;
-        //}
-        //    catch
-        //    {
-        //    }
-           
-            //local_musicPath.Values["music_path"] = source_path;
-            //local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
+            }           
         }
 
         private void display_button_Click(object sender, RoutedEventArgs e)
@@ -405,12 +374,10 @@ namespace MusicPlayer
                 this.feedback_menu.Visibility = Visibility.Visible;
             }//确定设备是否显示反馈按钮
 
-            SetAcrylic();
-            ListPlay_bool = true;
-            main_progressRing.IsActive = true;
+            //SetAcrylic();
+            ListPlay_bool = true;            
             GetLocalMusic();//获取本地音乐文件ListView
-            main_progressRing.IsActive = false;
-            main_progressRing.Visibility = Visibility.Collapsed;
+           
             playTime_textblock.Text = "00:00/00:00";
             try
             {
@@ -506,25 +473,25 @@ namespace MusicPlayer
         }
         #endregion
 
-        private void SetAcrylic()
-        {
-            #region 设置亚克力背景
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.XamlCompositionBrushBase"))
-            {
+        //private void SetAcrylic()
+        //{
+        //    #region 设置亚克力背景
+        //    if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.XamlCompositionBrushBase"))
+        //    {
 
-                myBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
-                myBrush.TintColor = Colors.WhiteSmoke;
-                myBrush.FallbackColor = Colors.WhiteSmoke;
-                myBrush.TintOpacity = 0.3;
-                main_AppBar.Background = myBrush;
-            }
-            else
-            {
-                SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(100, 20, 24, 37));
-                main_AppBar.Background = myBrush;
-            }
-            #endregion
-        }
+        //        myBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
+        //        myBrush.TintColor = Colors.WhiteSmoke;
+        //        myBrush.FallbackColor = Colors.WhiteSmoke;
+        //        myBrush.TintOpacity = 0.3;
+        //        main_AppBar.Background = myBrush;
+        //    }
+        //    else
+        //    {
+        //        SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(100, 20, 24, 37));
+        //        main_AppBar.Background = myBrush;
+        //    }
+        //    #endregion
+        //}
 
         private void volumeIcon_textblock_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -588,6 +555,8 @@ namespace MusicPlayer
         }
         private async void GetLocalMusic()
         {
+            main_progressRing.IsActive = true;
+            main_progressRing.Visibility = Visibility.Visible;
             StorageFolder folder = KnownFolders.MusicLibrary;
             await GetAllSongs(allMusic, folder);
             await ListView_Songs(allMusic);
@@ -598,10 +567,11 @@ namespace MusicPlayer
             main_listview.IsItemClickEnabled = true;
             back_button.IsEnabled = true;
             forward_button.IsEnabled = true;
-
-            StorageFolder lyric_folder = KnownFolders.MusicLibrary;
-            await GetLyricFile.GetLocalLyrics(lyric_list, lyric_folder);
-            GetLyricFile.GetLyricList(lyric_list, lyricList_value);
+            main_progressRing.IsActive = false;
+            main_progressRing.Visibility = Visibility.Collapsed;
+            //StorageFolder lyric_folder = KnownFolders.MusicLibrary;
+            //await GetLyricFile.GetLocalLyrics(lyric_list, lyric_folder);
+            //GetLyricFile.GetLyricList(lyric_list, lyricList_value);
 
         }
 
@@ -636,7 +606,7 @@ namespace MusicPlayer
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
 
-            main_music.ForeColor = red;
+            main_music.ForeColor = white;
 
             play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
             play_button.Content = "\uE769";
@@ -746,21 +716,21 @@ namespace MusicPlayer
             menu_flyout.Hide();
         }
 
-        private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            if (IsMusicListAutoShow)
-            {
-                main_listview.Background = myBrush;
-            }        
-        }
+        //private void main_listview_PointerEntered(object sender, PointerRoutedEventArgs e)
+        //{
+        //    if (IsMusicListAutoShow)
+        //    {
+        //        main_listview.Background = myBrush;
+        //    }        
+        //}
 
-        private void main_listview_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            if (IsMusicListAutoShow)
-            {
-                main_listview.Background = transParent;
-            }          
-        }
+        //private void main_listview_PointerExited(object sender, PointerRoutedEventArgs e)
+        //{
+        //    if (IsMusicListAutoShow)
+        //    {
+        //        main_listview.Background = transParent;
+        //    }          
+        //}
         private async void SystemControls_ButtonPressed(SystemMediaTransportControls sender,
     SystemMediaTransportControlsButtonPressedEventArgs args)
         {
@@ -847,7 +817,7 @@ namespace MusicPlayer
                 bottomTitle_textblock.Text = songTile_textblock.Text;
 
                 playTime_textblock.Text = "00:00" + "/" + local_allTimeStr;
-                local_music.ForeColor = red;
+                local_music.ForeColor = white;
             }
             catch
             {
@@ -965,22 +935,22 @@ namespace MusicPlayer
             }
         }
 
-        private void Auto_item_Click(object sender, RoutedEventArgs e)
-        {
-            IsMusicListAutoShow = true;
-        }
+        //private void Auto_item_Click(object sender, RoutedEventArgs e)
+        //{
+        //    IsMusicListAutoShow = true;
+        //}
 
-        private void true_item_Click(object sender, RoutedEventArgs e)
-        {
-            IsMusicListAutoShow = false;
-            main_listview.Background = myBrush;
-        }
+        //private void true_item_Click(object sender, RoutedEventArgs e)
+        //{
+        //    IsMusicListAutoShow = false;
+        //    main_listview.Background = myBrush;
+        //}
 
-        private void false_item_Click(object sender, RoutedEventArgs e)
-        {
-            IsMusicListAutoShow = false;
-            main_listview.Background = transParent;
-        }
+        //private void false_item_Click(object sender, RoutedEventArgs e)
+        //{
+        //    IsMusicListAutoShow = false;
+        //    main_listview.Background = transParent;
+        //}
 
         private async void feedback_menu_Click(object sender, RoutedEventArgs e)
         {

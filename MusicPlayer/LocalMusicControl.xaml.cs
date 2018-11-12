@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -20,6 +21,8 @@ namespace MusicPlayer
 {
     public sealed partial class LocalMusicControl : UserControl
     {
+        private SolidColorBrush deepPink = new SolidColorBrush(Colors.DeepPink);
+        private SolidColorBrush white = new SolidColorBrush(Colors.White);
         public Music this_music { get { return this.DataContext as Music; } }
         public LocalMusicControl()
         {
@@ -39,6 +42,22 @@ namespace MusicPlayer
             {
             }           
             main_storyBoard.Begin();
+        }
+
+        private void control_stackPanel_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            num_textblock.Foreground = deepPink;
+            artist_textblock.Foreground = deepPink;
+            size_textblock.Foreground = deepPink;
+            title_textblock.Foreground = deepPink;            
+        }
+
+        private void control_stackPanel_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            num_textblock.Foreground = white;
+            artist_textblock.Foreground = white;
+            size_textblock.Foreground = white;
+            title_textblock.Foreground = white;
         }
     }
 }
