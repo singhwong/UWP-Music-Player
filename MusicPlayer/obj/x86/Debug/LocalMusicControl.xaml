@@ -22,9 +22,7 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel x:ConnectionId='3' Name="control_stackPanel"
-                    Orientation="Horizontal"
-                                                                      
-                                                                    >
+                    Orientation="Horizontal">
                 <TextBlock x:ConnectionId='5' Name="num_textblock"
                        FontSize="10"
                        Width="30"

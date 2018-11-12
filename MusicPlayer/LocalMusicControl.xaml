@@ -22,9 +22,7 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Name="control_stackPanel"
-                    Orientation="Horizontal"
-                    PointerEntered="control_stackPanel_PointerEntered"
-                    PointerExited="control_stackPanel_PointerExited">
+                    Orientation="Horizontal">
                 <TextBlock Name="num_textblock"
                        FontSize="10"
                        Width="30"

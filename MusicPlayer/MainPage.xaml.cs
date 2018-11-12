@@ -101,28 +101,35 @@ namespace MusicPlayer
 
         private void play_button_Click(object sender, RoutedEventArgs e)
         {
-            if (source_path != null)
+            if (main_progressRing.IsActive)
             {
-                stop_button.Foreground = white;
-                if (IsMusicPlaying == false)
-                {
-                    main_mediaElement.AutoPlay = true;
-                    main_mediaElement.Play();
-                    play_button.Foreground = skyblue;
-
-                    play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-                    play_button.Content = "\uE769";
-                    IsMusicPlaying = true;
-                }
-                else
-                {
-                    main_mediaElement.Pause();
-                    play_button.Foreground = white;
-                    play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-                    play_button.Content = "\uE768";
-                    IsMusicPlaying = false;
-                }
+                SetContentDialog();
             }
+            else
+            {
+                if (source_path != null)
+                {
+                    stop_button.Foreground = white;
+                    if (IsMusicPlaying == false)
+                    {
+                        main_mediaElement.AutoPlay = true;
+                        main_mediaElement.Play();
+                        play_button.Foreground = skyblue;
+
+                        play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                        play_button.Content = "\uE769";
+                        IsMusicPlaying = true;
+                    }
+                    else
+                    {
+                        main_mediaElement.Pause();
+                        play_button.Foreground = white;
+                        play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                        play_button.Content = "\uE768";
+                        IsMusicPlaying = false;
+                    }
+                }
+            }         
         }
 
         private void stop_button_Click(object sender, RoutedEventArgs e)
@@ -238,8 +245,8 @@ namespace MusicPlayer
             bottom_image.Source = Album_Cover;
 
             songTile_textblock.Text = main_music.Title;
-            artist_textblock.Text = "演唱者:   " + main_music.Artist;
-            album_textblock.Text = "专辑:   " + main_music.album_title;
+            artist_textblock.Text = "Artist:   " + main_music.Artist;
+            album_textblock.Text = "Album:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
 
             main_music.ForeColor = white;
@@ -275,8 +282,8 @@ namespace MusicPlayer
             bottom_image.Source = Album_Cover;
 
             songTile_textblock.Text = main_music.Title;
-            artist_textblock.Text = "演唱者:   " + main_music.Artist;
-            album_textblock.Text = "专辑:   " + main_music.album_title;
+            artist_textblock.Text = "Artist:   " + main_music.Artist;
+            album_textblock.Text = "Album:   " + main_music.album_title;
             bottomTitle_textblock.Text = songTile_textblock.Text;
 
             main_music.ForeColor = white;
@@ -292,48 +299,55 @@ namespace MusicPlayer
         }
         private async void add_button_Click(object sender, RoutedEventArgs e)
         {
-            main_mediaElement.AutoPlay = false;
-            FileOpenPicker file = new FileOpenPicker();
-            file.FileTypeFilter.Add(".mp3");
-            file.FileTypeFilter.Add(".wav");
-            StorageFile media_file = await file.PickSingleFileAsync();
-            if (media_file != null)
+            if (main_progressRing.IsActive)
             {
-                using (var stream = await media_file.OpenAsync(Windows.Storage.FileAccessMode.Read))
+                SetContentDialog();
+            }
+            else
+            {
+                main_mediaElement.AutoPlay = false;
+                FileOpenPicker file = new FileOpenPicker();
+                file.FileTypeFilter.Add(".mp3");
+                file.FileTypeFilter.Add(".wav");
+                StorageFile media_file = await file.PickSingleFileAsync();
+                if (media_file != null)
                 {
-                    #region 获取音乐文件专辑封面
-                    StorageItemThumbnail current_Thumb = await media_file.GetThumbnailAsync(
-                    ThumbnailMode.MusicView,
-                    300,
-                    ThumbnailOptions.UseCurrentScale);
-                    BitmapImage add_AlbumCover = new BitmapImage();//重新实例化，不然会出现专辑封面显示错乱bug
-                    add_AlbumCover.SetSource(current_Thumb);
-                    bottom_image.Source = add_AlbumCover;
-                    imageBrush_ellipse.ImageSource = add_AlbumCover;
-                    #endregion                   
-                    main_ellipse.Fill = imageBrush_ellipse;
+                    using (var stream = await media_file.OpenAsync(Windows.Storage.FileAccessMode.Read))
+                    {
+                        #region 获取音乐文件专辑封面
+                        StorageItemThumbnail current_Thumb = await media_file.GetThumbnailAsync(
+                        ThumbnailMode.MusicView,
+                        300,
+                        ThumbnailOptions.UseCurrentScale);
+                        BitmapImage add_AlbumCover = new BitmapImage();//重新实例化，不然会出现专辑封面显示错乱bug
+                        add_AlbumCover.SetSource(current_Thumb);
+                        bottom_image.Source = add_AlbumCover;
+                        imageBrush_ellipse.ImageSource = add_AlbumCover;
+                        #endregion
+                        main_ellipse.Fill = imageBrush_ellipse;
+                    }
+                    try
+                    {
+                        local_music.ForeColor = transParent;
+                    }
+                    catch
+                    {
+                    }
+                    main_music.ForeColor = transParent;
+                    localFolder = ApplicationData.Current.LocalFolder;
+                    MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
+                    fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
+                    source_path = media_file.Name;
+                    songTile_textblock.Text = song_Properties.Title;
+                    artist_textblock.Text = "Artist:   " + song_Properties.Artist;
+                    album_textblock.Text = "Album:   " + song_Properties.Album;
+                    bottomTitle_textblock.Text = songTile_textblock.Text;
+                    main_mediaElement.Source = new Uri("ms-appdata:///local/" + source_path);
+                    play_button.Foreground = white;
+                    play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                    play_button.Content = "\uE768";
+                    IsMusicPlaying = false;
                 }
-                try
-                {
-                    local_music.ForeColor = transParent;
-                }
-                catch
-                {
-                }
-                main_music.ForeColor = transParent;
-                localFolder = ApplicationData.Current.LocalFolder;
-                MusicProperties song_Properties = await media_file.Properties.GetMusicPropertiesAsync();
-                fileCopy = await media_file.CopyAsync(localFolder, media_file.Name, NameCollisionOption.ReplaceExisting);
-                source_path = media_file.Name;
-                songTile_textblock.Text = song_Properties.Title;
-                artist_textblock.Text = "演唱者:   " + song_Properties.Artist;
-                album_textblock.Text = "专辑:   " + song_Properties.Album;
-                bottomTitle_textblock.Text = songTile_textblock.Text;
-                main_mediaElement.Source = new Uri("ms-appdata:///local/" + source_path);
-                play_button.Foreground = white;
-                play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-                play_button.Content = "\uE768";
-                IsMusicPlaying = false;
             }           
         }
 
@@ -364,11 +378,6 @@ namespace MusicPlayer
             systemMedia_TransportControls.IsPreviousEnabled = true;
             systemMedia_TransportControls.IsNextEnabled = true;
             systemMedia_TransportControls.ButtonPressed += SystemControls_ButtonPressed;
-            play_button.IsEnabled = false;
-            add_button.IsEnabled = false;
-            back_button.IsEnabled = false;
-            forward_button.IsEnabled = false;
-
             if (Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported())
             {
                 this.feedback_menu.Visibility = Visibility.Visible;
@@ -562,11 +571,6 @@ namespace MusicPlayer
             await ListView_Songs(allMusic);
             main_mediaElement.AutoPlay = false;
             GetHistoryMusic();
-            play_button.IsEnabled = true;
-            add_button.IsEnabled = true;
-            main_listview.IsItemClickEnabled = true;
-            back_button.IsEnabled = true;
-            forward_button.IsEnabled = true;
             main_progressRing.IsActive = false;
             main_progressRing.Visibility = Visibility.Collapsed;
             //StorageFolder lyric_folder = KnownFolders.MusicLibrary;
@@ -577,60 +581,79 @@ namespace MusicPlayer
 
         private void main_listview_ItemClick(object sender, ItemClickEventArgs e)
         {
-
-            try
+            if (main_progressRing.IsActive)
             {
-                main_mediaElement.AutoPlay = true;
-                local_music.ForeColor = transParent;
+                SetContentDialog();
             }
-            catch
+            else
             {
+                try
+                {
+                    main_mediaElement.AutoPlay = true;
+                    local_music.ForeColor = transParent;
+                }
+                catch
+                {
+                }
+                main_music.ForeColor = transParent;
+                main_music = (Music)e.ClickedItem;
+                source_path = main_music.Music_Path;
+                main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
+
+                //BitmapImage album_cover = new BitmapImage();
+                Album_Cover = main_music.Cover;
+                imageBrush_ellipse.ImageSource = Album_Cover;
+                main_ellipse.Fill = imageBrush_ellipse;
+                bottom_image.Source = Album_Cover;
+
+                songTile_textblock.Text = main_music.Title;
+                artist_textblock.Text = "Artist:   " + main_music.Artist;
+                album_textblock.Text = "Album:   " + main_music.album_title;
+                bottomTitle_textblock.Text = songTile_textblock.Text;
+                play_button.Foreground = white;
+                IsMusicPlaying = true;
+                play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                play_button.Content = "\uE769";
+
+                main_music.ForeColor = white;
+
+                play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                play_button.Content = "\uE769";
+                play_button.Foreground = skyblue;
+
+                local_musicPath.Values["music_path"] = source_path;
+                local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
+
             }
-            main_music.ForeColor = transParent;
-            main_music = (Music)e.ClickedItem;
-            source_path = main_music.Music_Path;
-            main_mediaElement.Source = new Uri(this.BaseUri, "ms-appdata:///local/" + source_path);
-
-            //BitmapImage album_cover = new BitmapImage();
-            Album_Cover = main_music.Cover;
-            imageBrush_ellipse.ImageSource = Album_Cover;
-            main_ellipse.Fill = imageBrush_ellipse;
-            bottom_image.Source = Album_Cover;
-
-            songTile_textblock.Text = main_music.Title;
-            artist_textblock.Text = "演唱者:   " + main_music.Artist;
-            album_textblock.Text = "专辑:   " + main_music.album_title;
-            bottomTitle_textblock.Text = songTile_textblock.Text;
-            play_button.Foreground = white;
-            IsMusicPlaying = true;
-            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            play_button.Content = "\uE769";
-
-            main_music.ForeColor = white;
-
-            play_button.FontFamily = new FontFamily("Segoe MDL2 Assets");
-            play_button.Content = "\uE769";
-            play_button.Foreground = skyblue;
-
-            local_musicPath.Values["music_path"] = source_path;
-            local_allTime.Values["allTime"] = allmm_str + ":" + allss_str;
 
             //GetTheMusicLyric(main_music.Title);
 
-            
         }
 
         private void forward_button_Click(object sender, RoutedEventArgs e)
         {
-            IsBackButtonClick = false;
-            SwitchMusic();
+            if (main_progressRing.IsActive)
+            {
+                SetContentDialog();
+            }
+            else
+            {
+                IsBackButtonClick = false;
+                SwitchMusic();
+            }          
         }
 
         private void back_button_Click(object sender, RoutedEventArgs e)
         {
-            IsBackButtonClick = true;
-            SwitchMusic();
-
+            if (main_progressRing.IsActive)
+            {
+                SetContentDialog();
+            }
+            else
+            {
+                IsBackButtonClick = true;
+                SwitchMusic();
+            }           
         }
 
         private void SwitchMusic()
@@ -697,9 +720,13 @@ namespace MusicPlayer
         {
             ContentDialog content = new ContentDialog
             {
-                Title = "用户知悉",
-                Content = "纯免费软件,无广告,\n个人用户可以随时下载和安装使用,\n严禁用于商业用途。" +
-                "\n(自动获取的本地音乐文件，为PC音乐文件夹中的音乐文件。)",
+                Title = "About",
+                Content = "Free App,no advertising\nIndividual users can download and install" +
+                "\nIt is strictly prohibited for commercial purposes." +
+                "\n(the music folder:Video)\nHelp: " +
+                "\n1.Bottom bar color is the system  background color\n2.Currently unable to use the words\n" +
+                "3.User need open the permissions to access the Video folder\n" +
+                "4.MouseRight button can hide and display the bottom bar",
                 IsPrimaryButtonEnabled = true,
                 PrimaryButtonText = "OK",
             };
@@ -812,8 +839,8 @@ namespace MusicPlayer
                 bottom_image.Source = Album_Cover;
 
                 songTile_textblock.Text = local_music.Title;
-                artist_textblock.Text = "演唱者:   " + local_music.Artist;
-                album_textblock.Text = "专辑:   " + local_music.album_title;
+                artist_textblock.Text = "Artist:   " + local_music.Artist;
+                album_textblock.Text = "Album:   " + local_music.album_title;
                 bottomTitle_textblock.Text = songTile_textblock.Text;
 
                 playTime_textblock.Text = "00:00" + "/" + local_allTimeStr;
@@ -984,6 +1011,17 @@ namespace MusicPlayer
         //    }
            
         //}
+        private async void SetContentDialog()
+        {
+            ContentDialog content = new ContentDialog
+            {
+                Title = "",
+                Content = "Waiting for loading",
+                IsPrimaryButtonEnabled = true,
+                PrimaryButtonText = "OK",
+            };
+            ContentDialogResult result = await content.ShowAsync();
+        }
     }
 }
 

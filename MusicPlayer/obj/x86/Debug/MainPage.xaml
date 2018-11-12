@@ -69,9 +69,9 @@
         <ListView x:ConnectionId='5' Name="main_listview"
                   Grid.Row="1"
                   SelectionMode="Single"                      
-                  Margin="0,20,0,55"
+                  Margin="0,20,0,50"
                   Width="410"
-                  IsItemClickEnabled="False"             
+                  IsItemClickEnabled="True"             
                                                   
                                                      >
             <ListView.ItemTemplate>
@@ -134,7 +134,7 @@
                            HorizontalAlignment="Center"/>
                 <TextBlock x:ConnectionId='14' Name="lyric_textblock"
                            FontSize="20"
-                           Text="无歌词"
+                           Text="No Lyrics"
                            Foreground="AliceBlue"
                            Margin="0,50,0,0"
                            HorizontalAlignment="Center"/>
@@ -180,46 +180,26 @@
                            Margin="0,0,0,0"
                            Source="Assets/music.jpg"/>
                     <Button x:ConnectionId='44' Name="back_button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE892;"
-                            FontSize="15"
-                            Margin='17,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                        
                                                                      
                                                      />
                     <Button x:ConnectionId='45' Name="play_button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE768;"
-                            FontSize="15"
                             Margin='17,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                        
                                                                      
                                                      />
                     <Button x:ConnectionId='46' Name="forward_button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE893;"
-                            FontSize="15"
                             Margin='17,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                           
                                                                         
                                                         />
                 </StackPanel>
-
                 <StackPanel Orientation="Vertical"
                             Grid.Column="1">
                     <Grid Margin="26,15,10,0">
@@ -248,71 +228,43 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="2">
                     <Button x:ConnectionId='19' Name="stop_button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE71A;" 
-                            FontSize="15"
-                            Margin='18,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                        
                                                                      
                                                     />
                     <Button x:ConnectionId='20' Name="model_button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE777;" 
-                            FontSize="15"
-                            Margin='18,0,0,0'
-                             Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink" 
                                                                         
                                                                       
                                                       >
                         <Button.Flyout>
                             <MenuFlyout x:ConnectionId='36' x:Name="model_flyout">
                                 <MenuFlyoutItem x:ConnectionId='37' Name="item_1" 
-                                                Text="单曲循环"
+                                                Text="Single Cycle"
                                                 FontSize="13"
                                                                     />
                                 <MenuFlyoutItem x:ConnectionId='38' Name="item_2"
-                                                Text="顺序播放"
+                                                Text="Order Play"
                                                 FontSize="13"
                                                                     />
                                 <MenuFlyoutItem x:ConnectionId='39' Name="item_3"
-                                                Text="随机播放"
+                                                Text="Random Play"
                                                 FontSize="13"
                                                                     />
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>
                     <Button x:ConnectionId='21' Name="add_button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE710;" 
-                            FontSize="15"
-                            Margin='18,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                       
                                                                     
                                                     />
                     <Button x:ConnectionId='22' Name="volume"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xF0EE;"
-                            FontSize="15"
-                            Margin='18,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                   
                                                                 
                                                 >
@@ -345,35 +297,21 @@
                         </Button.Flyout>
                     </Button>
                     <Button x:ConnectionId='23' Name="display_button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE740;" 
-                            FontSize="15"
-                            Margin='18,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                           
                                                                         
                                                         />
                     <Button x:ConnectionId='24' Name="setting_Button"
-                            FontFamily="Segoe MDL2 Assets"
                             Content="&#xE713;"
-                            FontSize="15"
-                            Margin='18,0,0,0'
-                            Height="40"
-                            Width="40"
                             Style="{StaticResource TransparentPathIconButtonStyle}"
-                            Foreground="White"
-                            Background="LightPink"
                                                                           
                                                                         
                                                           >
                         <Button.Flyout>
                             <MenuFlyout x:ConnectionId='25' x:Name="menu_flyout">
                                 <MenuFlyoutItem x:ConnectionId='26' Name="background_menu"
-                                                Text="自定义背景图片"
+                                                Text="Custom Background Image"
                                                 FontSize="13"
                                                                              />
                                 <!--<MenuFlyoutSubItem Text="歌曲列表背景显示"
@@ -391,24 +329,24 @@
                                                     FontSize="13"
                                                     Click="false_item_Click"/>
                                 </MenuFlyoutSubItem>-->
-                                <MenuFlyoutSubItem Text="专辑封面是否转动"
+                                <MenuFlyoutSubItem Text="Album Cover Spinning"
                                                    FontSize="13">
                                     <MenuFlyoutItem x:ConnectionId='29' Name="Yes_item"
-                                                    Text="是"
+                                                    Text="Yes"
                                                     FontSize="13"
                                                                           />
                                     <MenuFlyoutItem x:ConnectionId='30' Name="No_item"
-                                                    Text="否"
+                                                    Text="No"
                                                     FontSize="13"
                                                                          />
                                 </MenuFlyoutSubItem>
                                 <MenuFlyoutItem x:ConnectionId='27' Name="feedback_menu"
-                                                Text="反馈"
+                                                Text="FeedBack"
                                                 FontSize="13"
                                                 Visibility="Collapsed"
                                                                            />
                                 <MenuFlyoutItem x:ConnectionId='28' Name="about_menu"
-                                                Text="关于软件"
+                                                Text="About"
                                                 FontSize="13"
                                                                         />
                             </MenuFlyout>

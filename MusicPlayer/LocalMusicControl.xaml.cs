@@ -44,20 +44,20 @@ namespace MusicPlayer
             main_storyBoard.Begin();
         }
 
-        private void control_stackPanel_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            num_textblock.Foreground = deepPink;
-            artist_textblock.Foreground = deepPink;
-            size_textblock.Foreground = deepPink;
-            title_textblock.Foreground = deepPink;            
-        }
+        //private void control_stackPanel_PointerEntered(object sender, PointerRoutedEventArgs e)
+        //{
+        //    num_textblock.Foreground = deepPink;
+        //    artist_textblock.Foreground = deepPink;
+        //    size_textblock.Foreground = deepPink;
+        //    title_textblock.Foreground = deepPink;            
+        //}
 
-        private void control_stackPanel_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-            num_textblock.Foreground = white;
-            artist_textblock.Foreground = white;
-            size_textblock.Foreground = white;
-            title_textblock.Foreground = white;
-        }
+        //private void control_stackPanel_PointerExited(object sender, PointerRoutedEventArgs e)
+        //{
+        //    num_textblock.Foreground = white;
+        //    artist_textblock.Foreground = white;
+        //    size_textblock.Foreground = white;
+        //    title_textblock.Foreground = white;
+        //}
     }
 }
